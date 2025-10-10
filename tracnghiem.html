@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trắc nghiệm Kiến trúc máy tính</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; }
+    header { background: #2a4d8f; color: #fff; padding: 24px 0 12px 0; text-align: center; }
+    nav { background: #e8eefa; padding: 12px 0; text-align: center; margin-bottom: 24px; }
+    nav a { color: #2a4d8f; text-decoration: none; margin: 0 18px; font-weight: bold; font-size: 1.1em;}
+    nav a.active { color: #d35400; text-decoration: underline;}
+    #main { max-width: 800px; margin: auto; padding: 12px; }
+    h2 { color: #2a4d8f; margin-bottom: 10px;}
+    .question { background: #fff; padding: 16px; margin: 16px 0; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.05);}
+    .answers label { display: block; margin: 4px 0;}
+    button { padding: 8px 24px; background: #2a4d8f; color: #fff; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;}
+    .result { margin-top: 12px; font-weight: bold;}
+    .explain { font-size: 0.98em; color: #555; margin-top: 6px;}
+    #score { font-size: 1.2em; color: #d35400; margin: 24px 0;}
+    .correct { color: green; }
+    .incorrect { color: red; }
+    @media (max-width: 600px) {
+      nav a { display: block; margin: 8px 0;}
+      #main { padding: 4px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Trắc nghiệm Kiến trúc máy tính</h1>
+    <div style="font-size:1.12em;">Các chương: Biểu diễn thông tin, Bộ nhớ, CPU</div>
+    <div class="mb-6 flex justify-start">
+      <a href="index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-cyan-500 transition-all">
+        <i class="fa-solid fa-arrow-left"></i> Quay về trang chủ
+      </a>
+    </div>
+  </header>
+  <nav>
+    <a href="#" id="menu-home" class="active">Trang chủ</a>
+    <a href="#" id="menu-c2">Chương 2. Biểu diễn thông tin</a>
+    <a href="#" id="menu-c3">Chương 3. Bộ nhớ máy tính</a>
+    <a href="#" id="menu-c4">Chương 4. CPU</a>
+  </nav>
+  <div id="main">
+    <!-- Nội dung động sẽ hiển thị ở đây -->
+  </div>
+  <script>
+    // --- Dữ liệu câu hỏi các chương ---
+    // Dữ liệu Chương 2 (sample 40 câu)
+    const quiz2 = [
+      {q:"Hệ đếm nhị phân có cơ số là bao nhiêu?",a:["a) 8","b) 10","c) 2","d) 16"],key:2,explain:"Nhị phân dùng 2 ký số 0 và 1 để biểu diễn thông tin."},
+      {q:"Biểu diễn số 13 trong hệ nhị phân là:",a:["a) 1101","b) 1011","c) 1110","d) 1001"],key:0,explain:"13 thập phân = 1101 nhị phân."},
+      {q:"Hệ thập lục phân gồm bao nhiêu ký tự cơ bản?",a:["a) 10","b) 12","c) 16","d) 20"],key:2,explain:"Hệ 16 gồm 0-9 và A-F."},
+      {q:"Số 2F trong hệ thập lục phân tương đương với bao nhiêu trong hệ thập phân?",a:["a) 47","b) 52","c) 31","d) 43"],key:0,explain:"2×16+15=47."},
+      {q:"Trong máy tính, đơn vị nhỏ nhất của thông tin là:",a:["a) Byte","b) Bit","c) Nibble","d) Word"],key:1,explain:"Bit là đơn vị nhỏ nhất."},
+      {q:"Một byte bằng bao nhiêu bit?",a:["a) 4","b) 8","c) 16","d) 32"],key:1,explain:"1 byte = 8 bit."},
+      {q:"Mã ASCII dùng để biểu diễn:",a:["a) Số thực","b) Số nguyên","c) Ký tự","d) Địa chỉ bộ nhớ"],key:2,explain:"ASCII biểu diễn ký tự."},
+      {q:"Phương pháp bù 2 dùng để biểu diễn:",a:["a) Số nguyên không dấu","b) Số nguyên có dấu","c) Số thực","d) Ký tự"],key:1,explain:"Bù 2 biểu diễn số nguyên có dấu."},
+      {q:"Giá trị lớn nhất của số nguyên không dấu 8 bit là:",a:["a) 127","b) 255","c) 128","d) 256"],key:1,explain:"2^8-1=255."},
+      {q:"Biểu diễn số -5 trong hệ bù 2 8 bit là:",a:["a) 11111011","b) 00000101","c) 11110101","d) 00001011"],key:0,explain:"Biểu diễn số âm theo bù 2."},
+      {q:"Đơn vị biểu diễn 4 bit được gọi là:",a:["a) Bit","b) Byte","c) Nibble","d) Word"],key:2,explain:"Nibble là 4 bit."},
+      {q:"Hệ thập phân của số nhị phân 1010 là:",a:["a) 10","b) 11","c) 9","d) 8"],key:0,explain:"1010 nhị phân = 10 thập phân."},
+      {q:"Chuyển đổi số Hex 1A sang nhị phân được biểu diễn là:",a:["a) 00011010","b) 00010110","c) 00011101","d) 00010011"],key:0,explain:"1A hex = 0001 1010 nhị phân."},
+      {q:"Mã hoá Unicode được thiết kế chủ yếu để:",a:["a) Biểu diễn số thực","b) Biểu diễn số nguyên","c) Biểu diễn ký tự đa ngôn ngữ","d) Biểu diễn địa chỉ"],key:2,explain:"Unicode hỗ trợ đa ngôn ngữ."},
+      {q:"Hệ bù 1 của số nhị phân 0101 là:",a:["a) 1010","b) 1011","c) 0101","d) 1001"],key:0,explain:"Bù 1 đảo bit: 0101 → 1010."},
+      {q:"Trong bù 2, bù 2 của số 00000101 là:",a:["a) 11111010","b) 11111011","c) 00000101","d) 11110101"],key:1,explain:"Bù 2 bằng bù 1 + 1."},
+      {q:"Bộ mã nào thường dùng để biểu diễn ký tự tiếng Anh?",a:["a) Unicode","b) ASCII","c) EBCDIC","d) BCD"],key:1,explain:"ASCII dùng phổ biến cho tiếng Anh."},
+      {q:"Giá trị thập phân của số bù 2 8 bit 11111010 là:",a:["a) -6","b) 6","c) -10","d) 10"],key:2,explain:"11111010 biểu diễn số -6 trong bù 2."},
+      {q:"Hệ bù 2 có ưu điểm gì?",a:["a) Chỉ biểu diễn số dương","b) Phép cộng trừ đơn giản hơn","c) Không thể biểu diễn số 0","d) Phức tạp hơn bù 1"],key:1,explain:"Bù 2 giúp phép cộng trừ dễ dàng xử lý."},
+      {q:"Số 1010 1110 trong hệ bù 2 biểu diễn giá trị:",a:["a) -82","b) 174","c) -82","d) 82"],key:0,explain:"Số âm bù 2, giải mã ra -82."},
+      {q:"Chuyển đổi số A hex sang nhị phân là:",a:["a) 1010","b) 1100","c) 1001","d) 1110"],key:0,explain:"A hex = 1010 nhị phân."},
+      {q:"Trong dữ liệu máy tính, ký tự được biểu diễn như thế nào?",a:["a) Dạng số thập phân","b) Dạng mã nhị phân","c) Dạng số hex","d) Dạng dấu chấm động"],key:1,explain:"Dữ liệu ký tự biểu diễn bằng mã nhị phân."},
+      {q:"Tập hợp các phép toán nào được CPU thực hiện?",a:["a) Phép toán số học và logic","b) Phép toán số thực","c) Phép toán xâu ký tự","d) Phép toán hình học"],key:0,explain:"CPU thực hiện phép số học và logic."},
+      {q:"Độ rộng của bus dữ liệu quyết định:",a:["a) Số bit dữ liệu truyền đồng thời","b) Số lệnh thực hiện","c) Tốc độ xử lý của CPU","d) Số thanh ghi"],key:0,explain:"Độ rộng bus quy định lượng dữ liệu truyền một lần."},
+      {q:"Đơn vị Word trong máy tính thường có độ dài:",a:["a) 8 bit","b) 16 bit hoặc 32 bit","c) 4 bit","d) 1 bit"],key:1,explain:"Word tùy hệ có kích thước 16, 32, hoặc 64 bit."},
+      {q:"Nhận xét đúng về số thực trong máy tính?",a:["a) Biểu diễn theo chuẩn IEEE 754","b) Biểu diễn bằng số thập phân nguyên","c) Không biểu diễn số âm","d) Biểu diễn bằng mã ASCII"],key:0,explain:"Chuẩn IEEE 754 dùng cho biểu diễn số thực."},
+      {q:"1K byte bằng bao nhiêu byte?",a:["a) 1024","b) 1000","c) 512","d) 2048"],key:0,explain:"1 KB = 1024 byte trong hệ nhị phân."},
+      {q:"Biểu diễn BCD dùng để:",a:["a) Biểu diễn số thực","b) Biểu diễn số thập phân","c) Biểu diễn ký tự","d) Biểu diễn số nguyên âm"],key:1,explain:"BCD là mã nhị phân biểu diễn mỗi chữ số thập phân."},
+      {q:"Bộ số học trong máy tính là:",a:["a) Chuỗi số học học sinh học","b) Các phép toán số học và logic","c) Các phép đo vật lý","d) Các phép toán hình học"],key:1,explain:"Bao gồm phép cộng, trừ, nhân, chia và logic."},
+      {q:"Để biểu diễn số âm, máy tính dùng phương pháp nào?",a:["a) Dấu và độ lớn","b) Bù 1","c) Bù 2","d) Tất cả các phương pháp trên"],key:3,explain:"Máy tính có thể dùng nhiều phương pháp biểu diễn số âm."},
+      {q:"Khái niệm \"endianness\" trong biểu diễn thông tin là gì?",a:["a) Kiểu mã hóa ký tự","b) Thứ tự byte trong lưu trữ dữ liệu đa byte","c) Chuẩn dữ liệu số thực","d) Kiểu dữ liệu logic"],key:1,explain:"Endianness xác định thứ tự byte lưu trong bộ nhớ."},
+      {q:"Tại sao cần có nhiều hệ đếm (nhị phân, thập phân, thập lục phân)?",a:["a) Do máy tính sử dụng điện tử","b) Vì mỗi hệ phù hợp từng loại dữ liệu và mục đích khác nhau","c) Không có lý do rõ ràng","d) Do đặc trưng ngôn ngữ lập trình"],key:1,explain:"Hệ đếm phục vụ cho biểu diễn và xử lý dữ liệu hiệu quả."},
+      {q:"Địa chỉ bộ nhớ trong máy tính thường biểu diễn dưới dạng nào?",a:["a) Thập phân","b) Nhị phân hoặc thập lục phân","c) Chữ cái","d) Số thực"],key:1,explain:"Địa chỉ lưu theo nhị phân hoặc Hex để thuận tiện thao tác."},
+      {q:"Hệ bù 2 có thể biểu diễn được số nguyên nào?",a:["a) Chỉ số dương","b) Chỉ số âm","c) Số âm và số dương","d) Chỉ số 0"],key:2,explain:"Bù 2 biểu diễn được số âm và dương."},
+      {q:"Phép phép toán AND trong ALU dùng để:",a:["a) Phép cộng","b) Phép logic","c) Phép chia","d) Phép trừ"],key:1,explain:"AND là phép toán logic cơ bản trong ALU."},
+      {q:"Bộ mã nào hỗ trợ đa ngôn ngữ và ký tự đặc biệt?",a:["a) ASCII","b) Unicode","c) EBCDIC","d) BCD"],key:1,explain:"Unicode hỗ trợ đa ngôn ngữ và ký tự đặc biệt."},
+      {q:"Biểu diễn số thực thường chia làm các phần nào?",a:["a) Phần dấu, phần mũ, phần mantissa","b) Phần số nguyên và phần thập phân","c) Phần bit và phần byte","d) Phần nhớ và phần đọc"],key:0,explain:"Chuẩn IEEE 754 dùng các phần dấu, mũ và mantissa."},
+      {q:"Một số nguyên 16 bit có thể biểu diễn số dương tối đa là:",a:["a) 65535","b) 32767","c) 65536","d) 32768"],key:0,explain:"16 bit không dấu biểu diễn tối đa 2^16-1=65535."},
+      {q:"Tại sao lại dùng hệ thập lục phân trong máy tính?",a:["a) Dễ đọc và biểu diễn chuỗi bit dài","b) Là hệ đếm cơ bản của máy tính","c) Đơn giản hơn nhị phân","d) Vì máy tính không thể hiểu nhị phân"],key:0,explain:"Thập lục phân giúp biểu diễn ngắn gọn cho nhị phân dài."},
+      {q:"Mã BCD không được dùng để biểu diễn:",a:["a) Số nguyên","b) Số thực","c) Ký tự","d) Số thập phân"],key:1,explain:"BCD chỉ dùng cho số nguyên thập phân nhưng không biểu diễn số thực."}
+    ];
+    // Dữ liệu Chương 3 (30 câu: từ mẫu trước)
+    const quiz3 = [ // nội dung copy như mẫu trước ... (đã tối ưu hóa ngắn hơn để demo)
+      // ... (đã có đầy đủ ở phiên bản trước, copy lại không đổi)
+      // Chỉ hiển thị 1 đoạn (bạn copy toàn bộ quiz3 ở phiên bản trước vào đây)
+      // Để demo: ở đây chỉ copy 3 câu đầu, bạn thay bằng đủ 30 câu quiz3 như phiên bản trước nhé!
+    //  {q:"Bộ nhớ trong máy tính gồm mấy loại chính?",a:["A. 3","B. 4","C. 2","D. 5"],key:0,explain:"Bộ nhớ chính gồm RAM, ROM và Cache là ba loại chính."},
+    //  {q:"Bộ nhớ RAM có tính chất nào sau đây?",a:["A. Chỉ đọc","B. Lưu trữ dữ liệu tạm thời, cho phép đọc và ghi","C. Lưu trữ vĩnh viễn","D. Tốc độ bằng ổ cứng"],key:1,explain:"RAM dùng để lưu dữ liệu và chương trình trong quá trình xử lý, có thể ghi và đọc."},
+    //  {q:"ROM có chức năng chính là gì?",a:["A. Lưu trữ tạm thời","B. Lưu trữ vĩnh viễn, không thay đổi được","C. Tăng tốc độ truy cập dữ liệu","D. Lưu trữ dữ liệu người dùng"],key:1,explain:"ROM lưu trữ chương trình khởi động và dữ liệu cố định, không thể thay đổi trong khi vận hành."}
+      
+	  {
+        q: " Bộ nhớ trong máy tính gồm mấy loại chính?",
+        a: ["A. 3", "B. 4", "C. 2", "D. 5"],
+        key: 0,
+        explain: "Bộ nhớ chính gồm RAM, ROM và Cache là ba loại chính."
+      },
+      {
+        q: " Bộ nhớ RAM có tính chất nào sau đây?",
+        a: [
+          "A. Chỉ đọc",
+          "B. Lưu trữ dữ liệu tạm thời, cho phép đọc và ghi",
+          "C. Lưu trữ vĩnh viễn",
+          "D. Tốc độ bằng ổ cứng"
+        ],
+        key: 1,
+        explain: "RAM dùng để lưu dữ liệu và chương trình trong quá trình xử lý, có thể ghi và đọc."
+      },
+      {
+        q: " ROM có chức năng chính là gì?",
+        a: [
+          "A. Lưu trữ tạm thời",
+          "B. Lưu trữ vĩnh viễn, không thay đổi được",
+          "C. Tăng tốc độ truy cập dữ liệu",
+          "D. Lưu trữ dữ liệu người dùng"
+        ],
+        key: 1,
+        explain: "ROM lưu trữ chương trình khởi động và dữ liệu cố định, không thể thay đổi trong khi vận hành."
+      },
+      {
+        q: " Bộ nhớ Cache thường nằm ở đâu trong hệ thống?",
+        a: [
+          "A. Ngoài cùng ổ cứng",
+          "B. Gần CPU, tốc độ rất cao",
+          "C. Trên màn hình",
+          "D. Trong RAM"
+        ],
+        key: 1,
+        explain: "Cache nằm gần CPU để giảm thời gian truy cập bộ nhớ chính."
+      },
+      {
+        q: " Nguyên lý cục bộ trong bộ nhớ là gì?",
+        a: [
+          "A. Dữ liệu tập trung ở một khu vực của bộ nhớ được truy xuất nhiều lần",
+          "B. Bộ nhớ chỉ có thể lưu một phần nhỏ dữ liệu",
+          "C. Bộ nhớ chỉ truy cập theo thứ tự tuần tự",
+          "D. Bộ nhớ ngoài luôn chậm hơn RAM"
+        ],
+        key: 0,
+        explain: "Nguyên lý cục bộ giải thích bộ nhớ thường truy cập một vùng nhỏ lặp lại nhiều lần để tối ưu."
+      },
+      {
+        q: " Địa chỉ logic và địa chỉ vật lý khác nhau ở điểm nào?",
+        a: [
+          "A. Logic dùng phần cứng, vật lý do phần mềm",
+          "B. Logic do phần mềm tạo ra, vật lý là địa chỉ thực trên bộ nhớ",
+          "C. Logic dùng cho hệ điều hành, vật lý cho CPU",
+          "D. Không khác nhau"
+        ],
+        key: 1,
+        explain: "Địa chỉ logic là địa chỉ từ chương trình, phải được dịch sang địa chỉ vật lý trên bộ nhớ thật."
+      },
+      {
+        q: " Thanh ghi CPU là gì?",
+        a: [
+          "A. Bộ nhớ bên ngoài",
+          "B. Bộ nhớ nhanh nhất, dung lượng rất nhỏ dùng lưu dữ liệu tạm thời",
+          "C. Bộ lưu trữ trên đĩa cứng",
+          "D. Bộ nhớ cache"
+        ],
+        key: 1,
+        explain: "Thanh ghi là bộ nhớ nhỏ nhất và nhanh nhất trong CPU để lưu trữ tạm thời."
+      },
+      {
+        q: " Bus địa chỉ trong máy tính dùng để làm gì?",
+        a: [
+          "A. Truyền dữ liệu",
+          "B. Truyền địa chỉ ô nhớ cần truy cập",
+          "C. Lưu địa chỉ IP",
+          "D. Truyền lệnh"
+        ],
+        key: 1,
+        explain: "Bus địa chỉ truyền địa chỉ bộ nhớ hoặc thiết bị cần truy xuất."
+      },
+      {
+        q: " Dung lượng bộ nhớ được xác định bởi yếu tố nào?",
+        a: [
+          "A. Tốc độ Bus",
+          "B. Tổng số bit hoặc từ mà bộ nhớ có thể lưu trữ",
+          "C. Số lượng dây dữ liệu",
+          "D. Số bit dữ liệu truyền trong 1 giây"
+        ],
+        key: 1,
+        explain: "Dung lượng là tổng số bit hoặc từ mà bộ nhớ có thể chứa."
+      },
+      {
+        q: " Thời gian truy cập bộ nhớ tính từ?",
+        a: [
+          "A. Bắt đầu khởi động máy",
+          "B. Từ lúc phát tín hiệu truy cập tới khi nhận dữ liệu",
+          "C. Từ khi CPU hoạt động",
+          "D. Từ khi RAM khởi động"
+        ],
+        key: 1,
+        explain: "Thời gian truy cập bộ nhớ tính từ khi bộ nhớ nhận tín hiệu tới khi trả dữ liệu."
+      },
+      {
+        q: " Bộ nhớ Cache giúp cải thiện hiệu suất máy tính như thế nào?",
+        a: [
+          "A. Tăng dung lượng lưu trữ",
+          "B. Giảm thời gian truy cập dữ liệu thường dùng",
+          "C. Lưu trữ dữ liệu vĩnh viễn",
+          "D. Xóa dữ liệu cũ"
+        ],
+        key: 1,
+        explain: "Cache lưu dữ liệu truy cập nhiều lần để CPU truy cập nhanh hơn."
+      },
+      {
+        q: " Bộ nhớ DRAM cần làm gì định kỳ?",
+        a: [
+          "A. Sạc pin",
+          "B. Làm tươi lại các bit dữ liệu",
+          "C. Cập nhật phần mềm",
+          "D. Xóa dữ liệu lưu trữ"
+        ],
+        key: 1,
+        explain: "DRAM cần làm tươi (refresh) để giữ dữ liệu vì các tụ điện bị phóng điện dần."
+      },
+      {
+        q: " Phân cấp bộ nhớ có ưu điểm gì?",
+        a: [
+          "A. Tăng chi phí hệ thống",
+          "B. Kết hợp tốc độ và dung lượng hiệu quả",
+          "C. Giảm dung lượng bộ nhớ",
+          "D. Loại bỏ bộ nhớ ngoài"
+        ],
+        key: 1,
+        explain: "Phân cấp bộ nhớ cho phép dung lượng lớn với tốc độ xử lý phù hợp và chi phí hiệu quả."
+      },
+      {
+        q: " Bộ nhớ nào có tốc độ truy cập nhanh nhất?",
+        a: [
+          "A. RAM",
+          "B. ROM",
+          "C. Thanh ghi CPU",
+          "D. Ổ cứng"
+        ],
+        key: 2,
+        explain: "Thanh ghi CPU là bộ nhớ gần CPU nhất và truy cập nhanh nhất."
+      },
+      {
+        q: " Địa chỉ vật lý được dùng để?",
+        a: [
+          "A. Lưu trữ dữ liệu tạm thời",
+          "B. Truy xuất dữ liệu thực tế trong bộ nhớ chính",
+          "C. Dự phòng hệ thống",
+          "D. Quản lý bộ nhớ ảo"
+        ],
+        key: 1,
+        explain: "Địa chỉ vật lý là địa chỉ thực để truy cập bộ nhớ vật lý RAM."
+      },
+      {
+        q: " Bộ nhớ ROM được phân loại thành?",
+        a: [
+          "A. RAM, DRAM, SRAM",
+          "B. PROM, EPROM, EEPROM",
+          "C. USB, HDD, SSD",
+          "D. Cache, RAM, ROM"
+        ],
+        key: 1,
+        explain: "ROM có nhiều loại như PROM (chỉ đọc), EPROM có thể xóa bằng tia UV, EEPROM có thể xóa bằng điện áp."
+      },
+      {
+        q: " Bộ nhớ ngoài gồm?",
+        a: [
+          "A. RAM và Cache",
+          "B. Ổ cứng, SSD, USB",
+          "C. ROM và Cache",
+          "D. Thanh ghi CPU"
+        ],
+        key: 1,
+        explain: "Bộ nhớ ngoài là các thiết bị lưu trữ bên ngoài RAM như ổ cứng, SSD, USB."
+      },
+      {
+        q: " Chức năng của thanh ghi Instruction Register (IR) là?",
+        a: [
+          "A. Lưu dữ liệu",
+          "B. Lưu lệnh hiện hành được thực thi",
+          "C. Lưu địa chỉ bộ nhớ",
+          "D. Lưu kết quả trung gian"
+        ],
+        key: 1,
+        explain: "IR lưu giữ lệnh đang được CPU giải mã và thực hiện."
+      },
+      {
+        q: " Bộ nhớ Cache hoạt động theo nguyên lý nào?",
+        a: [
+          "A. Nguyên lý chia sẻ bộ nhớ",
+          "B. Nguyên lý cục bộ",
+          "C. Nguyên lý tuần tự",
+          "D. Nguyên lý xóa bộ nhớ"
+        ],
+        key: 1,
+        explain: "Cache dựa trên nguyên lý cục bộ, lưu trữ dữ liệu gần đây và nhiều khả năng truy xuất lại."
+      },
+      {
+        q: " Tốc độ trung bình của RAM ảnh hưởng bởi?",
+        a: [
+          "A. Bus dữ liệu và thời gian truy cập",
+          "B. Số lượng bit trên bus địa chỉ",
+          "C. Số lượng CPU",
+          "D. Dung lượng ổ cứng"
+        ],
+        key: 0,
+        explain: "Tốc độ truy cập RAM phụ thuộc bus dữ liệu và thời gian truy cập bộ nhớ."
+      },
+      {
+        q: " Truy cập ngẫu nhiên (Random Access) nghĩa là?",
+        a: [
+          "A. Truy cập dữ liệu theo thứ tự",
+          "B. Truy cập dữ liệu ở bất kỳ ô nhớ nào trong cùng thời gian tương đương",
+          "C. Truy cập dữ liệu theo nhóm",
+          "D. Truy cập dữ liệu qua mạng"
+        ],
+        key: 1,
+        explain: "Bộ nhớ RAM truy cập ngẫu nhiên nghĩa là thời gian truy cập vào bất cứ ô nhớ nào gần như bằng nhau."
+      },
+      {
+        q: " Bộ nhớ SRAM khác DRAM ở điểm?",
+        a: [
+          "A. SRAM cần làm tươi, DRAM không cần",
+          "B. SRAM không cần làm tươi, DRAM cần làm tươi",
+          "C. SRAM dung lượng lớn hơn DRAM",
+          "D. SRAM chậm hơn DRAM"
+        ],
+        key: 1,
+        explain: "SRAM lưu dữ liệu bằng transistor nên không cần làm tươi, DRAM dùng tụ điện cần làm tươi."
+      },
+      {
+        q: " Một bus địa chỉ 20 bit cho phép truy cập tối đa bao nhiêu dung lượng bộ nhớ?",
+        a: [
+          "A. 1 MB",
+          "B. 2 MB",
+          "C. 4 MB",
+          "D. 8 MB"
+        ],
+        key: 0,
+        explain: "2^20 = 1,048,576 bytes = 1 MB."
+      },
+      {
+        q: " Bộ nhớ được gọi là không đổi (non-volatile) là bộ nhớ nào?",
+        a: [
+          "A. RAM",
+          "B. Cache",
+          "C. ROM",
+          "D. Bộ nhớ đệm"
+        ],
+        key: 2,
+        explain: "ROM là bộ nhớ không mất dữ liệu khi mất điện, gọi là non-volatile."
+      },
+      {
+        q: " Mục đích chính của làm tươi trong DRAM là?",
+        a: [
+          "A. Tăng tốc đọc ghi",
+          "B. Đảm bảo dữ liệu không bị mất do phóng điện tụ điện",
+          "C. Cải thiện dung lượng bộ nhớ",
+          "D. Giảm sai số dữ liệu"
+        ],
+        key: 1,
+        explain: "Làm tươi DRAM nhằm giữ cho dữ liệu không bị mất dần do phóng điện tụ."
+      },
+      {
+        q: " Thanh ghi Program Counter (PC) dùng để?",
+        a: [
+          "A. Lưu dữ liệu tạm",
+          "B. Chỉ giữ địa chỉ lệnh tiếp theo cần thực hiện",
+          "C. Lưu kết quả phép toán",
+          "D. Truy cập bộ nhớ"
+        ],
+        key: 1,
+        explain: "PC giữ địa chỉ lệnh sẽ được CPU thực thi tiếp theo."
+      },
+      {
+        q: " Độ rộng bus dữ liệu ảnh hưởng gì tới bộ nhớ?",
+        a: [
+          "A. Xác định số lượng bit dữ liệu có thể truyền trong một lần truy cập",
+          "B. Xác định dung lượng bộ nhớ",
+          "C. Xác định tốc độ bus địa chỉ",
+          "D. Không ảnh hưởng"
+        ],
+        key: 0,
+        explain: "Bus dữ liệu rộng càng lớn thì số bit truyền mỗi lần càng nhiều."
+      },
+      {
+        q: " Sơ đồ phân cấp bộ nhớ giúp giảm gì?",
+        a: [
+          "A. Dung lượng bộ nhớ tổng thể",
+          "B. Chi phí và tăng hiệu năng truy cập",
+          "C. Số lượng USB cần chuyển đổi",
+          "D. Tốc độ CPU"
+        ],
+        key: 1,
+        explain: "Phân cấp bộ nhớ giúp cân đối chi phí và tăng hiệu năng truy cập."
+      },
+      {
+        q: " Bộ nhớ Cache gồm các dạng nào?",
+        a: [
+          "A. L1, L2, L3",
+          "B. RAM và ROM",
+          "C. DRAM và SRAM",
+          "D. EEPROM và PROM"
+        ],
+        key: 0,
+        explain: "Cache được chia thành các cấp L1 (nhanh nhất, nhỏ nhất), L2 và L3."
+      },
+      {
+        q: " Khi CPU truy cập bộ nhớ, thứ tự truy cập là?",
+        a: [
+          "A. Cache → RAM → Bộ nhớ ngoài",
+          "B. Bộ nhớ ngoài → RAM → Cache",
+          "C. RAM → Cache → Bộ nhớ ngoài",
+          "D. Bộ nhớ ngoài → Cache → RAM"
+        ],
+        key: 0,
+        explain: "CPU truy xuất dữ liệu đầu tiên từ Cache, nếu không có sẽ vào RAM, cuối cùng mới đến bộ nhớ ngoài."
+      }
+	  
+	  
+	  // ... copy thêm quiz3 từ phiên bản trước ...
+    ];
+    // Dữ liệu Chương 4 (40 câu)
+    const quiz4 = [
+      {q:"Bộ phận nào của CPU chịu trách nhiệm điều khiển các hoạt động của máy tính?",a:["a) ALU","b) Bộ điều khiển (CU)","c) Thanh ghi","d) Bộ nhớ đệm"],key:1,explain:"Bộ điều khiển (Control Unit - CU) điều khiển quá trình xử lý và lấy lệnh, điều phối các thành phần trong CPU."},
+      {q:"ALU trong CPU dùng để làm gì?",a:["a) Điều khiển luồng dữ liệu","b) Thực hiện phép toán số học và logic","c) Lưu trữ dữ liệu trung gian","","d) Đọc ghi bộ nhớ"],key:1,explain:"ALU (Arithmetic Logic Unit) xử lý các phép tính số học và logic."},
+      {q:"Khối nào chịu trách nhiệm đọc lệnh từ bộ nhớ chính trong CPU?",a:["a) Bộ nhớ đệm","b) Bộ đếm lệnh (PC)","c) Bộ điều khiển (CU)","d) Bộ giải mã lệnh (I","D)"],key:1,explain:"Bộ đếm lệnh (Program Counter - PC) lưu địa chỉ lệnh tiếp theo cần thực hiện."},
+{q:" Trong kiến trúc vi xử lý 16 bit, thanh ghi SP có chức năng gì?",a:[" a) Trỏ đến đỉnh STACK",
+"b) Trỏ đến con trỏ lệnh",
+"c) Lưu kết quả tính toán",
+"d) Lưu địa chỉ nhớ dữ liệu"],
+key: 0, 
+explain:" SP (Stack Pointer) dùng để trỏ đến đỉnh STACK, quản lý ngăn xếp."},
+{q:" Khối EU trong kiến trúc vi xử lý có nhiệm vụ gì?",a:["a) Giải mã lệnh","b) Thực hiện các phép toán số học và logic","c) Điều khiển lấy lệnh","d) Quản lý bộ nhớ"],key: 1,
+explain:" EU (Execution Unit) thực hiện các phép tính số học và logic. "},
+{q:" Phương thức truy cập dữ liệu DMA trong CPU là gì?",a:["a) Truy cập bộ nhớ gián tiếp qua CPU","b) Truy cập bộ nhớ trực tiếp bỏ qua CPU","c) Vào ra dữ liệu qua ngắt mềm","d) Vào ra theo ngắt cứng"],key: 1,
+explain:" DMA cho phép thiết bị ngoại vi truy cập bộ nhớ trực tiếp mà không qua CPU để tăng tốc độ. "}, 
+{q:" Thanh ghi nào trong CPU lưu địa chỉ của lệnh kế tiếp?",a:["a) IR","b) PC","c) MAR","d) MBR"],key: 1,
+explain:" PC (Program Counter) chứa địa chỉ câu lệnh tiếp theo để thực hiện. "}, 
+{q:" Bộ đệm lệnh trong CPU có chức năng gì?",a:["a) Lưu dữ liệu","b) Giải mã lệnh","c) Lưu trữ tạm thời lệnh trước khi xử lý","d) Thực hiện phép tính logic"],key: 2,explain:" Bộ đệm lệnh giúp giảm thời gian truy cập lệnh, tiết kiệm chu kỳ xử lý. "}, 
+{q:" CU (Bộ điều khiển) có chức năng chính nào?",a:["a) Điều khiển các thanh ghi","b) Lấy và giải mã lệnh","c) Thực hiện phép tính số học","d) Quản lý ngăn xếp"],key: 1,
+explain:" CU điều khiển toàn bộ quy trình lấy lệnh, giải mã và thực hiện. "}, 
+{q:" Trong CPU, bộ nhớ đệm (Cache) có tác dụng gì?",a:["a) Lưu trữ vĩnh viễn dữ liệu","b) Tăng tốc truy cập dữ liệu và lệnh","c) Giải mã dữ liệu","d) Điều khiển thiết bị ngoại vi"],key: 1,
+explain:" Cache giúp giảm độ trễ nhớ bằng cách lưu dữ liệu và lệnh thường xuyên dùng. "}, 
+{q:" Thanh ghi IR trong CPU lưu gì?",a:["a) Lệnh hiện tại đang thực thi","b) Địa chỉ dữ liệu","c) Thanh ghi tạm thời","d) Kết quả tính toán"],key: 0,
+explain:" IR (Instruction Register) chứa lệnh đang được CPU thực thi. "}, 
+{q:" Kiến trúc RISC khác CISC ở điểm nào?",a:["a) RISC có tập lệnh đơn giản hơn","b) CISC không dùng thanh ghi","c) RISC thực hiện ít lệnh hơn","d) CISC không có bộ điều khiển"],key: 0,
+explain:" RISC (Reduced Instruction Set Computer) tập trung vào tập lệnh đơn giản và hiệu quả. "}, 
+{q:" Ở kiến trúc CPU, BUS dữ liệu thực hiện nhiệm vụ gì?",a:["a) Truyền địa chỉ bộ nhớ","b) Truyền dữ liệu giữa CPU và bộ nhớ","c) Điều khiển các thiết bị ngoại vi","d) Điều khiển hoạt động CPU"],key: 1,
+explain:" BUS dữ liệu truyền tải dữ liệu giữa CPU và các thành phần khác. "}, 
+{q:" Khối MAR trong CPU có nhiệm vụ gì?",a:["a) Lưu địa chỉ bộ nhớ cần truy cập","b) Lưu thanh ghi tạm thời","c) Thực hiện tính toán","d) Điều khiển tín hiệu vào ra"],key: 0,
+explain:" MAR (Memory Address Register) chứa địa chỉ của bộ nhớ cần đọc hoặc ghi. "}, 
+{q:" Trong kiến trúc vi xử lý, EU là viết tắt của?",a:["a) Execution Unit","b) Extension Unit","c) External Unit","d) Example Unit"],key: 0,
+explain:" EU là Execution Unit, thực hiện các phép tính. "}, 
+{q:" Khối nào trong CPU thực hiện giải mã lệnh?",a:["a) CU","b) EU","c) ID (Instruction Decode)","d) PC"],key: 2,
+explain:" Khối giải mã lệnh phân tích và chuẩn bị thực thi các lệnh. "}, 
+{q:" Thanh ghi nào dùng để lưu dữ liệu trung gian trong CPU?",a:["a) IR","b) ALU","c) Thanh ghi tạm thời (Temporary Register)","d) PC"],key: 2,
+explain:" Thanh ghi tạm thời lưu dữ liệu trung gian trong quá trình xử lý. "}, 
+{q:" Thanh ghi CS trong kiến trúc CPU dùng để làm gì?",a:["a) Lưu con trỏ lệnh","b) Lưu thanh ghi dữ liệu","c) Lưu địa chỉ đoạn lệnh code segment","d) Thực hiện phép tính"],key: 2,
+explain:" CS (Code Segment register) lưu địa chỉ của đoạn chứa lệnh. "}, 
+{q:" Thanh ghi BP có nhiệm vụ gì trong CPU?",a:["a) Quản lý đỉnh STACK","b) Làm cơ sở để truy cập dữ liệu trong STACK","c) Lưu lệnh hiện tại","d) Thanh ghi tạm thời"],key: 1,
+explain:" BP là Base Pointer, dùng để truy cập dữ liệu trong stack. "}, 
+{q:" Phép tính AND trong ALU là phép toán gì?",a:["a) Phép cộng","b) Phép nhân","c) Phép logic AND","d) Phép trừ"],key: 2,
+explain:" ALU thực hiện các phép toán số học và logic, AND là phép logic. "}, 
+{q:" Khối điều khiển trong CPU xử lý tín hiệu nào?",a:["a) Tín hiệu dữ liệu","b) Tín hiệu điều khiển lệnh và thiết bị","c) Tín hiệu điện năng","d) Tín hiệu truyền thông"],key: 1,
+explain:" Bộ điều khiển xử lý các tín hiệu điều khiển cho CPU và thiết bị ngoại vi. "}, 
+{q:" Thanh ghi MBR trong CPU có chức năng gì?",a:["a) Lưu dữ liệu đọc/ghi từ bộ nhớ","b) Lưu địa chỉ bộ nhớ","c) Lưu con trỏ lệnh","d) Lưu mã lệnh"],key: 0,
+explain:" MBR (Memory Buffer Register) lưu tạm dữ liệu truyền giữa bộ nhớ và CPU. "},
+{q:" Tốc độ xử lý của CPU được đo bằng đơn vị gì?",a:["a) Byte","b) Hertz (Hz)","c) Bit","d) Volt"],key: 1,
+explain:" Tốc độ xử lý đo bằng Hertz, thể hiện số chu kỳ trong giây. "}, 
+{q:" Máy tính hoạt động theo chu trình nào?",a:["a) Lấy lệnh, giải mã lệnh, thực hiện lệnh","b) Giải mã lệnh, lấy lệnh, thực hiện lệnh","c) Thực hiện lệnh, lấy lệnh, giải mã lệnh","d) Lấy lệnh, thực hiện lệnh, giải mã lệnh"],key: 0,
+explain:" Chu trình lấy lệnh, giải mã và thực hiện là quy trình xử lý của CPU. "}, 
+{q:" Kiến trúc CPU có thể có mấy loại kiến trúc cơ bản?",a:["a) 1","b) 2","c) 3","d) 4"],key: 1,
+explain:" Hai kiến trúc phổ biến là RISC và CISC. "}, 
+{q:" BUS địa chỉ trong CPU dùng để làm gì?",a:["a) Truyền dữ liệu","b) Truyền tín hiệu điều khiển","c) Chỉ địa chỉ bộ nhớ hoặc thiết bị ngoại vi cần truy cập","d) Lưu trữ tạm thời"],key: 2,
+explain:" BUS địa chỉ truyền thông tin về vị trí bộ nhớ hoặc thiết bị cần được truy cập. "}, 
+{q:" Khi CPU thực hiện phép cộng, dữ liệu được xử lý chủ yếu trong khối nào?",a:["a) CU","b) ALU","c) MAR","d) IR"],key: 1,
+explain:" ALU thực hiện các phép toán số học như cộng, trừ. "}, 
+{q:" Thanh ghi nào liên quan đến việc lưu phạm vi địa chỉ lệnh?",a:["a) CS","b) DS","c) SS","d) ES"],key: 0,
+explain:" CS chứa địa chỉ vùng lệnh hiện hành. "}, 
+{q:" ALU có thể thực hiện phép tính nào?",a:["a) Phép cộng và OR","b) Phép trừ và NOT","c) Phép AND, OR, NOT, và các phép toán số học","d) Phép dịch bit"],key: 2,
+explain:" ALU thực hiện cả các phép toán logic và số học. "}, 
+{q:" CPU kết nối với bộ nhớ thông qua?",a:["a) BUS dữ liệu, địa chỉ và điều khiển","b) Bộ nhớ đệm","c) Thanh ghi tạm thời","d) Bộ đếm lệnh"],key: 0,
+explain:" CPU dùng hệ thống bus để trao đổi dữ liệu, địa chỉ và tín hiệu điều khiển. "}, 
+{q:" Thanh ghi nào không thuộc CPU?",a:["a) IP","b) IR","c) RAM","d) AX"],key: 2,
+explain:" RAM là bộ nhớ, không phải thanh ghi của CPU. "}, 
+{q:" CPU có thể xử lý dữ liệu nào?",a:["a) Chỉ số nguyên","b) Chỉ số thực","c) Dữ liệu số và lệnh điều khiển","d) Chỉ lệnh"],key: 2,
+explain:" CPU xử lý cả dữ liệu và lệnh điều khiển trong quá trình tính toán. "}, 
+{q:" Thanh ghi IR chứa dữ liệu hay lệnh?",a:["a) Dữ liệu","b) Lệnh"],key: 1,
+explain:" IR chứa lệnh đang được thực hiện. "}, 
+{q:" Thanh ghi nào dùng để lưu địa chỉ cho truy cập đọc/ghi bộ nhớ?",a:["a) PC","b) MBR","c) MAR","d) IR"],key: 2,
+explain:" MAR lưu thông tin địa chỉ bộ nhớ cần đọc hoặc ghi. "}, 
+{q:" Trong kiến trúc CPU, thanh ghi DS dùng cho mục đích gì?",a:["a) Lưu địa chỉ đoạn dữ liệu","b) Chứa lệnh","c) Lưu đỉnh stack","d) Lưu kết quả xử lý"],key: 0,
+explain:" DS (Data Segment) lưu địa chỉ của đoạn dữ liệu. "}, 
+{q:" Khối nào chịu trách nhiệm phối hợp các thành phần trong CPU?",a:["a) ALU","b) Bộ điều khiển (CU)","c) Bộ nhớ đệm","d) Thanh ghi"],key: 1,
+explain:" CU điều khiển và phối hợp hoạt động CPU. "}, 
+{q:" Thanh ghi nào quản lý STACK trong kiến trúc CPU 16 bit?",a:["a) SS:SP","b) CS:IP","c) DS:SI","d) BP:SP"],key: 3,
+explain:" Cặp BP (Base Pointer) và SP (Stack Pointer) quản lý STACK. "}, 
+{q:" Trong kiến trúc CPU, chức năng của thanh ghi IP là gì?",a:["a) Lưu mã lệnh","b) Lưu địa chỉ lệnh kế tiếp","c) Lưu dữ liệu trong ALU","d) Lưu địa chỉ dữ liệu"],key: 1,
+explain:" IP (Instruction Pointer) lưu địa chỉ lệnh kế tiếp được thực hiện. "}, 
+{q:" Bộ phận nào trong CPU chuẩn bị và gửi tín hiệu điều khiển cho các thành phần?",a:["a) ALU","b) Bộ đếm lệnh (PC)","c) Bộ điều khiển (CU)","d) Bộ nhớ đệm"],key: 2,
+explain:" CU gửi tín hiệu điều khiển cho toàn bộ CPU và ngoại vi. "}, 
+{q:" Kiến trúc CPU hiện đại thường có thêm bộ phận?",a:["a) Bộ điều khiển có chức năng AI","b) Bộ nhớ đệm nhiều cấp (L1, L2, L3)","c) Bộ đếm lệnh đa nhiệm","d) Thanh ghi nhân đôi"],key: 1,
+explain:" CPU hiện đại có nhiều cấp bộ nhớ đệm để tối ưu hóa hiệu năng. "
+}
+      // ... tiếp tục copy đủ 40 câu từ đoạn văn mẫu của bạn ...
+    ];
+
+
+    // --- Xử lý giao diện và chuyển trang ---
+    const main = document.getElementById('main');
+    function showHome() {
+      main.innerHTML = `
+        <h2>Trang chủ Trắc nghiệm Kiến trúc máy tính</h2>
+        <ul>
+          <li><b>Chương 2:</b> Biểu diễn thông tin</li>
+          <li><b>Chương 3:</b> Bộ nhớ máy tính</li>
+          <li><b>Chương 4:</b> CPU - Bộ xử lý</li>
+        </ul>
+        <div style="margin:20px 0 8px 0; color:#2a4d8f;">
+          Chọn chương từ menu bên trên để làm trắc nghiệm. <br>
+          Sau khi hoàn thành, bạn sẽ biết số câu đúng và xem giải thích chi tiết cho từng câu hỏi.
+        </div>
+      `;
+      setActiveNav('menu-home');
+    }
+
+    function showQuiz(quizArr, title) {
+      let html = `<h2>${title}</h2>
+        <form id="quizForm"></form>
+        <div id="score"></div>
+      `;
+      main.innerHTML = html;
+      // Tạo các câu hỏi
+      const form = document.getElementById('quizForm');
+      quizArr.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+          <div class="qtext"><b>${(idx+1)+". "+item.q}</b></div>
+          <div class="answers">
+            ${item.a.map((ans, i) => `
+              <label>
+                <input type="radio" name="q${idx}" value="${i}"> ${ans}
+              </label>
+            `).join('')}
+          </div>
+          <div class="result" id="result${idx}"></div>
+          <div class="explain" id="explain${idx}" style="display:none"></div>
+        `;
+        form.appendChild(div);
+      });
+      // Nút kiểm tra
+      const submitBtn = document.createElement('button');
+      submitBtn.type = 'button';
+      submitBtn.textContent = 'Kiểm tra kết quả';
+      form.appendChild(submitBtn);
+      submitBtn.onclick = function() {
+        let correct = 0;
+        quizArr.forEach((item, idx) => {
+          const radios = document.getElementsByName('q' + idx);
+          let selected = -1;
+          for (let radio of radios) {
+            if (radio.checked) selected = Number(radio.value);
+          }
+          const result = document.getElementById('result' + idx);
+          const explain = document.getElementById('explain' + idx);
+          if (selected === item.key) {
+            correct++;
+            result.innerHTML = '<span class="correct">Đúng!</span>';
+          } else if (selected !== -1) {
+            result.innerHTML = `<span class="incorrect">Sai! Đáp án đúng: ${item.a[item.key].slice(0,3)}</span>`;
+          } else {
+            result.innerHTML = '<span class="incorrect">Bạn chưa chọn đáp án.</span>';
+          }
+          explain.textContent = "Giải thích: " + item.explain;
+          explain.style.display = 'block';
+        });
+        document.getElementById('score').innerHTML =
+          `Bạn làm đúng <b>${correct}/${quizArr.length}</b> câu.`;
+        window.scrollTo(0,document.body.scrollHeight);
+      };
+    }
+
+    // Chuyển trang qua nav
+    function setActiveNav(id) {
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    document.getElementById('menu-home').onclick = function(e) {
+      e.preventDefault(); showHome();
+    }
+    document.getElementById('menu-c2').onclick = function(e) {
+      e.preventDefault(); showQuiz(quiz2, "Chương 2: Biểu diễn thông tin");
+      setActiveNav('menu-c2');
+    }
+    document.getElementById('menu-c3').onclick = function(e) {
+      e.preventDefault(); showQuiz(quiz3, "Chương 3: Bộ nhớ máy tính");
+      setActiveNav('menu-c3');
+    }
+    document.getElementById('menu-c4').onclick = function(e) {
+      e.preventDefault(); showQuiz(quiz4, "Chương 4: CPU");
+      setActiveNav('menu-c4');
+    }
+    // Hiển thị trang chủ khi mở
+    showHome();
+  </script>
+</body>
+</html>
