@@ -2,15 +2,15 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chương 1 - Tổng quan về Thiết kế Web & Lập trình với HTML</title>
+    <title>Chương 1 - Tổng quan về Thiết kế Web & Lập trình Web</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            padding: 0 0 20px 0;
+            padding: 20px;
         }
         h1, h2, h3 {
-            margin-top: 30px;
+            margin-top: 32px;
         }
         .example {
             background-color: #f8f9fa;
@@ -18,74 +18,103 @@
             border-left: 4px solid #0d6efd;
             margin-bottom: 20px;
         }
-        code {
-            color: #d63384;
+        table th, table td {
+            padding: 4px 8px;
         }
-        ul, ol {
-            margin-bottom: 20px;
-        }
-        .navbar {
-            margin-bottom: 20px;
-        }
-        .anchor-offset {
-            scroll-margin-top: 80px;
+        .section-title {
+            color: #0d6efd;
+            margin-top: 2.5rem;
         }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Chương 1 - HTML</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Chuyển đổi menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#nhom-cb">Cấu trúc Cơ bản</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-vanban">Văn bản & Tiêu đề</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-lienket-img">Liên kết & Hình ảnh</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-danhsach">Danh sách</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-bang">Bảng</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-form">Form & Đầu vào</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-semantic">Semantic HTML5</a></li>
-                <li class="nav-item"><a class="nav-link" href="#nhom-media">Đa phương tiện</a></li>
-            </ul>
-            <a href="index_thietkeweb.html" class="btn btn-secondary">Quay về trang chủ</a>
-        </div>
+    <div class="mb-3">
+        <a href="index_thietkeweb.html" class="btn btn-secondary">&larr; Quay về trang chủ</a>
     </div>
-</nav>
+    <div class="container">
+        <h1>Chương 1: Tổng quan về Thiết kế Web &amp; Lập trình Web</h1>
+        <p>Thiết kế Web là quá trình xây dựng giao diện và trải nghiệm người dùng cho các trang web. Để phát triển một website, bạn cần nắm vững nền tảng công nghệ web, quy trình thiết kế và lập trình, cũng như các công cụ hỗ trợ hiện đại.</p>
 
-<div class="container">
-    <h1 class="mt-4">Chương 1: Tổng quan về Thiết kế Web & Lập trình với HTML</h1>
-    <p>
-        <strong>Thiết kế Web</strong> là quá trình xây dựng giao diện, bố cục và trải nghiệm người dùng cho các trang web. Trong đó, <strong>HTML</strong> đóng vai trò là ngôn ngữ nền tảng để tạo nên cấu trúc của trang web.
-    </p>
+        <h2 class="section-title">I. Hiểu về nền tảng công nghệ Web</h2>
+        <ul>
+            <li><b>Mạng máy tính (Computer Network):</b> Tập hợp các máy tính kết nối để trao đổi dữ liệu. Phân loại: <b>LAN</b> (nội bộ), <b>WAN</b> (diện rộng).</li>
+            <li><b>Internet:</b> Hệ thống mạng máy tính toàn cầu, kết nối hàng tỷ thiết bị bằng các giao thức chuẩn như TCP/IP.</li>
+            <li><b>World Wide Web (WWW):</b> Dịch vụ lớn nhất chạy trên Internet, gồm toàn bộ trang web và tài nguyên siêu văn bản, truy cập qua trình duyệt sử dụng HTTP/HTTPS.</li>
+            <li><b>URL (Uniform Resource Locator):</b> Địa chỉ duy nhất của tài nguyên trên web (ví dụ: <code>https://www.google.com/search?q=web</code>).</li>
+            <li><b>Giao thức mạng phổ biến:</b>
+                <ul>
+                    <li><b>HTTP:</b> Truyền tải siêu văn bản (Hypertext).</li>
+                    <li><b>HTTPS:</b> HTTP bảo mật, có mã hóa SSL/TLS.</li>
+                    <li><b>FTP:</b> Trao đổi tệp giữa máy tính và máy chủ web.</li>
+                    <li><b>TCP/IP:</b> Bộ giao thức nền tảng của Internet.</li>
+                </ul>
+            </li>
+        </ul>
 
-    <h2>1. Khái niệm Thiết kế Web và HTML</h2>
-    <p>
-        <strong>Thiết kế Web</strong> bao gồm việc sáng tạo bố cục, màu sắc, kiểu chữ, hình ảnh và các yếu tố tương tác, giúp truyền tải thông tin hiệu quả đến người dùng.<br>
-        <strong>HTML (HyperText Markup Language)</strong> là ngôn ngữ đánh dấu dùng để xây dựng cấu trúc nội dung trên trang web, giúp trình duyệt hiểu được cách hiển thị thông tin.
-    </p>
+        <h2 class="section-title">II. Các thành phần cơ bản của Web</h2>
+        <ol>
+            <li><b>Website:</b> Tập hợp các trang web, lưu trên web server, có tên miền duy nhất.</li>
+            <li><b>Trang web (Web Page):</b> Tài liệu HTML đơn lẻ, xem được trên trình duyệt.</li>
+            <li><b>Web Server:</b> Máy chủ lưu trữ và phân phối các file web (HTML, CSS, JS, hình ảnh, video).</li>
+            <li><b>Trình duyệt Web (Browser):</b> Phần mềm giúp người dùng truy cập, hiển thị trang web (Chrome, Firefox, Edge, Safari...).</li>
+        </ol>
+        <ul>
+            <li><b>HTML:</b> Xây dựng cấu trúc nội dung.</li>
+            <li><b>CSS:</b> Định kiểu, màu sắc, bố cục.</li>
+            <li><b>JavaScript:</b> Tạo hiệu ứng, thao tác động.</li>
+            <li><b>Hình ảnh, video, âm thanh:</b> Phương tiện đa dạng để truyền tải nội dung.</li>
+        </ul>
 
-    <h2>2. Vai trò và thành phần cơ bản của một Website</h2>
-    <ul>
-        <li><strong>HTML:</strong> Xây dựng khung nội dung và phân chia các phần trên trang.</li>
-        <li><strong>CSS:</strong> Định dạng giao diện, màu sắc, bố cục, kiểu chữ cho website.</li>
-        <li><strong>JavaScript:</strong> Tạo các hiệu ứng, tương tác động giúp website sinh động.</li>
-        <li><strong>Đa phương tiện:</strong> Hình ảnh, video, âm thanh hỗ trợ truyền tải thông tin đa giác quan.</li>
-    </ul>
+        <h2 class="section-title">III. Quy trình phát triển Website</h2>
+        <ol>
+            <li><b>Phân tích &amp; lập kế hoạch:</b> Xác định mục tiêu, đối tượng người dùng và cấu trúc nội dung.</li>
+            <li><b>Phác thảo giao diện (Wireframe &amp; Mockup):</b> Bản vẽ bố cục (wireframe), thiết kế đồ họa chi tiết (mockup) bằng Figma, Photoshop, v.v.</li>
+            <li><b>Trải nghiệm (UX) &amp; Giao diện (UI):</b> UX tập trung vào cảm nhận, UI tập trung vào trình bày trực quan.</li>
+            <li><b>Phát triển giao diện:</b> Lập trình bằng HTML, CSS, JavaScript.</li>
+            <li><b>Kiểm thử &amp; tối ưu hóa:</b> Đảm bảo website chạy tốt trên nhiều thiết bị, trình duyệt.</li>
+            <li><b>Triển khai &amp; bảo trì:</b> Đưa website lên hosting, cập nhật nội dung, sửa lỗi bảo mật, tối ưu tốc độ và SEO.</li>
+        </ol>
 
-    <h2 id="nhom-cb" class="anchor-offset">I. Nhóm thẻ Cấu trúc Cơ bản</h2>
-    <ul>
-        <li><code>&lt;!DOCTYPE html&gt;</code>: Khai báo loại tài liệu HTML5.</li>
-        <li><code>&lt;html&gt;...&lt;/html&gt;</code>: Thẻ gốc bao toàn bộ trang.</li>
-        <li><code>&lt;head&gt;...&lt;/head&gt;</code>: Chứa thông tin cấu hình, tiêu đề.</li>
-        <li><code>&lt;body&gt;...&lt;/body&gt;</code>: Chứa nội dung hiển thị trên trình duyệt.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;!DOCTYPE html&gt;
+        <h2 class="section-title">IV. Tổng quan về HTML, CSS và JavaScript</h2>
+        <table class="table table-bordered table-sm align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Ngôn ngữ</th>
+                    <th>Vai trò</th>
+                    <th>Ví dụ chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>HTML</b></td>
+                    <td>Bộ xương (Cấu trúc) – xác định các thành phần như tiêu đề, đoạn văn, hình ảnh</td>
+                    <td><code>&lt;h1&gt;Tiêu đề&lt;/h1&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><b>CSS</b></td>
+                    <td>Quần áo, da, tóc (Kiểu dáng) – làm cho cấu trúc có màu sắc, hình dáng, bố cục đẹp</td>
+                    <td><code>h1 { color: blue; }</code></td>
+                </tr>
+                <tr>
+                    <td><b>JavaScript</b></td>
+                    <td>Hệ thần kinh &amp; cơ bắp (Tương tác) – giúp website động, phản ứng khi click, gửi form...</td>
+                    <td><code>alert('Xin chào!');</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title">V. Công cụ hỗ trợ thiết kế và lập trình Web</h2>
+        <ul>
+            <li><b>Soạn thảo mã:</b> Visual Studio Code, Sublime Text</li>
+            <li><b>Thiết kế giao diện:</b> Figma, Adobe XD</li>
+            <li><b>Kiểm thử &amp; Debug:</b> Chrome DevTools</li>
+            <li><b>Framework hỗ trợ:</b> Bootstrap, Tailwind CSS</li>
+        </ul>
+
+        <h2 class="section-title">VI. Ví dụ minh họa</h2>
+        <div class="example">
+            <p><b>Ví dụ:</b> Một đoạn mã HTML đơn giản tạo tiêu đề và đoạn văn:</p>
+            <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="vi"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -95,142 +124,21 @@
     &lt;h1&gt;Xin chào!&lt;/h1&gt;
     &lt;p&gt;Đây là trang web đầu tiên của tôi.&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
+        </div>
+        <div class="example">
+            <p><b>Ví dụ thực tiễn:</b> Mô tả quy trình hoạt động của web:</p>
+            <ul>
+                <li>Người dùng nhập địa chỉ (URL) trên trình duyệt.</li>
+                <li>Trình duyệt gửi yêu cầu đến Web Server.</li>
+                <li>Web Server trả về file HTML, CSS, JS để trình duyệt hiển thị.</li>
+            </ul>
+        </div>
+
+        <footer class="text-center mt-5">
+            <p>&copy; 2025 - Học phần Thiết kế Web &amp; Lập trình Web - Trường Đại học Văn Hiến</p>
+        </footer>
     </div>
-
-    <h2 id="nhom-vanban" class="anchor-offset">II. Thẻ Văn bản & Tiêu đề</h2>
-    <ul>
-        <li><code>&lt;h1&gt;...&lt;/h1&gt;</code> đến <code>&lt;h6&gt;...&lt;/h6&gt;</code>: Tiêu đề các cấp.</li>
-        <li><code>&lt;p&gt;...&lt;/p&gt;</code>: Đoạn văn bản.</li>
-        <li><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code>: Nhấn mạnh, in đậm, đánh dấu văn bản.</li>
-        <li><code>&lt;br&gt;</code>: Xuống dòng.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;h1&gt;Tiêu đề lớn nhất&lt;/h1&gt;
-&lt;h2&gt;Tiêu đề cấp 2&lt;/h2&gt;
-&lt;p&gt;Đây là &lt;strong&gt;đoạn văn bản&lt;/strong&gt; có &lt;em&gt;chữ nghiêng&lt;/em&gt; và &lt;mark&gt;chữ nổi bật&lt;/mark&gt;.&lt;/p&gt;
-&lt;br&gt;Dòng mới.</code></pre>
-    </div>
-
-    <h2 id="nhom-lienket-img" class="anchor-offset">III. Thẻ Liên kết & Hình ảnh</h2>
-    <ul>
-        <li><code>&lt;a href="..."&gt;...&lt;/a&gt;</code>: Tạo liên kết (hyperlink).</li>
-        <li><code>&lt;img src="..." alt="..."&gt;</code>: Hiển thị hình ảnh.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;a href="https://www.vhu.edu.vn"&gt;Trang chủ Văn Hiến&lt;/a&gt;
-&lt;br&gt;
-&lt;img src="logo.png" alt="Logo Văn Hiến" width="120"&gt;</code></pre>
-    </div>
-
-    <h2 id="nhom-danhsach" class="anchor-offset">IV. Thẻ Danh sách</h2>
-    <ul>
-        <li><code>&lt;ul&gt;...&lt;/ul&gt;</code>: Danh sách không thứ tự.</li>
-        <li><code>&lt;ol&gt;...&lt;/ol&gt;</code>: Danh sách có thứ tự.</li>
-        <li><code>&lt;li&gt;...&lt;/li&gt;</code>: Mỗi mục trong danh sách.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;ul&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-  &lt;li&gt;JavaScript&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Bước 1&lt;/li&gt;
-  &lt;li&gt;Bước 2&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
-    </div>
-
-    <h2 id="nhom-bang" class="anchor-offset">V. Thẻ Bảng</h2>
-    <ul>
-        <li><code>&lt;table&gt;...&lt;/table&gt;</code>: Bảng dữ liệu.</li>
-        <li><code>&lt;tr&gt;...&lt;/tr&gt;</code>: Một hàng trong bảng.</li>
-        <li><code>&lt;th&gt;...&lt;/th&gt;</code>: Ô tiêu đề.</li>
-        <li><code>&lt;td&gt;...&lt;/td&gt;</code>: Ô dữ liệu.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;table border="1"&gt;
-  &lt;tr&gt;&lt;th&gt;STT&lt;/th&gt;&lt;th&gt;Họ tên&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Nguyễn Văn A&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Trần Thị B&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-    </div>
-
-    <h2 id="nhom-form" class="anchor-offset">VI. Thẻ Form & Đầu vào</h2>
-    <ul>
-        <li><code>&lt;form&gt;...&lt;/form&gt;</code>: Biểu mẫu nhập liệu.</li>
-        <li><code>&lt;input&gt;</code>: Trường nhập dữ liệu (text, password, checkbox, radio...)</li>
-        <li><code>&lt;button&gt;</code>: Nút bấm.</li>
-        <li><code>&lt;label&gt;</code>: Nhãn cho trường nhập.</li>
-        <li><code>&lt;select&gt;, &lt;option&gt;</code>: Danh sách chọn.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;form&gt;
-  &lt;label&gt;Tên đăng nhập: &lt;input type="text" name="username"&gt;&lt;/label&gt;&lt;br&gt;
-  &lt;label&gt;Mật khẩu: &lt;input type="password" name="password"&gt;&lt;/label&gt;&lt;br&gt;
-  &lt;button type="submit"&gt;Đăng nhập&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-    </div>
-
-    <h2 id="nhom-semantic" class="anchor-offset">VII. Thẻ Semantic HTML5</h2>
-    <ul>
-        <li><code>&lt;header&gt;</code>: Vùng đầu trang.</li>
-        <li><code>&lt;nav&gt;</code>: Thanh điều hướng.</li>
-        <li><code>&lt;main&gt;</code>: Nội dung chính.</li>
-        <li><code>&lt;section&gt;</code>: Phân đoạn nội dung.</li>
-        <li><code>&lt;article&gt;</code>: Bài viết độc lập.</li>
-        <li><code>&lt;aside&gt;</code>: Thông tin bên lề.</li>
-        <li><code>&lt;footer&gt;</code>: Chân trang.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;header&gt;
-  &lt;h1&gt;Trang Tin Tức&lt;/h1&gt;
-&lt;/header&gt;
-&lt;nav&gt;
-  &lt;a href="#"&gt;Trang chủ&lt;/a&gt; | &lt;a href="#"&gt;Liên hệ&lt;/a&gt;
-&lt;/nav&gt;
-&lt;main&gt;
-  &lt;article&gt;
-    &lt;h2&gt;Bản tin số 1&lt;/h2&gt;
-    &lt;p&gt;Nội dung bản tin...&lt;/p&gt;
-  &lt;/article&gt;
-  &lt;aside&gt;Quảng cáo bên phải&lt;/aside&gt;
-&lt;/main&gt;
-&lt;footer&gt;Bản quyền 2025&lt;/footer&gt;</code></pre>
-    </div>
-
-    <h2 id="nhom-media" class="anchor-offset">VIII. Thẻ Đa phương tiện</h2>
-    <ul>
-        <li><code>&lt;audio&gt;</code>: Nhúng âm thanh.</li>
-        <li><code>&lt;video&gt;</code>: Nhúng video.</li>
-        <li><code>&lt;embed&gt;</code>, <code>&lt;iframe&gt;</code>: Nhúng tài liệu/website khác.</li>
-    </ul>
-    <div class="example">
-        <strong>Ví dụ:</strong>
-        <pre><code>&lt;audio controls&gt;
-  &lt;source src="nhac.mp3" type="audio/mpeg"&gt;
-  Trình duyệt không hỗ trợ audio.
-&lt;/audio&gt;
-
-&lt;video width="320" height="240" controls&gt;
-  &lt;source src="video.mp4" type="video/mp4"&gt;
-  Trình duyệt không hỗ trợ video.
-&lt;/video&gt;
-
-&lt;iframe width="360" height="215" src="https://www.youtube.com/embed/abc123"&gt;&lt;/iframe&gt;</code></pre>
-    </div>
-
-    <footer class="text-center mt-5">
-        <p>&copy; 2025 - Học phần Thiết kế Web & Lập trình HTML - Trường Đại học Văn Hiến</p>
-    </footer>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
