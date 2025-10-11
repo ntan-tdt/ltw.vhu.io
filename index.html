@@ -1,100 +1,150 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học phần Kiến trúc Máy tính - VHU</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            background: linear-gradient(90deg, #e0e7ff 0%, #f0fdfa 100%);
-            color: #2563eb;
-            border: 2px solid #c7d2fe;
-            box-shadow: 0 2px 8px 0 rgba(59,130,246,0.08);
-            transition: all 0.2s;
-            font-size: 1rem;
-            margin: 0.25rem 0.5rem;
-        }
-        .nav-link:hover, .nav-link:focus {
-            background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
-            color: #fff;
-            border-color: #2563eb;
-            box-shadow: 0 4px 16px 0 rgba(59,130,246,0.15);
-            text-decoration: none;
-        }
-        .nav-link.active {
-            background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
-            color: #fff;
-            border-color: #2563eb;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thiết kế Web - VHU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    header {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px 0;
+    color: #004080;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  }
+  header img {
+    height: 80px;
+    vertical-align: middle;
+  }
+  header h1 {
+    display: inline-block;
+    margin-left: 15px;
+    font-weight: 700;
+    vertical-align: middle;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+  }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section-title {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .card:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      transform: scale(1.02);
+      transition: 0.3s;
+    }
+    /* Đảm bảo các nút ở cuối card và không bị trôi */
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+    .card-body a {
+        margin-top: auto; /* Đẩy các nút xuống cuối */
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
-        <header class="flex flex-col items-center mb-10">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Logo_Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_H%E1%BB%8Dc_V%C4%83n_Hi%E1%BA%BFn.png" alt="Logo VHU" class="w-28 h-28 mb-4 rounded-full shadow-md bg-white object-contain">
-            <h1 class="text-3xl md:text-4xl font-bold text-blue-800 mb-2 text-center">Học phần Kiến trúc Máy tính</h1>
-            <p class="text-lg text-gray-600 text-center">Trường Đại học Văn Hiến (VHU)</p>
-        </header>
-        <nav class="flex flex-wrap justify-center gap-2 mb-10">
-            <a href="KTMT_chuong02.html" class="nav-link"><i class="fa-solid fa-microchip"></i>Chương 2</a>
-            <a href="KTMT_chuong03.html" class="nav-link"><i class="fa-solid fa-memory"></i>Chương 3</a>
-            <a href="KTMT_chuong04.html" class="nav-link"><i class="fa-solid fa-microchip"></i>Chương 4</a>
-            <a href="tracnghiem.html" class="nav-link"><i class="fa-solid fa-question"></i>Trắc nghiệm</a>
-        </nav>
-        <main>
-            <section class="card bg-white p-6 rounded-xl shadow-md mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Tổng quan học phần</h2>
-                <p class="text-gray-700 leading-relaxed mb-2">
-                    Học phần <strong>Kiến trúc Máy tính</strong> cung cấp cho sinh viên những kiến thức nền tảng về cấu trúc, nguyên lý hoạt động và các thành phần cơ bản của máy tính hiện đại. Nội dung học phần bao gồm: cách máy tính biểu diễn và xử lý thông tin, tổ chức bộ nhớ, hoạt động của CPU, các kiến trúc tập lệnh, cũng như các kỹ thuật tối ưu hóa hiệu năng hệ thống.
-                </p>
-                <ul class="list-disc list-inside text-gray-700 mb-2">
-                    <li>Hiểu được cách thông tin được mã hóa, lưu trữ và xử lý trong máy tính.</li>
-                    <li>Phân tích cấu trúc và chức năng của các thành phần chính: CPU, bộ nhớ, bus, thiết bị vào/ra.</li>
-                    <li>So sánh các kiến trúc tập lệnh (CISC, RISC) và các kỹ thuật tăng tốc xử lý như pipelining.</li>
-                    <li>Vận dụng kiến thức để giải quyết các bài tập thực hành và trắc nghiệm.</li>
-                </ul>
-                <p class="text-gray-700">Học phần là nền tảng quan trọng cho các môn học chuyên ngành về phần cứng, hệ điều hành và lập trình hệ thống.</p>
-            </section>
-            <section class="grid md:grid-cols-2 gap-6">
-                <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
-                    <h3 class="font-semibold text-blue-700 mb-2"><i class="fa-solid fa-microchip mr-2"></i>Chương 2: Biểu diễn thông tin</h3>
-                    <p class="text-sm text-gray-700">Khám phá cách máy tính biểu diễn số, ký tự, hình ảnh, âm thanh bằng ngôn ngữ nhị phân.</p>
-                    <a href="KTMT_chuong02.html" class="inline-block mt-2 text-blue-600 hover:underline font-medium">Xem chi tiết &rarr;</a>
-                </div>
-                <div class="bg-green-50 p-5 rounded-lg border border-green-100">
-                    <h3 class="font-semibold text-green-700 mb-2"><i class="fa-solid fa-memory mr-2"></i>Chương 3: Bộ nhớ máy tính</h3>
-                    <p class="text-sm text-gray-700">Tìm hiểu các loại bộ nhớ, nguyên lý lưu trữ và truy xuất dữ liệu trong máy tính.</p>
-                    <a href="KTMT_chuong03.html" class="inline-block mt-2 text-green-600 hover:underline font-medium">Xem chi tiết &rarr;</a>
-                </div>
-                <div class="bg-yellow-50 p-5 rounded-lg border border-yellow-100">
-                    <h3 class="font-semibold text-yellow-700 mb-2"><i class="fa-solid fa-microchip mr-2"></i>Chương 4: CPU - Bộ xử lý</h3>
-                    <p class="text-sm text-gray-700">Cấu trúc, nguyên tắc hoạt động và các kỹ thuật tăng tốc của bộ xử lý trung tâm.</p>
-                    <a href="KTMT_chuong04.html" class="inline-block mt-2 text-yellow-700 hover:underline font-medium">Xem chi tiết &rarr;</a>
-                </div>
-                <div class="bg-pink-50 p-5 rounded-lg border border-pink-100">
-                    <h3 class="font-semibold text-pink-700 mb-2"><i class="fa-solid fa-question mr-2"></i>Trắc nghiệm</h3>
-                    <p class="text-sm text-gray-700">Ôn tập, kiểm tra kiến thức với các câu hỏi trắc nghiệm đa dạng.</p>
-                    <a href="tracnghiem.html" class="inline-block mt-2 text-pink-700 hover:underline font-medium">Làm trắc nghiệm &rarr;</a>
-                </div>
-            </section>
-        </main>
-        <footer class="text-center mt-16 py-8 border-t">
-            <p class="text-gray-500">&copy; 2025 Trường Đại học Văn Hiến (VHU) - Học phần Kiến trúc Máy tính</p>
-        </footer>
-    </div>
+<body>
+
+//  <header class="hero">
+  <header>
+    <img src="logo_VHU.png" alt="Logo VHU" />
+    <h1>Học phần Thiết kế Web</h1>
+    <p class="lead">Khám phá thế giới lập trình giao diện web hiện đại với HTML, CSS, và Javascript</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2 class="section-title">📘 Tổng quan về Thiết kế và Lập trình Web</h2>
+      <p>Thiết kế Web là quá trình xây dựng và phát triển giao diện người dùng cho các trang web. Học phần này giúp sinh viên nắm vững kiến thức nền tảng về HTML, CSS, Javascript và kỹ năng thực hành để tạo ra các website tương tác, thẩm mỹ và chuẩn kỹ thuật.</p>
+      <ul>
+        <li>Hiểu về cấu trúc và nguyên lý hoạt động của website</li>
+        <li>Thực hành xây dựng giao diện bằng HTML và CSS</li>
+        <li>Thêm tương tác với Javascript</li>
+        <li>Áp dụng kiến thức vào các bài tập thực tế</li>
+      </ul>
+    </section>
+
+    <section class="my-5">
+      <h2 class="section-title">🎓 Các Chương học</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 1: Tổng quan về Lập trình Web</h5>
+              <p class="card-text">Nắm vững kiến thức nền tảng: Cấu trúc web, HTML cơ bản, cách hoạt động của trình duyệt.</p>
+              <a href="LTW_Chuong01.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong1.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 2: Lập trình Web với HTML</h5>
+              <p class="card-text">Nền tảng HTML: Thẻ, thuộc tính, cấu trúc tài liệu, form và bảng biểu.</p>
+              <a href="LTW_Chuong02.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong2.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 3: Làm việc với CSS</h5>
+              <p class="card-text">Thiết kế giao diện đẹp mắt với CSS: màu sắc, bố cục, hiệu ứng.</p>
+              <a href="LTW_Chuong03.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong3.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 4: Lập trình với Javascript</h5>
+              <p class="card-text">Thêm tương tác cho website: xử lý sự kiện, DOM, hàm và biến.</p>
+              <a href="LTW_Chuong04.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong4.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">📝 Trắc nghiệm Tổng hợp</h5>
+              <p class="card-text">Ôn tập và kiểm tra kiến thức cuối kỳ với bộ câu hỏi tổng hợp.</p>
+              <a href="tr_tonghop.html" class="btn btn-success">Làm bài trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">🛠️ Phần Thực hành</h5>
+              <p class="card-text">Bài tập thực hành theo từng chương với các cấp độ từ dễ đến khó.</p>
+              <a href="th_tonghop.html" class="btn btn-danger">Xem Bài tập</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="text-center mt-5 p-3 bg-light">
+    <p>&copy; 2025 Học phần Thiết kế Web - VHU. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
