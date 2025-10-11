@@ -1,118 +1,262 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Chương 2 - Lập trình với HTML</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; }
         h1, h2, h3 { color: #2c3e50; }
         .section { margin-bottom: 40px; }
-        .code { background: #f4f4f4; padding: 10px; border-left: 4px solid #3498db; font-family: monospace; }
+        .example, .code { background: #f8f9fa; padding: 13px; border-left: 4px solid #3498db; font-family: monospace; margin-bottom: 18px; }
         .exercise { background: #ecf0f1; padding: 15px; margin-top: 10px; border-radius: 5px; }
+        .navbar { margin-bottom: 0; }
+        .anchor-offset { scroll-margin-top: 80px; }
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Chương 2 - HTML</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Chuyển đổi menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#nhom-cb">Cấu trúc Cơ bản</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-vanban">Văn bản & Tiêu đề</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-lienket-img">Liên kết & Hình ảnh</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-danhsach">Danh sách</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-bang">Bảng</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-form">Form & Đầu vào</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-semantic">Semantic HTML5</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nhom-media">Đa phương tiện</a></li>
+            </ul>
+            <a href="index_thietkeweb.html" class="btn btn-secondary">Quay về trang chủ</a>
+        </div>
+    </div>
+</nav>
 
-<div style="text-align: center; margin-bottom: 20px;">
-  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
-</div>
-
+<div class="container mt-4">
     <h1>Chương 2: Lập trình với HTML</h1>
 
     <div class="section">
-        <h2>📘 Lý thuyết</h2>
-        <p>HTML (HyperText Markup Language) là ngôn ngữ đánh dấu dùng để xây dựng cấu trúc của một trang web. HTML sử dụng các thẻ (tags) để mô tả các phần tử như tiêu đề, đoạn văn, hình ảnh, liên kết, bảng, biểu mẫu,...</p>
+        <h2>Giới thiệu HTML</h2>
+        <p>
+            <strong>HTML (HyperText Markup Language)</strong> là ngôn ngữ đánh dấu tiêu chuẩn để xây dựng cấu trúc cho các trang web. HTML gồm các thẻ (tags) bao quanh nội dung, giúp trình duyệt hiểu và hiển thị đúng các phần tử như văn bản, hình ảnh, liên kết, bảng, biểu mẫu,...
+        </p>
+        <p>
+            HTML5 bổ sung nhiều thẻ semantic giúp tăng cường ý nghĩa nội dung, hỗ trợ SEO và khả năng truy cập cho người dùng.
+        </p>
+    </div>
 
-        <h3>Cấu trúc cơ bản của một trang HTML</h3>
-        <div class="code">
-            &lt;!DOCTYPE html&gt;<br>
-            &lt;html&gt;<br>
-            &nbsp;&nbsp;&lt;head&gt;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Tiêu đề trang&lt;/title&gt;<br>
-            &nbsp;&nbsp;&lt;/head&gt;<br>
-            &nbsp;&nbsp;&lt;body&gt;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Tiêu đề chính&lt;/h1&gt;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đây là một đoạn văn.&lt;/p&gt;<br>
-            &nbsp;&nbsp;&lt;/body&gt;<br>
-            &lt;/html&gt;
-        </div>
-
-        <h3>Các thẻ HTML phổ biến</h3>
+    <div class="section" id="nhom-cb">
+        <h2>I. Nhóm thẻ Cấu trúc Cơ bản</h2>
         <ul>
-            <li><code>&lt;h1&gt; đến &lt;h6&gt;</code>: Tiêu đề</li>
-            <li><code>&lt;p&gt;</code>: Đoạn văn</li>
-            <li><code>&lt;a&gt;</code>: Liên kết</li>
-            <li><code>&lt;img&gt;</code>: Hình ảnh</li>
-            <li><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code>: Danh sách</li>
-            <li><code>&lt;table&gt;</code>: Bảng</li>
-            <li><code>&lt;form&gt;</code>: Biểu mẫu</li>
+            <li><code>&lt;!DOCTYPE html&gt;</code>: Khai báo loại tài liệu HTML5.</li>
+            <li><code>&lt;html&gt;</code>: Thẻ gốc bao quanh tài liệu.</li>
+            <li><code>&lt;head&gt;</code>: Chứa thông tin cấu hình (meta, title, link,...).</li>
+            <li><code>&lt;title&gt;</code>: Tiêu đề trang (hiển thị trên tab trình duyệt).</li>
+            <li><code>&lt;meta&gt;</code>: Thông tin bổ sung (charset, viewport,...).</li>
+            <li><code>&lt;body&gt;</code>: Nội dung hiển thị chính của trang web.</li>
         </ul>
-    </div>
-
-    <div class="section">
-        <h2>🛠️ Thực hành</h2>
-
-        <div class="exercise">
-            <h3>Bài 1: Tạo trang HTML đơn giản</h3>
-            <p>Yêu cầu: Tạo trang có tiêu đề, đoạn văn và liên kết đến Google.</p>
-            <div class="code">
-                &lt;!DOCTYPE html&gt;<br>
-                &lt;html&gt;<br>
-                &nbsp;&nbsp;&lt;head&gt;&lt;title&gt;Trang đơn giản&lt;/title&gt;&lt;/head&gt;<br>
-                &nbsp;&nbsp;&lt;body&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Chào mừng&lt;/h1&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đây là trang HTML đầu tiên.&lt;/p&gt;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="https://www.google.com"&gt;Truy cập Google&lt;/a&gt;<br>
-                &nbsp;&nbsp;&lt;/body&gt;<br>
-                &lt;/html&gt;
-            </div>
-        </div>
-
-        <div class="exercise">
-            <h3>Bài 2: Tạo danh sách và hình ảnh</h3>
-            <p>Yêu cầu: Tạo danh sách các môn học và chèn hình ảnh minh họa.</p>
-            <div class="code">
-                &lt;ul&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Thiết kế Web&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Lập trình C++&lt;/li&gt;<br>
-                &nbsp;&nbsp;&lt;li&gt;Cơ sở dữ liệu&lt;/li&gt;<br>
-                &lt;/ul&gt;<br>
-                &lt;img src="monhoc.jpg" alt="Môn học" width="300"&gt;
-            </div>
-        </div>
-
-        <div class="exercise">
-            <h3>Bài 3: Tạo bảng thông tin sinh viên</h3>
-            <p>Yêu cầu: Tạo bảng gồm tên, mã số và lớp của sinh viên.</p>
-            <div class="code">
-                &lt;table border="1"&gt;<br>
-                &nbsp;&nbsp;&lt;tr&gt;&lt;th&gt;Tên&lt;/th&gt;&lt;th&gt;MSSV&lt;/th&gt;&lt;th&gt;Lớp&lt;/th&gt;&lt;/tr&gt;<br>
-                &nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Nguyễn Văn A&lt;/td&gt;&lt;td&gt;123456&lt;/td&gt;&lt;td&gt;DHKTPM17&lt;/td&gt;&lt;/tr&gt;<br>
-                &nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Trần Thị B&lt;/td&gt;&lt;td&gt;654321&lt;/td&gt;&lt;td&gt;DHKTPM18&lt;/td&gt;&lt;/tr&gt;<br>
-                &lt;/table&gt;
-            </div>
-        </div>
-
-        <div class="exercise">
-            <h3>Bài 4: Tạo biểu mẫu đăng ký</h3>
-            <p>Yêu cầu: Tạo form nhập tên, email và nút gửi.</p>
-            <div class="code">
-                &lt;form&gt;<br>
-                &nbsp;&nbsp;Tên: &lt;input type="text" name="ten"&gt;&lt;br&gt;<br>
-                &nbsp;&nbsp;Email: &lt;input type="email" name="email"&gt;&lt;br&gt;<br>
-                &nbsp;&nbsp;&lt;input type="submit" value="Gửi"&gt;<br>
-                &lt;/form&gt;
-            </div>
-        </div>
-
-        <div class="exercise">
-            <h3>Bài 5: Nhúng video vào trang web</h3>
-            <p>Yêu cầu: Nhúng một video YouTube vào trang HTML.</p>
-            <div class="code">
-                &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
-            </div>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Trang web đầu tiên&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Xin chào!&lt;/h1&gt;
+    &lt;p&gt;Đây là trang HTML đầu tiên của bạn.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
         </div>
     </div>
+
+    <div class="section" id="nhom-vanban">
+        <h2>II. Thẻ Văn bản & Tiêu đề</h2>
+        <ul>
+            <li><code>&lt;h1&gt; đến &lt;h6&gt;</code>: Tiêu đề cấp 1 đến 6 (h1 lớn nhất).</li>
+            <li><code>&lt;p&gt;</code>: Đoạn văn bản.</li>
+            <li><code>&lt;strong&gt;</code>: In đậm (ngữ nghĩa: quan trọng).</li>
+            <li><code>&lt;em&gt;</code>: In nghiêng (ngữ nghĩa: nhấn mạnh).</li>
+            <li><code>&lt;br&gt;</code>: Xuống dòng mới.</li>
+            <li><code>&lt;hr&gt;</code>: Đường kẻ ngang.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;h1&gt;Tiêu đề lớn nhất&lt;/h1&gt;
+&lt;p&gt;Đây là một &lt;strong&gt;đoạn văn bản&lt;/strong&gt; có &lt;em&gt;chữ nghiêng&lt;/em&gt;.&lt;/p&gt;
+Dòng này xuống dòng mới&lt;br&gt;và có đường ngang dưới đây:
+&lt;hr&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-lienket-img">
+        <h2>III. Thẻ Liên kết & Hình ảnh</h2>
+        <ul>
+            <li><code>&lt;a&gt;</code>: Tạo liên kết (anchor), thuộc tính <code>href</code> chỉ địa chỉ, <code>target="_blank"</code> mở tab mới.</li>
+            <li><code>&lt;img&gt;</code>: Chèn hình ảnh. Các thuộc tính: <code>src</code> (đường dẫn), <code>alt</code> (mô tả), <code>width/height</code>.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;a href="https://www.google.com" target="_blank"&gt;Truy cập Google&lt;/a&gt;
+&lt;br&gt;
+&lt;img src="logo.png" alt="Logo trường" width="120"&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-danhsach">
+        <h2>IV. Thẻ Danh sách</h2>
+        <ul>
+            <li><code>&lt;ul&gt;</code>: Danh sách không thứ tự (dấu chấm tròn).</li>
+            <li><code>&lt;ol&gt;</code>: Danh sách có thứ tự (số, ký tự).</li>
+            <li><code>&lt;li&gt;</code>: Mục trong danh sách.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;Thiết kế Web&lt;/li&gt;
+  &lt;li&gt;Lập trình C++&lt;/li&gt;
+  &lt;li&gt;Cơ sở dữ liệu&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol type="A"&gt;
+  &lt;li&gt;Mục thứ nhất&lt;/li&gt;
+  &lt;li&gt;Mục thứ hai&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-bang">
+        <h2>V. Thẻ Bảng</h2>
+        <ul>
+            <li><code>&lt;table&gt;</code>: Bao toàn bộ bảng.</li>
+            <li><code>&lt;tr&gt;</code>: Hàng (row).</li>
+            <li><code>&lt;th&gt;</code>: Ô tiêu đề.</li>
+            <li><code>&lt;td&gt;</code>: Ô dữ liệu.</li>
+            <li><code>&lt;caption&gt;</code>: Tiêu đề bảng.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;table border="1"&gt;
+  &lt;caption&gt;Thông tin Sinh viên&lt;/caption&gt;
+  &lt;tr&gt;&lt;th&gt;Tên&lt;/th&gt;&lt;th&gt;MSSV&lt;/th&gt;&lt;th&gt;Lớp&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Nguyễn Văn A&lt;/td&gt;&lt;td&gt;123456&lt;/td&gt;&lt;td&gt;DHKTPM17&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Trần Thị B&lt;/td&gt;&lt;td&gt;654321&lt;/td&gt;&lt;td&gt;DHKTPM18&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-form">
+        <h2>VI. Thẻ Form & Đầu vào</h2>
+        <ul>
+            <li><code>&lt;form&gt;</code>: Khung biểu mẫu, thuộc tính <code>action</code>, <code>method</code>.</li>
+            <li><code>&lt;input&gt;</code>: Trường nhập liệu, thuộc tính <code>type</code>, <code>name</code>, <code>placeholder</code>.</li>
+            <li><code>&lt;button&gt;</code>: Nút bấm.</li>
+            <li><code>&lt;label&gt;</code>: Nhãn cho trường nhập.</li>
+            <li><code>&lt;select&gt;</code>, <code>&lt;option&gt;</code>: Menu thả xuống.</li>
+            <li><code>&lt;textarea&gt;</code>: Nhập văn bản nhiều dòng.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;form&gt;
+  &lt;label for="ten"&gt;Tên:&lt;/label&gt;
+  &lt;input type="text" id="ten" name="ten" placeholder="Nhập tên"&gt;&lt;br&gt;
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" placeholder="Nhập email"&gt;&lt;br&gt;
+  &lt;label&gt;Chọn lớp:
+    &lt;select name="lop"&gt;
+      &lt;option&gt;DHKTPM17&lt;/option&gt;
+      &lt;option&gt;DHKTPM18&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;&lt;br&gt;
+  &lt;label&gt;Ghi chú:&lt;br&gt;
+    &lt;textarea rows="2" cols="30" name="note"&gt;&lt;/textarea&gt;
+  &lt;/label&gt;&lt;br&gt;
+  &lt;button type="submit"&gt;Gửi&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-semantic">
+        <h2>VII. Thẻ Semantic HTML5</h2>
+        <ul>
+            <li><code>&lt;header&gt;</code>: Đầu trang.</li>
+            <li><code>&lt;nav&gt;</code>: Thanh điều hướng.</li>
+            <li><code>&lt;section&gt;</code>: Phân đoạn nội dung.</li>
+            <li><code>&lt;article&gt;</code>: Bài viết độc lập.</li>
+            <li><code>&lt;aside&gt;</code>: Thông tin phụ (sidebar).</li>
+            <li><code>&lt;footer&gt;</code>: Chân trang.</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;header&gt;
+  &lt;h1&gt;Blog của tôi&lt;/h1&gt;
+&lt;/header&gt;
+&lt;nav&gt;
+  &lt;a href="#"&gt;Trang chủ&lt;/a&gt; | &lt;a href="#"&gt;Giới thiệu&lt;/a&gt;
+&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Tin mới&lt;/h2&gt;
+      &lt;p&gt;Nội dung tin tức...&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+  &lt;aside&gt;Quảng cáo hoặc liên kết nhanh&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;© 2025 Đại học Văn Hiến&lt;/footer&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="section" id="nhom-media">
+        <h2>VIII. Thẻ Đa phương tiện</h2>
+        <ul>
+            <li><code>&lt;video&gt;</code>: Chèn video (thuộc tính <code>src</code>, <code>controls</code>, <code>width</code>).</li>
+            <li><code>&lt;audio&gt;</code>: Chèn âm thanh (<code>src</code>, <code>controls</code>).</li>
+            <li><code>&lt;iframe&gt;</code>: Nhúng nội dung ngoài (YouTube, bản đồ,...).</li>
+        </ul>
+        <div class="example">
+            <strong>Ví dụ:</strong>
+<pre>
+&lt;video width="320" controls&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  Trình duyệt không hỗ trợ video.
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="nhac.mp3" type="audio/mpeg"&gt;
+  Trình duyệt không hỗ trợ audio.
+&lt;/audio&gt;
+
+&lt;iframe width="420" height="236" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen&gt;&lt;/iframe&gt;
+</pre>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2025 - Học phần Thiết kế Web & Lập trình HTML - Trường Đại học Văn Hiến</p>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
