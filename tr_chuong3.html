@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz: Chương 3 - Làm việc với CSS</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #007acc;
+  }
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fdfdfd;
+  }
+  .question h3 {
+    margin-bottom: 10px;
+  }
+  .options label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005f99;
+  }
+  #result {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 18px;
+    background: #e1f5fe;
+    border: 1px solid #b3e5fc;
+    border-radius: 6px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+<h1>Quiz: Chương 3 - Làm việc với CSS</h1>
+<form id="quizForm">
+
+<button type="submit">Nộp bài và Xem điểm</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+const questions = [
+  { question: "1. CSS là viết tắt của từ gì?", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], answer: 1 },
+  { question: "2. CSS dùng để làm gì trong thiết kế web?", options: ["Tạo cấu trúc trang", "Định dạng, tạo kiểu dáng cho website", "Viết mã backend", "Lưu trữ dữ liệu"], answer: 1 },
+  { question: "3. Thuộc tính nào dùng để thay đổi màu nền trong CSS?", options: ["background-color", "color", "font-color", "background-style"], answer: 0 },
+  { question: "4. Một selector trong CSS dùng để làm gì?", options: ["Chọn phần tử HTML để áp dụng kiểu", "Đặt tên cho trang web", "Tạo tương tác javascript", "Tạo hiệu ứng động"], answer: 0 },
+  { question: "5. Cú pháp đúng để thay đổi màu chữ thành đỏ là?", options: ["color: red;", "font-color: red;", "text-color: red;", "background-color: red;"], answer: 0 },
+  { question: "6. Thuộc tính nào dùng để canh lề trái cho đoạn văn?", options: ["margin-left", "padding-left", "text-align", "align"], answer: 2 },
+  { question: "7. Làm sao để chèn file CSS ngoài vào trang HTML?", options: ['&lt;link rel="stylesheet" href="style.css"&gt;', '&lt;script src="style.css"&gt;&lt;/script&gt;', '&lt;style src="style.css"&gt;&lt;/style&gt;', '&lt;css src="style.css"&gt;&lt;/css&gt;'], answer: 0 },
+  { question: "8. Trong CSS, đơn vị nào là chuẩn tắc cho kích thước font?", options: ["px", "cm", "%", "em"], answer: 0 },
+  { question: "9. Thuộc tính nào để tạo đường viền trong CSS?", options: ["border", "outline", "edge", "frame"], answer: 0 },
+  { question: "10. Thuộc tính 'float' làm nhiệm vụ gì trong CSS?", options: ["Định vị phần tử sang trái hoặc phải", "Định dạng màu chữ", "Tạo hiệu ứng chuyển động", "Canh lề trong"], answer: 0 },
+  { question: "11. Thuộc tính nào để đặt căn giữa theo chiều ngang?", options: ["text-align: center;", "margin: auto;", "align: center;", "center: true;"], answer: 0 },
+  { question: "12. Cách viết CSS nội bộ trong thẻ HTML nào sau đây đúng?", options: ["&lt;style&gt; body { color: red; } &lt;/style&gt;", "&lt;css&gt; body { color: red; } &lt;/css&gt;", "&lt;script&gt; body { color: red; } &lt;/script&gt;", "&lt;link&gt; body { color: red; } &lt;/link&gt;"], answer: 0 },
+  { question: "13. Thuộc tính 'padding' trong CSS dùng để làm gì?", options: ["Khoảng cách bên trong phần tử", "Khoảng cách bên ngoài phần tử", "Chiều cao của phần tử", "Độ rộng của phần tử"], answer: 0 },
+  { question: "14. Thuộc tính 'margin' trong CSS dùng để làm gì?", options: ["Khoảng cách bên ngoài phần tử", "Khoảng cách bên trong phần tử", "Tạo nền cho phần tử", "Tạo viền cho phần tử"], answer: 0 },
+  { question: "15. Cách viết comment trong CSS như thế nào?", options: ["/* comment */", "// comment", "&lt;!-- comment --&gt;", "# comment"], answer: 0 },
+  { question: "16. Thẻ HTML nào dùng để gắn CSS nội tuyến?", options: ["style", "css", "link", "script"], answer: 0 },
+  { question: "17. Để áp dụng style cho tất cả các thẻ &lt;p&gt; trong trang sử dụng selector nào?", options: ["p", ".p", "#p", "*"], answer: 0 },
+  { question: "18. Để áp dụng style cho tất cả các phần tử có class là 'menu' selector nào đúng?", options: [".menu", "#menu", "menu", "*menu"], answer: 0 },
+  { question: "19. Để áp dụng style cho phần tử có id là 'header' selector nào đúng?", options: ["#header", ".header", "header", "*header"], answer: 0 },
+  { question: "20. Thuộc tính nào dùng để thay đổi font chữ trong CSS?", options: ["font-family", "font-style", "font-weight", "text-decoration"], answer: 0 },
+  { question: "21. Thuộc tính nào dùng để tạo chữ đậm?", options: ["font-weight: bold;", "font-style: bold;", "text-decoration: bold;", "font-size: bold;"], answer: 0 },
+  { question: "22. Thuộc tính 'display: none;' có tác dụng gì?", options: ["Ẩn phần tử khỏi trang", "Hiển thị phần tử dưới dạng block", "Hiển thị phần tử dưới dạng inline", "Ẩn văn bản bên trong phần tử"], answer: 0 },
+  { question: "23. Thuộc tính 'position: absolute;' làm gì?", options: ["Định vị phần tử theo tọa độ tuyệt đối", "Định vị phần tử theo vị trí mặc định", "Giữ phần tử cố định trên trang", "Ẩn phần tử"], answer: 0 },
+  { question: "24. Thuộc tính 'z-index' dùng để làm gì?", options: ["Điều khiển thứ tự xếp chồng của phần tử", "Đặt màu chữ", "Điều chỉnh độ mờ", "Căn lề"], answer: 0 },
+  { question: "25. Thuộc tính 'overflow' dùng để làm gì?", options: ["Xử lý nội dung tràn trong một phần tử", "Căn chỉnh phần tử", "Đặt nền cho phần tử", "Tạo viền cho phần tử"], answer: 0 },
+  { question: "26. Thuộc tính 'box-shadow' dùng để?", options: ["Tạo bóng cho phần tử", "Tạo viền", "Tạo nền", "Tăng kích thước"], answer: 0 },
+  { question: "27. Thuộc tính để set chiều rộng phần tử là?", options: ["width", "height", "size", "length"], answer: 0 },
+  { question: "28. Thuộc tính nào thay đổi chiều cao phần tử?", options: ["height", "width", "length", "size"], answer: 0 },
+  { question: "29. Cách nối nhiều selector dùng dấu gì trong CSS?", options: [",", ".", "#", "+"], answer: 0 },
+  { question: "30. Thuộc tính 'cursor' dùng để làm gì?", options: ["Thay đổi kiểu con trỏ chuột khi hover", "Đổi màu nền", "Thay đổi kích thước chữ", "Ẩn phần tử"], answer: 0 },
+  { question: "31. Thuộc tính 'opacity' dùng để làm gì?", options: ["Đặt độ trong suốt của phần tử", "Đặt chiều cao", "Đổi màu nền", "Ẩn phần tử"], answer: 0 },
+  { question: "32. Cách viết ngắn gọn thuộc tính margin cả 4 phía?", options: ["margin: 10px 5px 15px 20px;", "margin-top:10px; margin-right:5px; margin-bottom:15px; margin-left:20px;", "margin: auto;", "padding: 10px 5px 15px 20px;"], answer: 0 },
+  { question: "33. Thuộc tính 'float' có các giá trị nào?", options: ["left, right, none, inherit", "top, bottom, center", "inline, block", "static, fixed"], answer: 0 },
+  { question: "34. Thuộc tính 'clear' dùng để làm gì?", options: ["Xóa trạng thái float", "Xóa nội dung", "Đặt nền", "Ẩn phần tử"], answer: 0 },
+  { question: "35. Đơn vị nào không phải đơn vị đo chiều dài hợp lệ trong CSS?", options: ["pixels (px)", "centimeters (cm)", "points (pt)", "grams (gr)"], answer: 3 },
+  { question: "36. Thuộc tính 'text-decoration' để làm gì?", options: ["Phủ gạch dưới, gạch ngang văn bản", "Canh lề", "Thay đổi màu chữ", "Tăng kích thước font"], answer: 0 },
+  { question: "37. Thuộc tính 'vertical-align' dùng để?", options: ["Căn chỉnh dọc phần tử inline hoặc table-cell", "Căn chỉnh ngang", "Đặt màu nền", "Ẩn phần tử"], answer: 0 },
+  { question: "38. Thuộc tính 'visibility' khác 'display' thế nào?", options: ["visibility: hidden; giữ không gian phần tử, display:none ẩn cả phần tử và không giữ không gian", "Hai thuộc tính giống nhau", "visibility: hidden; ẩn phần tử hoàn toàn", "display: none; hiển thị phần tử"], answer: 0 },
+  { question: "39. Các thuộc tính border-width, border-style, border-color có thể viết gộp thành gì?", options: ["border", "border-all", "border-style", "border-color"], answer: 0 },
+  { question: "40. Để nhúng CSS trực tiếp vào thẻ HTML (CSS inline) viết như thế nào?", options: ['&lt;element style="color:red;"&gt;', '&lt;style&gt; color:red; &lt;/style&gt;', '&lt;css&gt; color:red; &lt;/css&gt;', '&lt;link style="color:red;"&gt;'], answer: 0 },
+  { question: "41. Thuộc tính nào định nghĩa phông chữ thay thế khi phông chính không có?", options: ["font-family", "font-weight", "font-style", "font-variant"], answer: 0 },
+  { question: "42. Thuộc tính nào dùng để tạo hiệu ứng chuyển động mượt mà?", options: ["transition", "transform", "animation", "filter"], answer: 0 },
+  { question: "43. Thuộc tính nào dùng để phóng to, thu nhỏ phần tử?", options: ["transform: scale()", "transform: rotate()", "opacity", "z-index"], answer: 0 },
+  { question: "44. Thuộc tính 'position: fixed;' làm gì?", options: ["Cố định phần tử trên cửa sổ trình duyệt", "Định vị tuyệt đối", "Ẩn phần tử", "Di chuyển phần tử theo cuộn trang"], answer: 0 },
+  { question: "45. Sử dụng '!important' để làm gì?", options: ["Ưu tiên thuộc tính này lên trên các thuộc tính khác", "Chỉ định thuộc tính cuối cùng", "Ẩn thuộc tính", "Cố định thuộc tính"], answer: 0 },
+  { question: "46. Mô hình Hộp trong CSS gồm các phần nào?", options: ["Margin, Border, Padding, Content", "Content, Line-height, Font-size", "Border, Background, Padding", "Text, Image, Video"], answer: 0 },
+  { question: "47. Thuộc tính nào dùng để tạo nền cho phần tử?", options: ["background-color", "color", "border", "font"], answer: 0 },
+  { question: "48. Thuộc tính 'line-height' dùng để?", options: ["Điều chỉnh chiều cao dòng", "Đổi màu chữ", "Tạo khoảng cách giữa các đoạn", "Định vị phần tử"], answer: 0 },
+  { question: "49. Thuộc tính 'visibility: collapse' dùng trong trường hợp nào?", options: ["Ẩn phần tử Table-row hoặc Table-column và xóa không gian", "Ẩn tất cả phần tử", "Hiển thị phần tử", "Không có thuộc tính này"], answer: 0 },
+  { question: "50. Đơn vị '%' trong CSS đại diện cho gì?", options: ["Tỷ lệ phần trăm so với phần tử cha", "Đo bằng pixels", "Đo bằng centimeters", "Không phải đơn vị hợp lệ"], answer: 0 }
+];
+
+const form = document.getElementById('quizForm');
+questions.forEach((q, index) => {
+  const div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<h3>${q.question}</h3>`;
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+  q.options.forEach((option, i) => {
+    const id = `q${index}_option${i}`;
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.innerHTML = `<input type="radio" id="${id}" name="question${index}" value="${i}" required> ${option}`;
+    optionsDiv.appendChild(label);
+  });
+  div.appendChild(optionsDiv);
+  form.insertBefore(div, form.querySelector('button'));
+});
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let score = 0;
+  questions.forEach((q, index) => {
+    const selected = form.querySelector(`input[name="question${index}"]:checked`);
+    if (selected && parseInt(selected.value) === q.answer) score++;
+  });
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.innerHTML = `Bạn đã trả lời đúng <strong>${score}</strong> trên tổng số <strong>${questions.length}</strong> câu hỏi. Điểm của bạn: <strong>${((score/questions.length)*10).toFixed(2)}</strong> / 10`;
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+</body>
+</html>

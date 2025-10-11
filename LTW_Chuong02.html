@@ -1,334 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chương 2: Biểu diễn thông tin trong máy tính</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <title>Chương 2 - Lập trình với HTML</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .katex {
-            font-size: 1.1em;
-        }
-        code {
-            background-color: #f1f5f9;
-            color: #475569;
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.25rem;
-            font-family: monospace;
-        }
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        h1, h2, h3 { color: #2c3e50; }
+        .section { margin-bottom: 40px; }
+        .code { background: #f4f4f4; padding: 10px; border-left: 4px solid #3498db; font-family: monospace; }
+        .exercise { background: #ecf0f1; padding: 15px; margin-top: 10px; border-radius: 5px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-            <div class="mb-6 flex justify-start">
-                <a href="index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-cyan-500 transition-all">
-                    <i class="fa-solid fa-arrow-left"></i> Quay về trang chủ
-                </a>
-            </div>
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Chương 2: Biểu diễn thông tin</h1>
-            <p class="text-lg text-gray-600">Khám phá cách máy tính "nhìn" thế giới qua lăng kính nhị phân</p>
-        </header>
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
 
-        <!-- Lời mở đầu và Tổng quan âm thanh -->
-        <div id="intro-section" class="card">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Lời mở đầu</h2>
-            <p id="intro-text" class="text-gray-700 leading-relaxed">
-                Trong thế giới của con người, chúng ta giao tiếp và thể hiện thông tin qua ngôn ngữ, hình ảnh, âm thanh và các con số trong hệ thập phân. Tuy nhiên, máy tính, về bản chất, là một cỗ máy điện tử chỉ có thể hiểu được hai trạng thái: "có điện" và "không có điện", tương ứng với hai ký hiệu <code>1</code> và <code>0</code>. Tất cả mọi dữ liệu, từ một văn bản bạn đang soạn, một bức ảnh bạn chụp, một bài hát bạn nghe, cho đến những dòng lệnh phức tạp điều khiển chương trình, đều phải được "dịch" sang ngôn ngữ nhị phân này. Chương này sẽ giúp chúng ta khám phá cách máy tính biểu diễn các loại thông tin đa dạng của thế giới thực bằng một ngôn ngữ đơn giản nhất: ngôn ngữ của những con số 0 và 1.
-            </p>
-            <div class="mt-6">
-                <button id="play-overview-btn" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
-                    <i class="fas fa-play mr-2"></i>
-                    Nghe tổng quan
-                </button>
-                <div id="audio-player-container" class="mt-4"></div>
-            </div>
+    <h1>Chương 2: Lập trình với HTML</h1>
+
+    <div class="section">
+        <h2>📘 Lý thuyết</h2>
+        <p>HTML (HyperText Markup Language) là ngôn ngữ đánh dấu dùng để xây dựng cấu trúc của một trang web. HTML sử dụng các thẻ (tags) để mô tả các phần tử như tiêu đề, đoạn văn, hình ảnh, liên kết, bảng, biểu mẫu,...</p>
+
+        <h3>Cấu trúc cơ bản của một trang HTML</h3>
+        <div class="code">
+            &lt;!DOCTYPE html&gt;<br>
+            &lt;html&gt;<br>
+            &nbsp;&nbsp;&lt;head&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Tiêu đề trang&lt;/title&gt;<br>
+            &nbsp;&nbsp;&lt;/head&gt;<br>
+            &nbsp;&nbsp;&lt;body&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Tiêu đề chính&lt;/h1&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đây là một đoạn văn.&lt;/p&gt;<br>
+            &nbsp;&nbsp;&lt;/body&gt;<br>
+            &lt;/html&gt;
         </div>
-        
-        <main>
-            <!-- ... giữ nguyên phần nội dung hiện tại ... -->
-		
-            <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-12 border-b-2 border-blue-500 pb-2">I. Phần Lý Thuyết</h2>
-            
-            <!-- Các phần lý thuyết -->
-            <div class="card">
-                <h3 class="text-xl font-bold mb-4">1. Đơn vị thông tin cơ bản</h3>
-                <ul class="list-disc list-inside space-y-3">
-                    <li><strong>Bit (Binary Digit):</strong> Đơn vị thông tin nhỏ nhất, nhận giá trị <code>0</code> hoặc <code>1</code>.</li>
-                    <li><strong>Byte:</strong> Một nhóm gồm 8 bit. Là đơn vị cơ sở để đo lường dung lượng. Ví dụ: Ký tự 'A' trong mã ASCII là <code>01000001</code>.</li>
-                    <li><strong>Word:</strong> Một nhóm bit mà CPU có thể xử lý trong một lần (ví dụ: 16-bit, 32-bit, 64-bit).</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <h3 class="text-xl font-bold mb-4">2. Các hệ đếm thông dụng</h3>
-                 <p class="mb-4">Máy tính sử dụng các hệ đếm khác nhau để biểu diễn thông tin, phổ biến nhất là nhị phân, thập phân và thập lục phân.</p>
-                <div class="grid md:grid-cols-3 gap-4 text-center">
-                    <div class="p-4 bg-gray-100 rounded-lg">
-                        <h4 class="font-bold">Thập phân (Cơ số 10)</h4>
-                        <p class="text-sm">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</p>
-                        <p class="mt-2"><code>157</code></p>
-                    </div>
-                    <div class="p-4 bg-gray-100 rounded-lg">
-                        <h4 class="font-bold">Nhị phân (Cơ số 2)</h4>
-                        <p class="text-sm">0, 1</p>
-                        <p class="mt-2"><code>1011</code></p>
-                    </div>
-                    <div class="p-4 bg-gray-100 rounded-lg">
-                        <h4 class="font-bold">Thập lục phân (Cơ số 16)</h4>
-                        <p class="text-sm">0-9, A, B, C, D, E, F</p>
-                        <p class="mt-2"><code>F5</code></p>
-                    </div>
-                </div>
-                 <h4 class="font-semibold mt-6 mb-2">Chuyển đổi giữa các hệ đếm</h4>
-                <p><strong>Thập phân sang Nhị phân:</strong> Chia liên tiếp cho 2 và lấy phần dư. Ví dụ: $21_{10} = 10101_2$.</p>
-                <p><strong>Nhị phân sang Thập lục phân:</strong> Nhóm thành các bộ 4 bit. Ví dụ: $110110111_2 = 1B7_{16}$.</p>
-            </div>
-
-            <div class="card">
-                 <h3 class="text-xl font-bold mb-4">3. Biểu diễn số nguyên</h3>
-                 <h4 class="font-semibold mt-4 mb-2">a. Số nguyên không dấu (Unsigned Integers)</h4>
-                 <p>Với n bit, biểu diễn được các số từ $0$ đến $2^n - 1$. Ví dụ với 8 bit: từ 0 (<code>00000000</code>) đến 255 (<code>11111111</code>).</p>
-                 <h4 class="font-semibold mt-4 mb-2">b. Số nguyên có dấu (Signed Integers)</h4>
-                 <p>Sử dụng bit ngoài cùng bên trái làm bit dấu (0: dương, 1: âm).</p>
-                 <ul class="list-decimal list-inside space-y-2 mt-2">
-                     <li><strong>Dấu và Lượng (Sign and Magnitude):</strong> Bit đầu là dấu, còn lại là độ lớn. Ví dụ: -18 là <code>10010010</code>.</li>
-                     <li><strong>Số Bù 1 (1's Complement):</strong> Số âm là đảo bit của số dương. Ví dụ: -18 là <code>11101101</code>.</li>
-                     <li><strong>Số Bù 2 (2's Complement):</strong> Phổ biến nhất. Số âm = (Bù 1) + 1. Ví dụ: -18 là <code>11101110</code>. Với 8 bit, dải biểu diễn là [-128, 127].</li>
-                 </ul>
-            </div>
-            
-            <div class="card">
-                <h3 class="text-xl font-bold mb-4">4. Biểu diễn số thực (Số chấm động - Floating-Point)</h3>
-                 <p>Sử dụng chuẩn IEEE 754, biểu diễn số dưới dạng khoa học: $\text{Số} = (-1)^S \times M \times 2^E$.</p>
-                 <div class="text-center my-4 bg-gray-100 p-4 rounded-lg">
-                     <img src="https://placehold.co/600x150/e2e8f0/475569?text=C%E1%BA%A5u+tr%C3%BAc+bit+c%E1%BB%A7a+s%E1%BB%91+th%E1%BB%B1c+IEEE+754+(32-bit)" alt="Cấu trúc bit của số thực IEEE 754" class="mx-auto rounded-md w-full max-w-lg">
-                     <p class="text-sm mt-2 text-gray-600">Minh họa cấu trúc 1 bit Dấu, 8 bit Mũ, và 23 bit Định trị.</p>
-                 </div>
-                 <ul class="list-disc list-inside space-y-2">
-                    <li><strong>S (Sign):</strong> Bit dấu.</li>
-                    <li><strong>E (Exponent):</strong> Phần mũ.</li>
-                    <li><strong>M (Mantissa):</strong> Phần định trị.</li>
-                 </ul>
-                 <p class="mt-2">Có 2 định dạng phổ biến: <strong>Single Precision</strong> (32 bit) và <strong>Double Precision</strong> (64 bit).</p>
-            </div>
-
-            <div class="card">
-                <h3 class="text-xl font-bold mb-4">5. Biểu diễn dữ liệu phi số</h3>
-                <h4 class="font-semibold mt-4 mb-2">a. Ký tự (Characters)</h4>
-                <p>Sử dụng bảng mã để gán một số cho mỗi ký tự.</p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>ASCII:</strong> Bảng mã 8-bit cho tiếng Anh. Ví dụ: 'A' = 65 (<code>01000001</code>).</li>
-                    <li><strong>Unicode (UTF-8):</strong> Chuẩn quốc tế, có khả năng biểu diễn hầu hết các chữ viết.</li>
-                </ul>
-                <div class="text-center my-4 bg-gray-100 p-4 rounded-lg">
-                     <img src="https://placehold.co/500x300/e2e8f0/475569?text=B%E1%BA%A3ng+m%C3%A3+ASCII+(m%E1%BB%99t+ph%E1%BA%A7n)" alt="Bảng mã ASCII" class="mx-auto rounded-md w-full max-w-md">
-                     <p class="text-sm mt-2 text-gray-600">Một phần của bảng mã ASCII, cho thấy mỗi ký tự tương ứng với một giá trị số.</p>
-                </div>
-                
-                <h4 class="font-semibold mt-4 mb-2">b. Hình ảnh (Images) <i class="fas fa-image text-blue-500"></i></h4>
-                <p>Ảnh Bitmap (Raster) là một lưới các pixel. Màu của mỗi pixel được biểu diễn bằng bit, ví dụ màu RGB 24-bit dùng 3 byte cho hơn 16 triệu màu.</p>
-                <!-- Ví dụ minh họa hình ảnh -->
-                <div class="mt-4 border-t pt-4">
-                    <h5 class="font-medium">Ví dụ: Ảnh đen trắng 1-bit</h5>
-                    <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 mt-2">
-                        <div>
-                            <p class="text-sm mb-2 text-center">Hình ảnh 2x2 pixel:</p>
-                            <div class="grid grid-cols-2 w-12 h-12 border-2 border-gray-400 mx-auto">
-                                <div class="w-6 h-6 bg-white border border-gray-300"></div>
-                                <div class="w-6 h-6 bg-black border border-gray-300"></div>
-                                <div class="w-6 h-6 bg-black border border-gray-300"></div>
-                                <div class="w-6 h-6 bg-white border border-gray-300"></div>
-                            </div>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <p class="text-sm mb-2">Biểu diễn nhị phân (0=trắng, 1=đen):</p>
-                            <code>0 1</code><br>
-                            <code>1 0</code>
-                            <p class="text-sm mt-2">Dữ liệu lưu trữ trong máy tính:</p>
-                            <code>0110</code>
-                        </div>
-                    </div>
-                </div>
-
-                <h4 class="font-semibold mt-6 mb-2">c. Âm thanh (Sound) <i class="fas fa-volume-up text-blue-500"></i></h4>
-                <p>Âm thanh analog được số hóa qua 2 bước:</p>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li><strong>Lấy mẫu (Sampling):</strong> Đo biên độ sóng âm tại các thời điểm đều đặn.</li>
-                    <li><strong>Lượng tử hóa (Quantization):</strong> Gán một giá trị nhị phân cho mỗi mẫu.</li>
-                </ol>
-                <div class="text-center my-4 bg-gray-100 p-4 rounded-lg">
-                     <img src="https://placehold.co/600x250/e2e8f0/475569?text=Qu%C3%A1+tr%C3%ACnh+s%E1%BB%91+h%C3%B3a+%C3%A2m+thanh" alt="Số hóa âm thanh" class="mx-auto rounded-md w-full max-w-lg">
-                     <p class="text-sm mt-2 text-gray-600">Sóng âm analog (liên tục) được lấy mẫu tại các điểm rời rạc để chuyển thành tín hiệu số.</p>
-                </div>
-                 <!-- Ví dụ minh họa âm thanh -->
-                <div class="mt-4 border-t pt-4">
-                    <h5 class="font-medium">Ví dụ: Âm thanh được số hóa</h5>
-                    <p class="text-sm text-gray-600 mb-2">Nhấn nút bên dưới để nghe từ "Hello". Âm thanh bạn nghe được thực chất là một chuỗi dài các số 0 và 1 được máy tính đọc và chuyển thành sóng âm.</p>
-                    <button id="play-sample-audio-btn" class="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center text-sm">
-                        <i class="fas fa-volume-up mr-2"></i>
-                        Nghe từ "Hello"
-                    </button>
-                    <div id="sample-loading-spinner" class="hidden mt-2 flex items-center text-green-600">
-                        <i class="fas fa-spinner fa-spin mr-2"></i>
-                        Đang tạo âm thanh...
-                    </div>
-                    <div id="sample-audio-container" class="mt-4"></div>
-                </div>
-            </div>
-
-
-            <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-16 border-b-2 border-green-500 pb-2">II. Phần Bài Tập Thực Hành</h2>
-
-            <!-- Bài tập -->
-            <div class="space-y-6">
-                <!-- Bài 1 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-semibold mb-2">Bài 1: Chuyển đổi hệ đếm</p>
-                    <ul class="list-alpha list-inside text-gray-700">
-                        <li>Chuyển số $145_{10}$ sang hệ nhị phân và hệ thập lục phân.</li>
-                        <li>Chuyển số $111010.11_2$ sang hệ thập phân.</li>
-                        <li>Chuyển số $A3D_{16}$ sang hệ nhị phân và hệ thập phân.</li>
-                    </ul>
-                    <button class="toggle-solution-btn mt-4 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-md hover:bg-gray-300">Hiển thị lời giải</button>
-                    <div class="solution hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md text-sm">
-                        <p>a. $145_{10} = 10010001_2 = 91_{16}$</p>
-                        <p>b. $111010.11_2 = 58.75_{10}$</p>
-                        <p>c. $A3D_{16} = 101000111101_2 = 2621_{10}$</p>
-                    </div>
-                </div>
-
-                <!-- Bài 2 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-semibold mb-2">Bài 2: Biểu diễn số nguyên có dấu (8 bit)</p>
-                    <p class="text-gray-700">Biểu diễn số $-45_{10}$ bằng các phương pháp: Dấu và Lượng, Bù 1, Bù 2.</p>
-                    <button class="toggle-solution-btn mt-4 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-md hover:bg-gray-300">Hiển thị lời giải</button>
-                    <div class="solution hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md text-sm">
-                        <p>Số dương 45 là <code>00101101</code>.</p>
-                        <p>a. Dấu và Lượng: <code>10101101</code></p>
-                        <p>b. Bù 1: <code>11010010</code></p>
-                        <p>c. Bù 2: <code>11010011</code></p>
-                    </div>
-                </div>
-
-                <!-- Bài 3 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-semibold mb-2">Bài 3: Số học nhị phân (8 bit, bù 2)</p>
-                    <p class="text-gray-700">Thực hiện phép tính và cho biết có tràn số không?</p>
-                    <ul class="list-alpha list-inside text-gray-700">
-                        <li>$56 + 42$</li>
-                        <li>$(-10) + (-25)$</li>
-                        <li>$90 + 80$</li>
-                    </ul>
-                    <button class="toggle-solution-btn mt-4 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-md hover:bg-gray-300">Hiển thị lời giải</button>
-                    <div class="solution hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md text-sm">
-                        <p>a. $56 + 42 = 98$ (<code>01100010</code>). <strong>Không tràn số.</strong></p>
-                        <p>b. $(-10) + (-25) = -35$ (<code>11011101</code>). <strong>Không tràn số.</strong></p>
-                        <p>c. $90 + 80 = 170$. Kết quả nhị phân <code>10101010</code> có bit dấu âm. <strong>Có tràn số</strong> vì vượt quá giới hạn 127.</p>
-                    </div>
-                </div>
-
-                <!-- Bài 4 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-semibold mb-2">Bài 4: Biểu diễn số thực</p>
-                    <p class="text-gray-700">Biểu diễn số $-13.75_{10}$ bằng chuẩn IEEE 754 Single Precision (32 bit).</p>
-                    <button class="toggle-solution-btn mt-4 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-md hover:bg-gray-300">Hiển thị lời giải</button>
-                    <div class="solution hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md text-sm">
-                        <p>Kết quả:</p>
-                        <code>1 10000010 10111000000000000000000</code>
-                        <ul class="list-disc list-inside mt-2">
-                           <li>Dấu S=1.</li>
-                           <li>Mũ E = 3 + 127 = 130 (<code>10000010</code>).</li>
-                           <li>Định trị M = <code>10111</code> (phần sau dấu chấm của $1.10111_2$).</li>
-                        </ul>
-                    </div>
-                </div>
-                 <!-- Bài 5 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <p class="font-semibold mb-2">Bài 5: Dữ liệu ký tự</p>
-                    <p class="text-gray-700">Viết ra chuỗi bit biểu diễn cho từ "CPU" theo mã ASCII (8 bit/ký tự).</p>
-                    <button class="toggle-solution-btn mt-4 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-md hover:bg-gray-300">Hiển thị lời giải</button>
-                    <div class="solution hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-md text-sm">
-                         <p>'C' = 67 = <code>01000011</code></p>
-                         <p>'P' = 80 = <code>01010000</code></p>
-                         <p>'U' = 85 = <code>01010101</code></p>
-                    </div>
-                </div>
-            </div>
-
-        </main>	
-				        
-        <footer class="text-center mt-16 py-8 border-t">
-            <p class="text-gray-500">Tài liệu học phần Kiến trúc máy tính.</p>
-        </footer>
-
+        <h3>Các thẻ HTML phổ biến</h3>
+        <ul>
+            <li><code>&lt;h1&gt; đến &lt;h6&gt;</code>: Tiêu đề</li>
+            <li><code>&lt;p&gt;</code>: Đoạn văn</li>
+            <li><code>&lt;a&gt;</code>: Liên kết</li>
+            <li><code>&lt;img&gt;</code>: Hình ảnh</li>
+            <li><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code>: Danh sách</li>
+            <li><code>&lt;table&gt;</code>: Bảng</li>
+            <li><code>&lt;form&gt;</code>: Biểu mẫu</li>
+        </ul>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Render công thức toán học
-            if (typeof renderMathInElement === 'function') {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
-                    ]
-                });
-            }
+    <div class="section">
+        <h2>🛠️ Thực hành</h2>
 
-            // Chức năng ẩn/hiện lời giải
-            const solutionButtons = document.querySelectorAll('.toggle-solution-btn');
-            solutionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const solution = button.nextElementSibling;
-                    const isHidden = solution.classList.contains('hidden');
-                    if (isHidden) {
-                        solution.classList.remove('hidden');
-                        button.textContent = 'Ẩn lời giải';
-                    } else {
-                        solution.classList.add('hidden');
-                        button.textContent = 'Hiển thị lời giải';
-                    }
-                });
-            });
+        <div class="exercise">
+            <h3>Bài 1: Tạo trang HTML đơn giản</h3>
+            <p>Yêu cầu: Tạo trang có tiêu đề, đoạn văn và liên kết đến Google.</p>
+            <div class="code">
+                &lt;!DOCTYPE html&gt;<br>
+                &lt;html&gt;<br>
+                &nbsp;&nbsp;&lt;head&gt;&lt;title&gt;Trang đơn giản&lt;/title&gt;&lt;/head&gt;<br>
+                &nbsp;&nbsp;&lt;body&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Chào mừng&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Đây là trang HTML đầu tiên.&lt;/p&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="https://www.google.com"&gt;Truy cập Google&lt;/a&gt;<br>
+                &nbsp;&nbsp;&lt;/body&gt;<br>
+                &lt;/html&gt;
+            </div>
+        </div>
 
-            // Phát âm thanh tổng quan từ file mp3
-            const playButton = document.getElementById('play-overview-btn');
-            const audioContainer = document.getElementById('audio-player-container');
-            
-            playButton.addEventListener('click', () => {
-                // Xóa audio cũ nếu có
-                audioContainer.innerHTML = '';
-                // Tạo phần tử audio mới
-                const audio = document.createElement('audio');
-                audio.src = 'tongquan.mp3'; // Đường dẫn file mp3
-                audio.controls = true;
-                audio.autoplay = true;
-                audioContainer.appendChild(audio);
-            });
-        });
-    </script>
+        <div class="exercise">
+            <h3>Bài 2: Tạo danh sách và hình ảnh</h3>
+            <p>Yêu cầu: Tạo danh sách các môn học và chèn hình ảnh minh họa.</p>
+            <div class="code">
+                &lt;ul&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Thiết kế Web&lt;/li&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Lập trình C++&lt;/li&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Cơ sở dữ liệu&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+                &lt;img src="monhoc.jpg" alt="Môn học" width="300"&gt;
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h3>Bài 3: Tạo bảng thông tin sinh viên</h3>
+            <p>Yêu cầu: Tạo bảng gồm tên, mã số và lớp của sinh viên.</p>
+            <div class="code">
+                &lt;table border="1"&gt;<br>
+                &nbsp;&nbsp;&lt;tr&gt;&lt;th&gt;Tên&lt;/th&gt;&lt;th&gt;MSSV&lt;/th&gt;&lt;th&gt;Lớp&lt;/th&gt;&lt;/tr&gt;<br>
+                &nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Nguyễn Văn A&lt;/td&gt;&lt;td&gt;123456&lt;/td&gt;&lt;td&gt;DHKTPM17&lt;/td&gt;&lt;/tr&gt;<br>
+                &nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Trần Thị B&lt;/td&gt;&lt;td&gt;654321&lt;/td&gt;&lt;td&gt;DHKTPM18&lt;/td&gt;&lt;/tr&gt;<br>
+                &lt;/table&gt;
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h3>Bài 4: Tạo biểu mẫu đăng ký</h3>
+            <p>Yêu cầu: Tạo form nhập tên, email và nút gửi.</p>
+            <div class="code">
+                &lt;form&gt;<br>
+                &nbsp;&nbsp;Tên: &lt;input type="text" name="ten"&gt;&lt;br&gt;<br>
+                &nbsp;&nbsp;Email: &lt;input type="email" name="email"&gt;&lt;br&gt;<br>
+                &nbsp;&nbsp;&lt;input type="submit" value="Gửi"&gt;<br>
+                &lt;/form&gt;
+            </div>
+        </div>
+
+        <div class="exercise">
+            <h3>Bài 5: Nhúng video vào trang web</h3>
+            <p>Yêu cầu: Nhúng một video YouTube vào trang HTML.</p>
+            <div class="code">
+                &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+            </div>
+        </div>
+    </div>
 </body>
 </html>

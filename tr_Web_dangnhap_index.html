@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trang chủ - Trắc nghiệm Thiết kế và Lập trình Web</title>
+<style>
+  body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  header { background-color: #fff; width: 100%; padding: 20px 0; color: #004080; text-align: center; box-shadow: 0 0 12px rgba(0,0,0,0.2);}
+  header img { height: 80px; vertical-align: middle; }
+  header h1 { display: inline-block; margin-left: 15px; font-weight: 700; vertical-align: middle; font-size: 2rem; letter-spacing: 1.2px;}
+  .auth-box { margin-top: 40px; padding: 22px 28px; background: #fff; border-radius: 14px; box-shadow: 0 8px 32px rgba(33,122,244,0.11); min-width:300px;}
+  .auth-box input[type="email"], .auth-box input[type="password"] {width: 92%; margin: 7px 0 18px 0; padding: 9px; border-radius: 6px; border: 1px solid #bbb;}
+  .auth-box button { background-color: #187bcd; border: none; color: white; padding: 10px 22px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer;}
+  .auth-box button:hover { background: #007acc;}
+  .hide { display: none;}
+  .menu-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 30px; width: 90%; max-width: 860px; padding: 28px 0; margin: 0 auto;}
+  .button3d { background: linear-gradient(145deg, #1e90ff 70%, #187bcd 100%); border-radius: 16px; box-shadow:  6px 6px 12px #165a9a, -6px -6px 12px #2491ff; color: white; text-decoration: none; font-size: 1.15rem; font-weight:600; padding: 25px 0; text-align: center; user-select: none; transition: all 0.22s ease; display: inline-block; box-sizing: border-box;}
+  .button3d:hover { background: linear-gradient(145deg, #187bcd 80%, #1e90ff 100%); box-shadow: 2px 2px 6px #165a9a, -2px -2px 7px #2491ff; transform: translateY(-3px);}
+  #user-panel{padding:18px 0 6px 0;}
+  #user-info{font-weight:bold; color:#007acc;}
+  #scores{margin:24px auto 0 auto; background:#fff; padding: 12px 20px; border-radius:12px; min-width:240px;}
+  #scores h3{margin:6px 0 8px 0;}
+  footer { width: 100%; text-align: center; padding: 15px 0; background-color: #03a9f4; color: white; font-weight: 600; box-shadow: 0 -2px 8px rgba(0,0,0,0.15);}
+  @media(max-width:540px) {
+    header h1{font-size: 1.1rem; margin-left:0;}
+    .menu-wrap{grid-template-columns:1fr; padding:15px 0;}
+    .button3d{font-size:0.95rem; padding:15px 0;}
+    .auth-box{min-width:unset;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="logo_VHU.png" alt="Logo VHU" />
+  <h1>Trắc nghiệm Thiết kế và Lập trình Web</h1>
+</header>
+
+<div id="auth" class="auth-box">
+  <form id="loginForm" autocomplete="off">
+    <div style="font-size:18px; font-weight:600; margin-bottom:8px; color:#007acc;">Đăng nhập / Đăng ký</div>
+    <label>Email:</label><br />
+    <input type="email" id="email" autocomplete="username" required placeholder="Nhập email VHU" /><br />
+    <label>Mật khẩu:</label><br/>
+    <input type="password" id="pw" autocomplete="current-password" required placeholder="Nhập mật khẩu (tự tạo)" /><br />
+    <button type="submit">Đăng nhập / Đăng ký</button>
+    <div id="login-msg" style="color: #c22; margin-top:10px;"></div>
+  </form>
+</div>
+
+<div id="user-panel" class="hide">
+  Xin chào <span id="user-info"></span>!
+  <button onclick="logout()" style="margin-left:22px;padding:4px 15px;font-size:0.96rem;background:#03a9f4;">Thoát</button>
+</div>
+
+<div class="menu-wrap hide" id="menu">
+  <a href="tr_chuong1.html" class="button3d" id="btn1">Chương 1 - Tổng quan</a>
+  <a href="tr_chuong2.html" class="button3d" id="btn2">Chương 2 - HTML</a>
+  <a href="tr_chuong3.html" class="button3d" id="btn3">Chương 3 - CSS</a>
+  <a href="tr_chuong4.html" class="button3d" id="btn4">Chương 4 - Javascript</a>
+  <a href="tr_tonghop.html" class="button3d" id="btn5">Tổng hợp cuối kỳ</a>
+</div>
+
+<div id="scores" class="hide">
+  <h3>Kết quả của bạn:</h3>
+  <div id="score-list">
+    (Chưa có kết quả. Hãy làm các bài trắc nghiệm!)
+  </div>
+</div>
+
+<footer>
+  Bản quyền © 2025 Trường Đại học Văn Hiến
+</footer>
+
+<script>
+// ====== TẠO "DATABASE" USER VÀ ĐIỂM (localStorage) ======
+function getUserList() {
+  let users = localStorage.getItem('vhuweb_users');
+  return users ? JSON.parse(users) : {};
+}
+function setUserList(users){
+  localStorage.setItem('vhuweb_users', JSON.stringify(users));
+}
+function setActiveUser(email){
+  localStorage.setItem('vhuweb_active', email);
+}
+function getActiveUser(){
+  return localStorage.getItem('vhuweb_active');
+}
+function logout(){
+  setActiveUser("");
+  location.reload();
+}
+// ====== FORM LOGIN/REGISTER ======
+const loginForm = document.getElementById('loginForm');
+loginForm.onsubmit = function(e){
+  e.preventDefault();
+  let email = document.getElementById('email').value.trim().toLowerCase();
+  let pw = document.getElementById('pw').value;
+  if(!/^\S+@\S+\.\S+$/.test(email)){
+    document.getElementById('login-msg').innerText="Email không hợp lệ!";
+    return false;
+  }
+  if(pw.length<4){
+    document.getElementById('login-msg').innerText="Mật khẩu tối thiểu 4 ký tự!";
+    return false;
+  }
+  let users = getUserList();
+  if(users[email]){
+    if(users[email].pw !== pw){
+      document.getElementById('login-msg').innerText="Sai mật khẩu!";
+      return false;
+    }
+  } else {
+    users[email]={pw: pw, scores: {}}; // Đăng ký mới
+    setUserList(users);
+  }
+  setActiveUser(email);
+  showPanel();
+};
+// ====== HIỂN THỊ MENU, ĐIỂM SAU ĐĂNG NHẬP ======
+function showPanel(){
+  document.getElementById('auth').classList.add('hide');
+  document.getElementById('menu').classList.remove('hide');
+  document.getElementById('user-panel').classList.remove('hide');
+  document.getElementById('scores').classList.remove('hide');
+  let email = getActiveUser();
+  document.getElementById('user-info').innerText = email;
+  showScores();
+}
+function showScores(){
+  let email = getActiveUser();
+  let users = getUserList();
+  let scores = (users[email] && users[email].scores) ? users[email].scores : {};
+  const nameMap = {
+    "chuong1":"Chương 1 - Tổng quan",
+    "chuong2":"Chương 2 - HTML",
+    "chuong3":"Chương 3 - CSS",
+    "chuong4":"Chương 4 - Javascript",
+    "tonghop":"Tổng hợp cuối kỳ"
+  };
+  let s = "";
+  for(let k in nameMap){
+    let v = (scores[k]!==undefined) ? `<b>${scores[k]}</b>/10` : '--';
+    s+= `<div>${nameMap[k]}: ${v}</div>`;
+  }
+  if(!s) s = "(Chưa có kết quả. Hãy làm các bài trắc nghiệm!)";
+  document.getElementById('score-list').innerHTML=s;
+}
+// ====== KHI ĐÃ ĐĂNG NHẬP THÌ GIỮ PHIÊN ======
+window.onload = function(){
+  let email = getActiveUser();
+  if(email && getUserList()[email]){
+    showPanel();
+  }
+};
+// ====== GHI ĐIỂM SAU KHI XONG BÀI (GỌI TỪ TRANG QUIZ) ======
+window.updateQuizScore = function(chapter, score10){
+  let email = getActiveUser();
+  if(!email) return;
+  let users = getUserList();
+  if(!users[email]) return;
+  users[email].scores = users[email].scores || {};
+  users[email].scores[chapter]=score10;
+  setUserList(users);
+  showScores();
+};
+</script>
+</body>
+</html>

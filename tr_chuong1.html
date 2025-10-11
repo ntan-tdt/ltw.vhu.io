@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz: Chương 1 - Tổng quan về Lập trình Web</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #007acc;
+  }
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fdfdfd;
+  }
+  .question h3 {
+    margin-bottom: 10px;
+  }
+  .options label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005f99;
+  }
+  #result {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 18px;
+    background: #e1f5fe;
+    border: 1px solid #b3e5fc;
+    border-radius: 6px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+<h1>Quiz: Chương 1 - Tổng quan về Lập trình Web</h1>
+<form id="quizForm">
+
+<button type="submit">Nộp bài và Xem điểm</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+const questions = [
+  {
+    question: "1. Thiết kế web là gì?",
+    options: [
+      "Viết mã lập trình cho trang web",
+      "Tạo giao diện và bố cục trang web",
+      "Lập kế hoạch kinh doanh",
+      "Quản lý dữ liệu server"
+    ],
+    answer: 1
+  },
+  {
+    question: "2. Thành phần nào sau đây không thuộc thiết kế web?",
+    options: [
+      "Giao diện người dùng (UI)",
+      "Trải nghiệm người dùng (UX)",
+      "Lập trình chức năng server",
+      "Bố cục nội dung"
+    ],
+    answer: 2
+  },
+  {
+    question: "3. Thiết kế web khác lập trình web ở điểm nào?",
+    options: [
+      "Thiết kế tạo giao diện, lập trình tạo chức năng",
+      "Thiết kế là phần mềm, lập trình là phần cứng",
+      "Thiết kế dùng HTML, lập trình dùng Photoshop",
+      "Thiết kế không cần hiểu người dùng"
+    ],
+    answer: 0
+  },
+  {
+    question: "4. Ngôn ngữ lập trình phổ biến dùng để thiết kế giao diện web là gì?",
+    options: [
+      "Python",
+      "HTML, CSS, JavaScript",
+      "SQL",
+      "C++"
+    ],
+    answer: 1
+  },
+  {
+    question: "5. Mục tiêu chính của thiết kế web là gì?",
+    options: [
+      "Xây dựng hệ thống database",
+      "Tạo trang web đẹp và dễ sử dụng",
+      "Lập trình chức năng backend",
+      "Quản lý tên miền"
+    ],
+    answer: 1
+  },
+  {
+    question: "6. Quy trình phát triển website bắt đầu với bước nào?",
+    options: [
+      "Thiết kế giao diện",
+      "Xây dựng backend",
+      "Xác định mục tiêu và yêu cầu",
+      "Đăng ký tên miền"
+    ],
+    answer: 2
+  },
+  {
+    question: "7. Wireframe trong thiết kế web là gì?",
+    options: [
+      "Mã HTML hoàn chỉnh",
+      "Bản phác thảo giao diện trang web",
+      "Hình ảnh đồ họa người dùng",
+      "Database của website"
+    ],
+    answer: 1
+  },
+  {
+    question: "8. UX trong thiết kế web là viết tắt của từ gì?",
+    options: [
+      "User Experience (Trải nghiệm người dùng)",
+      "User Extension",
+      "Unified Expression",
+      "Universal Execution"
+    ],
+    answer: 0
+  },
+  {
+    question: "9. UI trong thiết kế web là viết tắt của từ gì?",
+    options: [
+      "User Interface (Giao diện người dùng)",
+      "Unique Integration",
+      "Ultimate Interaction",
+      "Universal Internet"
+    ],
+    answer: 0
+  },
+  {
+    question: "10. Mục đích của thiết kế responsive là gì?",
+    options: [
+      "Tăng tốc tải trang",
+      "Tối ưu trải nghiệm trên mọi thiết bị",
+      "Quản lý dữ liệu backend",
+      "Tối ưu SEO"
+    ],
+    answer: 1
+  },
+  {
+    question: "11. CSS dùng để làm gì trong thiết kế web?",
+    options: [
+      "Xác định cấu trúc trang",
+      "Xác định kiểu dáng, màu sắc, bố cục",
+      "Xử lý dữ liệu server",
+      "Viết nội dung trang web"
+    ],
+    answer: 1
+  },
+  {
+    question: "12. HTML nghĩa là gì?",
+    options: [
+      "HyperText Markup Language",
+      "Hyper Technical Machine Language",
+      "HighText Markdown Language",
+      "Hyper Tool Management Language"
+    ],
+    answer: 0
+  },
+  {
+    question: "13. JavaScript trong thiết kế web được dùng để?",
+    options: [
+      "Tạo bố cục trang",
+      "Điều khiển tương tác và hiệu ứng",
+      "Quản lý server",
+      "Tạo hình ảnh"
+    ],
+    answer: 1
+  },
+  {
+    question: "14. Giao thức nào thường dùng để truy cập website?",
+    options: [
+      "FTP",
+      "HTTP/HTTPS",
+      "SMTP",
+      "POP3"
+    ],
+    answer: 1
+  },
+  {
+    question: "15. Mục đích của việc lập kế hoạch thiết kế web là gì?",
+    options: [
+      "Xây dựng code nhanh hơn",
+      "Xác định yêu cầu và cấu trúc website",
+      "Quản trị server",
+      "Tạo tài khoản người dùng"
+    ],
+    answer: 1
+  },
+  {
+    question: "16. Thành phần nào quyết định trải nghiệm người dùng trên web?",
+    options: [
+      "Server Database",
+      "Giao diện, tốc độ, bố cục, nội dung",
+      "Mã nguồn backend",
+      "Tên miền website"
+    ],
+    answer: 1
+  },
+  {
+    question: "17. Front-end trong thiết kế web là gì?",
+    options: [
+      "Giao diện và tương tác với người dùng",
+      "Xử lý dữ liệu server",
+      "Quản lý hệ thống database",
+      "Cấu hình mạng"
+    ],
+    answer: 0
+  },
+  {
+    question: "18. Back-end trong thiết kế web là gì?",
+    options: [
+      "Giao diện người dùng",
+      "Xử lý dữ liệu, logic server",
+      "Tạo bố cục front-end",
+      "Tối ưu SEO"
+    ],
+    answer: 1
+  },
+  {
+    question: "19. Yếu tố nào không phải nhiệm vụ của thiết kế web?",
+    options: [
+      "Chọn màu sắc trang web",
+      "Viết các thuật toán xử lý dữ liệu",
+      "Tạo bố cục và hình ảnh",
+      "Tối ưu trải nghiệm người dùng"
+    ],
+    answer: 1
+  },
+  {
+    question: "20. Công cụ phổ biến dùng để thiết kế giao diện web?",
+    options: [
+      "Photoshop, Sketch",
+      "SQL Server",
+      "Visual Studio Code",
+      "GitHub"
+    ],
+    answer: 0
+  },
+  {
+    question: "21. Một website tĩnh có đặc điểm gì?",
+    options: [
+      "Nội dung không thay đổi, không tương tác phức tạp",
+      "Tương tác người dùng cao",
+      "Cần back-end mạnh",
+      "Thường dùng database lớn"
+    ],
+    answer: 0
+  },
+  {
+    question: "22. Website động khác website tĩnh ở điểm nào?",
+    options: [
+      "Có thể thay đổi nội dung theo yêu cầu người dùng",
+      "Không có giao diện",
+      "Luôn nhỏ hơn website tĩnh",
+      "Không cần lập trình"
+    ],
+    answer: 0
+  },
+  {
+    question: "23. Phần mềm nào hỗ trợ trực tiếp thiết kế giao diện website?",
+    options: [
+      "Adobe Photoshop",
+      "Microsoft Excel",
+      "MySQL",
+      "Node.js"
+    ],
+    answer: 0
+  },
+  {
+    question: "24. Điều nào sau đây không phải là ưu điểm của thiết kế web chuẩn?",
+    options: [
+      "Tương thích nhiều trình duyệt",
+      "Tốc độ tải trang nhanh",
+      "Chỉ chạy trên một loại thiết bị",
+      "Thân thiện với thiết bị di động"
+    ],
+    answer: 2
+  },
+  {
+    question: "25. HTML dùng để?",
+    options: [
+      "Xây dựng cấu trúc nội dung cơ bản của trang web",
+      "Xác định màu sắc và hình ảnh",
+      "Tạo hoạt ảnh và tương tác phức tạp",
+      "Quản lý dữ liệu người dùng"
+    ],
+    answer: 0
+  },
+  {
+    question: "26. CSS giúp làm gì?",
+    options: [
+      "Tăng tốc độ máy chủ",
+      "Định dạng hiển thị và tạo kiểu cho trang web",
+      "Viết kịch bản tương tác cho trang",
+      "Lưu trữ dữ liệu"
+    ],
+    answer: 1
+  },
+  {
+    question: "27. Web server dùng để làm gì?",
+    options: [
+      "Lưu trữ, xử lý và cung cấp các trang web",
+      "Thiết kế giao diện web",
+      "Sửa lỗi mã nguồn",
+      "Tạo đồ họa web"
+    ],
+    answer: 0
+  },
+  {
+    question: "28. Tác dụng của JavaScript trên website?",
+    options: [
+      "Tạo ra nội dung tĩnh",
+      "Tạo ra hiệu ứng động và tương tác người dùng",
+      "Lưu trữ hình ảnh",
+      "Tối ưu truy cập mạng"
+    ],
+    answer: 1
+  },
+  {
+    question: "29. Thiết kế web nên chú trọng điều gì để thu hút người dùng?",
+    options: [
+      "Giao diện đẹp, dễ dùng, nội dung rõ ràng",
+      "Đồ họa phức tạp, tốc độ chậm",
+      "Thông tin khó tìm",
+      "Quá nhiều quảng cáo"
+    ],
+    answer: 0
+  },
+  {
+    question: "30. Responsive design nghĩa là gì?",
+    options: [
+      "Trang web có thời gian tải nhanh",
+      "Thiết kế trang web thích ứng với mọi kích thước màn hình",
+      "Trang web không có hình ảnh",
+      "Trang web chỉ chạy trên điện thoại"
+    ],
+    answer: 1
+  },
+  {
+    question: "31. HTML5 có tính năng gì mới?",
+    options: [
+      "Hỗ trợ đa phương tiện như video, audio tích hợp",
+      "Giảm dung lượng dữ liệu server",
+      "Dễ dàng lập trình backend",
+      "Tăng kích thước website"
+    ],
+    answer: 0
+  },
+  {
+    question: "32. Quy trình thiết kế web bắt đầu với bước nào?",
+    options: [
+      "Lập kế hoạch nội dung và mục tiêu website",
+      "Viết mã code đầu tiên",
+      "Tạo hiệu ứng JavaScript",
+      "Đăng ký tên miền"
+    ],
+    answer: 0
+  },
+  {
+    question: "33. Tầm quan trọng của wireframe trong thiết kế web?",
+    options: [
+      "Giúp định hình cấu trúc và bố cục trước khi thiết kế chi tiết",
+      "Là file mã nguồn CSS",
+      "Là hình ảnh cuối cùng của trang web",
+      "Là video hướng dẫn"
+    ],
+    answer: 0
+  },
+  {
+    question: "34. Vì sao cần phân tích yêu cầu người dùng khi thiết kế web?",
+    options: [
+      "Để hiểu rõ người dùng cần gì, giúp thiết kế phù hợp",
+      "Để thiết kế nhanh hơn",
+      "Để hoàn thiện mã nguồn",
+      "Để quảng bá website"
+    ],
+    answer: 0
+  },
+  {
+    question: "35. Thiết kế web gồm bao nhiêu phần chính?",
+    options: [
+      "1",
+      "2 (UI và UX)",
+      "3 (UI, UX, Front-end)",
+      "4 (UI, UX, Front-end, Back-end)"
+    ],
+    answer: 1
+  },
+  {
+    question: "36. Tại sao thiết kế web quan trọng trong kinh doanh?",
+    options: [
+      "Giúp tăng trải nghiệm khách hàng và thu hút người dùng",
+      "Giúp giảm chi phí sản xuất",
+      "Thay thế quảng cáo truyền thống",
+      "Không cần thiết cho doanh nghiệp"
+    ],
+    answer: 0
+  },
+  {
+    question: "37. Công cụ nào sau đây là phần mềm thiết kế giao diện phổ biến?",
+    options: [
+      "Adobe XD",
+      "MySQL",
+      "Git",
+      "Linux"
+    ],
+    answer: 0
+  },
+  {
+    question: "38. Mục tiêu của UX là gì?",
+    options: [
+      "Tạo giao diện đẹp mắt",
+      "Tạo trải nghiệm người dùng thuận tiện và dễ chịu",
+      "Viết code backend",
+      "Thiết kế đồ họa logo"
+    ],
+    answer: 1
+  },
+  {
+    question: "39. Nhược điểm của một thiết kế web không chuẩn?",
+    options: [
+      "Khó sử dụng, không tương thích trình duyệt, không thân thiện thiết bị",
+      "Tải trang nhanh",
+      "Đẹp mắt",
+      "Tăng tốc xử lý server"
+    ],
+    answer: 0
+  },
+  {
+    question: "40. Để tối ưu SEO cho website, thiết kế web cần chú ý điều gì?",
+    options: [
+      "Tối ưu cấu trúc code và nội dung thân thiện với công cụ tìm kiếm",
+      "Chèn nhiều quảng cáo",
+      "Không cần chú ý gì",
+      "Tạo video nền"
+    ],
+    answer: 0
+  },
+  {
+    question: "41. Thiết kế web hướng đến mục tiêu nào?",
+    options: [
+      "Tạo sự hài lòng cho người dùng và hiệu quả của website",
+      "Tối ưu server",
+      "Quản lý nội dung",
+      "Tăng lượng dữ liệu"
+    ],
+    answer: 0
+  },
+  {
+    question: "42. Website có thể hoạt động trên thiết bị nào?",
+    options: [
+      "Máy tính, điện thoại, máy tính bảng",
+      "Chỉ trên máy tính",
+      "Chỉ trên điện thoại",
+      "Chỉ trên máy tính bảng"
+    ],
+    answer: 0
+  },
+  {
+    question: "43. Công nghệ nào hỗ trợ thiết kế web đa nền tảng?",
+    options: [
+      "Responsive web design",
+      "Analytic web design",
+      "Static web design",
+      "Basic web design"
+    ],
+    answer: 0
+  },
+  {
+    question: "44. File nào thường dùng để lưu cấu trúc trang web?",
+    options: [
+      ".html",
+      ".css",
+      ".js",
+      ".exe"
+    ],
+    answer: 0
+  },
+  {
+    question: "45. Mục đích chính của nội dung website?",
+    options: [
+      "Cung cấp thông tin hữu ích cho người dùng",
+      "Tạo hình ảnh đẹp",
+      "Tăng kích thước file",
+      "Tạo quảng cáo"
+    ],
+    answer: 0
+  },
+  {
+    question: "46. Thiết kế web ảnh hưởng tới yếu tố nào của doanh nghiệp?",
+    options: [
+      "Hình ảnh thương hiệu và hiệu quả kinh doanh",
+      "Chi phí sản xuất hàng hóa",
+      "Quản lý nhân viên",
+      "Đào tạo nhân sự"
+    ],
+    answer: 0
+  },
+  {
+    question: "47. PHP là ngôn ngữ gì trong web?",
+    options: [
+      "Ngôn ngữ lập trình server-side (back-end)",
+      "Ngôn ngữ thiết kế giao diện",
+      "Ngôn ngữ lập trình client-side",
+      "Ngôn ngữ tạo hình ảnh"
+    ],
+    answer: 0
+  },
+  {
+    question: "48. Khi thiết kế web, cần chú ý gì để trang web dễ sử dụng?",
+    options: [
+      "Giao diện đơn giản, dễ hiểu, tốc độ tải nhanh",
+      "Giao diện phức tạp và chậm",
+      "Hiệu ứng nhiều, khó điều hướng",
+      "Nội dung không rõ ràng"
+    ],
+    answer: 0
+  },
+  {
+    question: "49. Thiết kế đồ họa web là việc làm gì?",
+    options: [
+      "Tạo hình ảnh, biểu tượng, màu sắc cho trang web",
+      "Viết mã nguồn backend",
+      "Quản lý cơ sở dữ liệu",
+      "Tối ưu mạng"
+    ],
+    answer: 0
+  },
+  {
+    question: "50. Mục đích chính của việc sử dụng JavaScript?",
+    options: [
+      "Tạo tương tác động trên trang web",
+      "Tạo nội dung tĩnh",
+      "Quản lý dữ liệu server",
+      "Tối ưu SEO"
+    ],
+    answer: 0
+  }
+];
+
+// Tạo câu hỏi và hiển thị lên form
+const form = document.getElementById('quizForm');
+
+questions.forEach((q, index) => {
+  const div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<h3>${q.question}</h3>`;
+
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+
+  q.options.forEach((option, i) => {
+    const optionId = `q${index}_option${i}`;
+    const label = document.createElement('label');
+    label.setAttribute('for', optionId);
+    label.innerHTML = `<input type="radio" name="question${index}" id="${optionId}" value="${i}" required> ${option}`;
+    optionsDiv.appendChild(label);
+  });
+
+  div.appendChild(optionsDiv);
+  form.insertBefore(div, form.querySelector('button'));
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let score = 0;
+
+  for (let i = 0; i < questions.length; i++) {
+    const selected = form.querySelector(`input[name="question${i}"]:checked`);
+    if (selected && parseInt(selected.value) === questions[i].answer) {
+      score++;
+    }
+  }
+
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `Bạn đã trả lời đúng <strong>${score}</strong> trên tổng số <strong>${questions.length}</strong> câu hỏi.<br>Điểm của bạn: <strong>${(score/questions.length*10).toFixed(2)}</strong> / 10`;
+  window.scrollTo(0, document.body.scrollHeight);
+});
+// GỌI ĐOẠN NÀY SAU KHI TÍNH ĐIỂM xong, VỚI score10 là điểm trên 10, chapter là 'chuong1'/'chuong2'/'chuong3'/'chuong4'/'tonghop'
+if(window.opener && window.opener.updateQuizScore){
+    window.opener.updateQuizScore('tr_chuong1', 8.2); // ví dụ
+}
+
+</script>
+
+</body>
+</html>

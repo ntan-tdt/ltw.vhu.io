@@ -1,0 +1,3105 @@
+
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<title>Trắc nghiệm Thiết kế Web</title>
+<style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #2c3e50; }
+        .question { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .answers label { display: block; margin-left: 20px; }
+        .result { margin-top: 10px; font-weight: bold; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .chapter { margin-top: 40px; }
+        #score { font-size: 18px; margin-top: 20px; }
+        #adminAnswers { display: none; margin-top: 20px; }
+        .answerKey { background: #f9f9f9; padding: 10px; border: 1px dashed #aaa; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<h1>Trắc nghiệm Thiết kế Web</h1>
+<p>Chọn đáp án đúng cho mỗi câu hỏi. Sau khi hoàn tất, nhấn nút "Tính điểm" để xem kết quả.</p>
+<div class="chapter"><h2>Chương: Tổng quan</h2>
+<div class="question" id="q_TQ_1">
+<p><strong>Câu 1:</strong> Đây là nội dung câu hỏi 1 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_1" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_1" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_1" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_1" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_1', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_1"></div>
+</div>
+<div class="question" id="q_TQ_2">
+<p><strong>Câu 2:</strong> Đây là nội dung câu hỏi 2 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_2" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_2" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_2" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_2" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_2', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_2"></div>
+</div>
+<div class="question" id="q_TQ_3">
+<p><strong>Câu 3:</strong> Đây là nội dung câu hỏi 3 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_3" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_3" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_3" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_3" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_3', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_3"></div>
+</div>
+<div class="question" id="q_TQ_4">
+<p><strong>Câu 4:</strong> Đây là nội dung câu hỏi 4 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_4" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_4" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_4" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_4" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_4', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_4"></div>
+</div>
+<div class="question" id="q_TQ_5">
+<p><strong>Câu 5:</strong> Đây là nội dung câu hỏi 5 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_5" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_5" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_5" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_5" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_5', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_5"></div>
+</div>
+<div class="question" id="q_TQ_6">
+<p><strong>Câu 6:</strong> Đây là nội dung câu hỏi 6 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_6" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_6" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_6" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_6" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_6', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_6"></div>
+</div>
+<div class="question" id="q_TQ_7">
+<p><strong>Câu 7:</strong> Đây là nội dung câu hỏi 7 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_7" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_7" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_7" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_7" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_7', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_7"></div>
+</div>
+<div class="question" id="q_TQ_8">
+<p><strong>Câu 8:</strong> Đây là nội dung câu hỏi 8 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_8" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_8" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_8" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_8" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_8', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_8"></div>
+</div>
+<div class="question" id="q_TQ_9">
+<p><strong>Câu 9:</strong> Đây là nội dung câu hỏi 9 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_9" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_9" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_9" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_9" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_9', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_9"></div>
+</div>
+<div class="question" id="q_TQ_10">
+<p><strong>Câu 10:</strong> Đây là nội dung câu hỏi 10 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_10" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_10" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_10" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_10" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_10', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_10"></div>
+</div>
+<div class="question" id="q_TQ_11">
+<p><strong>Câu 11:</strong> Đây là nội dung câu hỏi 11 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_11" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_11" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_11" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_11" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_11', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_11"></div>
+</div>
+<div class="question" id="q_TQ_12">
+<p><strong>Câu 12:</strong> Đây là nội dung câu hỏi 12 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_12" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_12" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_12" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_12" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_12', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_12"></div>
+</div>
+<div class="question" id="q_TQ_13">
+<p><strong>Câu 13:</strong> Đây là nội dung câu hỏi 13 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_13" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_13" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_13" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_13" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_13', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_13"></div>
+</div>
+<div class="question" id="q_TQ_14">
+<p><strong>Câu 14:</strong> Đây là nội dung câu hỏi 14 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_14" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_14" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_14" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_14" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_14', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_14"></div>
+</div>
+<div class="question" id="q_TQ_15">
+<p><strong>Câu 15:</strong> Đây là nội dung câu hỏi 15 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_15" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_15" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_15" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_15" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_15', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_15"></div>
+</div>
+<div class="question" id="q_TQ_16">
+<p><strong>Câu 16:</strong> Đây là nội dung câu hỏi 16 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_16" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_16" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_16" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_16" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_16', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_16"></div>
+</div>
+<div class="question" id="q_TQ_17">
+<p><strong>Câu 17:</strong> Đây là nội dung câu hỏi 17 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_17" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_17" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_17" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_17" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_17', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_17"></div>
+</div>
+<div class="question" id="q_TQ_18">
+<p><strong>Câu 18:</strong> Đây là nội dung câu hỏi 18 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_18" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_18" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_18" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_18" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_18', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_18"></div>
+</div>
+<div class="question" id="q_TQ_19">
+<p><strong>Câu 19:</strong> Đây là nội dung câu hỏi 19 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_19" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_19" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_19" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_19" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_19', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_19"></div>
+</div>
+<div class="question" id="q_TQ_20">
+<p><strong>Câu 20:</strong> Đây là nội dung câu hỏi 20 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_20" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_20" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_20" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_20" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_20', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_20"></div>
+</div>
+<div class="question" id="q_TQ_21">
+<p><strong>Câu 21:</strong> Đây là nội dung câu hỏi 21 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_21" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_21" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_21" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_21" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_21', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_21"></div>
+</div>
+<div class="question" id="q_TQ_22">
+<p><strong>Câu 22:</strong> Đây là nội dung câu hỏi 22 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_22" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_22" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_22" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_22" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_22', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_22"></div>
+</div>
+<div class="question" id="q_TQ_23">
+<p><strong>Câu 23:</strong> Đây là nội dung câu hỏi 23 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_23" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_23" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_23" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_23" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_23', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_23"></div>
+</div>
+<div class="question" id="q_TQ_24">
+<p><strong>Câu 24:</strong> Đây là nội dung câu hỏi 24 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_24" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_24" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_24" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_24" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_24', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_24"></div>
+</div>
+<div class="question" id="q_TQ_25">
+<p><strong>Câu 25:</strong> Đây là nội dung câu hỏi 25 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_25" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_25" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_25" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_25" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_25', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_25"></div>
+</div>
+<div class="question" id="q_TQ_26">
+<p><strong>Câu 26:</strong> Đây là nội dung câu hỏi 26 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_26" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_26" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_26" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_26" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_26', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_26"></div>
+</div>
+<div class="question" id="q_TQ_27">
+<p><strong>Câu 27:</strong> Đây là nội dung câu hỏi 27 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_27" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_27" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_27" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_27" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_27', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_27"></div>
+</div>
+<div class="question" id="q_TQ_28">
+<p><strong>Câu 28:</strong> Đây là nội dung câu hỏi 28 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_28" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_28" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_28" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_28" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_28', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_28"></div>
+</div>
+<div class="question" id="q_TQ_29">
+<p><strong>Câu 29:</strong> Đây là nội dung câu hỏi 29 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_29" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_29" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_29" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_29" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_29', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_29"></div>
+</div>
+<div class="question" id="q_TQ_30">
+<p><strong>Câu 30:</strong> Đây là nội dung câu hỏi 30 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_30" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_30" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_30" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_30" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_30', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_30"></div>
+</div>
+<div class="question" id="q_TQ_31">
+<p><strong>Câu 31:</strong> Đây là nội dung câu hỏi 31 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_31" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_31" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_31" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_31" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_31', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_31"></div>
+</div>
+<div class="question" id="q_TQ_32">
+<p><strong>Câu 32:</strong> Đây là nội dung câu hỏi 32 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_32" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_32" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_32" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_32" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_32', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_32"></div>
+</div>
+<div class="question" id="q_TQ_33">
+<p><strong>Câu 33:</strong> Đây là nội dung câu hỏi 33 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_33" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_33" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_33" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_33" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_33', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_33"></div>
+</div>
+<div class="question" id="q_TQ_34">
+<p><strong>Câu 34:</strong> Đây là nội dung câu hỏi 34 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_34" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_34" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_34" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_34" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_34', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_34"></div>
+</div>
+<div class="question" id="q_TQ_35">
+<p><strong>Câu 35:</strong> Đây là nội dung câu hỏi 35 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_35" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_35" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_35" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_35" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_35', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_35"></div>
+</div>
+<div class="question" id="q_TQ_36">
+<p><strong>Câu 36:</strong> Đây là nội dung câu hỏi 36 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_36" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_36" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_36" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_36" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_36', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_36"></div>
+</div>
+<div class="question" id="q_TQ_37">
+<p><strong>Câu 37:</strong> Đây là nội dung câu hỏi 37 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_37" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_37" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_37" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_37" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_37', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_37"></div>
+</div>
+<div class="question" id="q_TQ_38">
+<p><strong>Câu 38:</strong> Đây là nội dung câu hỏi 38 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_38" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_38" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_38" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_38" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_38', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_38"></div>
+</div>
+<div class="question" id="q_TQ_39">
+<p><strong>Câu 39:</strong> Đây là nội dung câu hỏi 39 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_39" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_39" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_39" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_39" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_39', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_39"></div>
+</div>
+<div class="question" id="q_TQ_40">
+<p><strong>Câu 40:</strong> Đây là nội dung câu hỏi 40 của chương Tổng quan?</p>
+<div class="answers">
+<label><input name="TQ_40" type="radio" value="A"/> Đáp án A</label>
+<label><input name="TQ_40" type="radio" value="B"/> Đáp án B</label>
+<label><input name="TQ_40" type="radio" value="C"/> Đáp án C</label>
+<label><input name="TQ_40" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('TQ_40', 'B')">Kiểm tra</button>
+<div class="result" id="result_TQ_40"></div>
+</div>
+</div><div class="chapter"><h2>Chương: HTML</h2>
+<div class="question" id="q_HTML_1">
+<p><strong>Câu 41:</strong> Đây là nội dung câu hỏi 1 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_1" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_1" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_1" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_1" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_1', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_1"></div>
+</div>
+<div class="question" id="q_HTML_2">
+<p><strong>Câu 42:</strong> Đây là nội dung câu hỏi 2 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_2" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_2" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_2" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_2" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_2', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_2"></div>
+</div>
+<div class="question" id="q_HTML_3">
+<p><strong>Câu 43:</strong> Đây là nội dung câu hỏi 3 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_3" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_3" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_3" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_3" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_3', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_3"></div>
+</div>
+<div class="question" id="q_HTML_4">
+<p><strong>Câu 44:</strong> Đây là nội dung câu hỏi 4 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_4" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_4" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_4" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_4" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_4', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_4"></div>
+</div>
+<div class="question" id="q_HTML_5">
+<p><strong>Câu 45:</strong> Đây là nội dung câu hỏi 5 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_5" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_5" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_5" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_5" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_5', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_5"></div>
+</div>
+<div class="question" id="q_HTML_6">
+<p><strong>Câu 46:</strong> Đây là nội dung câu hỏi 6 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_6" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_6" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_6" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_6" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_6', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_6"></div>
+</div>
+<div class="question" id="q_HTML_7">
+<p><strong>Câu 47:</strong> Đây là nội dung câu hỏi 7 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_7" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_7" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_7" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_7" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_7', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_7"></div>
+</div>
+<div class="question" id="q_HTML_8">
+<p><strong>Câu 48:</strong> Đây là nội dung câu hỏi 8 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_8" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_8" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_8" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_8" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_8', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_8"></div>
+</div>
+<div class="question" id="q_HTML_9">
+<p><strong>Câu 49:</strong> Đây là nội dung câu hỏi 9 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_9" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_9" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_9" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_9" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_9', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_9"></div>
+</div>
+<div class="question" id="q_HTML_10">
+<p><strong>Câu 50:</strong> Đây là nội dung câu hỏi 10 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_10" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_10" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_10" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_10" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_10', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_10"></div>
+</div>
+<div class="question" id="q_HTML_11">
+<p><strong>Câu 51:</strong> Đây là nội dung câu hỏi 11 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_11" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_11" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_11" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_11" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_11', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_11"></div>
+</div>
+<div class="question" id="q_HTML_12">
+<p><strong>Câu 52:</strong> Đây là nội dung câu hỏi 12 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_12" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_12" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_12" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_12" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_12', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_12"></div>
+</div>
+<div class="question" id="q_HTML_13">
+<p><strong>Câu 53:</strong> Đây là nội dung câu hỏi 13 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_13" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_13" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_13" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_13" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_13', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_13"></div>
+</div>
+<div class="question" id="q_HTML_14">
+<p><strong>Câu 54:</strong> Đây là nội dung câu hỏi 14 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_14" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_14" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_14" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_14" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_14', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_14"></div>
+</div>
+<div class="question" id="q_HTML_15">
+<p><strong>Câu 55:</strong> Đây là nội dung câu hỏi 15 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_15" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_15" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_15" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_15" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_15', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_15"></div>
+</div>
+<div class="question" id="q_HTML_16">
+<p><strong>Câu 56:</strong> Đây là nội dung câu hỏi 16 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_16" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_16" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_16" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_16" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_16', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_16"></div>
+</div>
+<div class="question" id="q_HTML_17">
+<p><strong>Câu 57:</strong> Đây là nội dung câu hỏi 17 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_17" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_17" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_17" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_17" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_17', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_17"></div>
+</div>
+<div class="question" id="q_HTML_18">
+<p><strong>Câu 58:</strong> Đây là nội dung câu hỏi 18 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_18" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_18" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_18" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_18" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_18', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_18"></div>
+</div>
+<div class="question" id="q_HTML_19">
+<p><strong>Câu 59:</strong> Đây là nội dung câu hỏi 19 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_19" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_19" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_19" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_19" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_19', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_19"></div>
+</div>
+<div class="question" id="q_HTML_20">
+<p><strong>Câu 60:</strong> Đây là nội dung câu hỏi 20 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_20" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_20" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_20" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_20" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_20', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_20"></div>
+</div>
+<div class="question" id="q_HTML_21">
+<p><strong>Câu 61:</strong> Đây là nội dung câu hỏi 21 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_21" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_21" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_21" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_21" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_21', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_21"></div>
+</div>
+<div class="question" id="q_HTML_22">
+<p><strong>Câu 62:</strong> Đây là nội dung câu hỏi 22 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_22" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_22" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_22" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_22" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_22', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_22"></div>
+</div>
+<div class="question" id="q_HTML_23">
+<p><strong>Câu 63:</strong> Đây là nội dung câu hỏi 23 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_23" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_23" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_23" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_23" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_23', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_23"></div>
+</div>
+<div class="question" id="q_HTML_24">
+<p><strong>Câu 64:</strong> Đây là nội dung câu hỏi 24 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_24" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_24" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_24" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_24" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_24', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_24"></div>
+</div>
+<div class="question" id="q_HTML_25">
+<p><strong>Câu 65:</strong> Đây là nội dung câu hỏi 25 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_25" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_25" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_25" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_25" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_25', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_25"></div>
+</div>
+<div class="question" id="q_HTML_26">
+<p><strong>Câu 66:</strong> Đây là nội dung câu hỏi 26 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_26" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_26" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_26" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_26" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_26', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_26"></div>
+</div>
+<div class="question" id="q_HTML_27">
+<p><strong>Câu 67:</strong> Đây là nội dung câu hỏi 27 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_27" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_27" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_27" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_27" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_27', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_27"></div>
+</div>
+<div class="question" id="q_HTML_28">
+<p><strong>Câu 68:</strong> Đây là nội dung câu hỏi 28 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_28" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_28" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_28" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_28" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_28', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_28"></div>
+</div>
+<div class="question" id="q_HTML_29">
+<p><strong>Câu 69:</strong> Đây là nội dung câu hỏi 29 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_29" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_29" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_29" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_29" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_29', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_29"></div>
+</div>
+<div class="question" id="q_HTML_30">
+<p><strong>Câu 70:</strong> Đây là nội dung câu hỏi 30 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_30" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_30" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_30" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_30" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_30', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_30"></div>
+</div>
+<div class="question" id="q_HTML_31">
+<p><strong>Câu 71:</strong> Đây là nội dung câu hỏi 31 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_31" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_31" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_31" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_31" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_31', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_31"></div>
+</div>
+<div class="question" id="q_HTML_32">
+<p><strong>Câu 72:</strong> Đây là nội dung câu hỏi 32 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_32" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_32" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_32" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_32" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_32', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_32"></div>
+</div>
+<div class="question" id="q_HTML_33">
+<p><strong>Câu 73:</strong> Đây là nội dung câu hỏi 33 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_33" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_33" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_33" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_33" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_33', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_33"></div>
+</div>
+<div class="question" id="q_HTML_34">
+<p><strong>Câu 74:</strong> Đây là nội dung câu hỏi 34 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_34" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_34" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_34" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_34" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_34', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_34"></div>
+</div>
+<div class="question" id="q_HTML_35">
+<p><strong>Câu 75:</strong> Đây là nội dung câu hỏi 35 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_35" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_35" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_35" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_35" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_35', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_35"></div>
+</div>
+<div class="question" id="q_HTML_36">
+<p><strong>Câu 76:</strong> Đây là nội dung câu hỏi 36 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_36" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_36" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_36" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_36" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_36', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_36"></div>
+</div>
+<div class="question" id="q_HTML_37">
+<p><strong>Câu 77:</strong> Đây là nội dung câu hỏi 37 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_37" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_37" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_37" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_37" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_37', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_37"></div>
+</div>
+<div class="question" id="q_HTML_38">
+<p><strong>Câu 78:</strong> Đây là nội dung câu hỏi 38 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_38" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_38" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_38" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_38" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_38', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_38"></div>
+</div>
+<div class="question" id="q_HTML_39">
+<p><strong>Câu 79:</strong> Đây là nội dung câu hỏi 39 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_39" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_39" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_39" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_39" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_39', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_39"></div>
+</div>
+<div class="question" id="q_HTML_40">
+<p><strong>Câu 80:</strong> Đây là nội dung câu hỏi 40 của chương HTML?</p>
+<div class="answers">
+<label><input name="HTML_40" type="radio" value="A"/> Đáp án A</label>
+<label><input name="HTML_40" type="radio" value="B"/> Đáp án B</label>
+<label><input name="HTML_40" type="radio" value="C"/> Đáp án C</label>
+<label><input name="HTML_40" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('HTML_40', 'B')">Kiểm tra</button>
+<div class="result" id="result_HTML_40"></div>
+</div>
+</div><div class="chapter"><h2>Chương: CSS</h2>
+<div class="question" id="q_CSS_1">
+<p><strong>Câu 81:</strong> Đây là nội dung câu hỏi 1 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_1" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_1" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_1" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_1" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_1', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_1"></div>
+</div>
+<div class="question" id="q_CSS_2">
+<p><strong>Câu 82:</strong> Đây là nội dung câu hỏi 2 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_2" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_2" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_2" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_2" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_2', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_2"></div>
+</div>
+<div class="question" id="q_CSS_3">
+<p><strong>Câu 83:</strong> Đây là nội dung câu hỏi 3 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_3" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_3" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_3" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_3" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_3', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_3"></div>
+</div>
+<div class="question" id="q_CSS_4">
+<p><strong>Câu 84:</strong> Đây là nội dung câu hỏi 4 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_4" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_4" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_4" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_4" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_4', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_4"></div>
+</div>
+<div class="question" id="q_CSS_5">
+<p><strong>Câu 85:</strong> Đây là nội dung câu hỏi 5 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_5" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_5" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_5" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_5" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_5', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_5"></div>
+</div>
+<div class="question" id="q_CSS_6">
+<p><strong>Câu 86:</strong> Đây là nội dung câu hỏi 6 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_6" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_6" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_6" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_6" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_6', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_6"></div>
+</div>
+<div class="question" id="q_CSS_7">
+<p><strong>Câu 87:</strong> Đây là nội dung câu hỏi 7 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_7" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_7" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_7" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_7" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_7', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_7"></div>
+</div>
+<div class="question" id="q_CSS_8">
+<p><strong>Câu 88:</strong> Đây là nội dung câu hỏi 8 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_8" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_8" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_8" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_8" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_8', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_8"></div>
+</div>
+<div class="question" id="q_CSS_9">
+<p><strong>Câu 89:</strong> Đây là nội dung câu hỏi 9 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_9" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_9" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_9" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_9" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_9', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_9"></div>
+</div>
+<div class="question" id="q_CSS_10">
+<p><strong>Câu 90:</strong> Đây là nội dung câu hỏi 10 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_10" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_10" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_10" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_10" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_10', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_10"></div>
+</div>
+<div class="question" id="q_CSS_11">
+<p><strong>Câu 91:</strong> Đây là nội dung câu hỏi 11 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_11" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_11" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_11" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_11" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_11', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_11"></div>
+</div>
+<div class="question" id="q_CSS_12">
+<p><strong>Câu 92:</strong> Đây là nội dung câu hỏi 12 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_12" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_12" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_12" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_12" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_12', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_12"></div>
+</div>
+<div class="question" id="q_CSS_13">
+<p><strong>Câu 93:</strong> Đây là nội dung câu hỏi 13 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_13" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_13" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_13" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_13" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_13', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_13"></div>
+</div>
+<div class="question" id="q_CSS_14">
+<p><strong>Câu 94:</strong> Đây là nội dung câu hỏi 14 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_14" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_14" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_14" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_14" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_14', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_14"></div>
+</div>
+<div class="question" id="q_CSS_15">
+<p><strong>Câu 95:</strong> Đây là nội dung câu hỏi 15 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_15" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_15" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_15" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_15" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_15', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_15"></div>
+</div>
+<div class="question" id="q_CSS_16">
+<p><strong>Câu 96:</strong> Đây là nội dung câu hỏi 16 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_16" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_16" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_16" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_16" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_16', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_16"></div>
+</div>
+<div class="question" id="q_CSS_17">
+<p><strong>Câu 97:</strong> Đây là nội dung câu hỏi 17 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_17" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_17" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_17" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_17" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_17', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_17"></div>
+</div>
+<div class="question" id="q_CSS_18">
+<p><strong>Câu 98:</strong> Đây là nội dung câu hỏi 18 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_18" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_18" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_18" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_18" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_18', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_18"></div>
+</div>
+<div class="question" id="q_CSS_19">
+<p><strong>Câu 99:</strong> Đây là nội dung câu hỏi 19 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_19" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_19" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_19" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_19" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_19', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_19"></div>
+</div>
+<div class="question" id="q_CSS_20">
+<p><strong>Câu 100:</strong> Đây là nội dung câu hỏi 20 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_20" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_20" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_20" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_20" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_20', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_20"></div>
+</div>
+<div class="question" id="q_CSS_21">
+<p><strong>Câu 101:</strong> Đây là nội dung câu hỏi 21 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_21" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_21" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_21" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_21" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_21', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_21"></div>
+</div>
+<div class="question" id="q_CSS_22">
+<p><strong>Câu 102:</strong> Đây là nội dung câu hỏi 22 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_22" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_22" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_22" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_22" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_22', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_22"></div>
+</div>
+<div class="question" id="q_CSS_23">
+<p><strong>Câu 103:</strong> Đây là nội dung câu hỏi 23 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_23" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_23" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_23" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_23" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_23', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_23"></div>
+</div>
+<div class="question" id="q_CSS_24">
+<p><strong>Câu 104:</strong> Đây là nội dung câu hỏi 24 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_24" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_24" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_24" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_24" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_24', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_24"></div>
+</div>
+<div class="question" id="q_CSS_25">
+<p><strong>Câu 105:</strong> Đây là nội dung câu hỏi 25 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_25" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_25" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_25" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_25" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_25', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_25"></div>
+</div>
+<div class="question" id="q_CSS_26">
+<p><strong>Câu 106:</strong> Đây là nội dung câu hỏi 26 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_26" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_26" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_26" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_26" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_26', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_26"></div>
+</div>
+<div class="question" id="q_CSS_27">
+<p><strong>Câu 107:</strong> Đây là nội dung câu hỏi 27 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_27" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_27" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_27" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_27" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_27', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_27"></div>
+</div>
+<div class="question" id="q_CSS_28">
+<p><strong>Câu 108:</strong> Đây là nội dung câu hỏi 28 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_28" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_28" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_28" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_28" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_28', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_28"></div>
+</div>
+<div class="question" id="q_CSS_29">
+<p><strong>Câu 109:</strong> Đây là nội dung câu hỏi 29 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_29" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_29" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_29" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_29" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_29', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_29"></div>
+</div>
+<div class="question" id="q_CSS_30">
+<p><strong>Câu 110:</strong> Đây là nội dung câu hỏi 30 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_30" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_30" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_30" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_30" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_30', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_30"></div>
+</div>
+<div class="question" id="q_CSS_31">
+<p><strong>Câu 111:</strong> Đây là nội dung câu hỏi 31 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_31" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_31" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_31" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_31" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_31', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_31"></div>
+</div>
+<div class="question" id="q_CSS_32">
+<p><strong>Câu 112:</strong> Đây là nội dung câu hỏi 32 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_32" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_32" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_32" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_32" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_32', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_32"></div>
+</div>
+<div class="question" id="q_CSS_33">
+<p><strong>Câu 113:</strong> Đây là nội dung câu hỏi 33 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_33" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_33" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_33" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_33" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_33', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_33"></div>
+</div>
+<div class="question" id="q_CSS_34">
+<p><strong>Câu 114:</strong> Đây là nội dung câu hỏi 34 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_34" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_34" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_34" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_34" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_34', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_34"></div>
+</div>
+<div class="question" id="q_CSS_35">
+<p><strong>Câu 115:</strong> Đây là nội dung câu hỏi 35 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_35" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_35" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_35" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_35" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_35', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_35"></div>
+</div>
+<div class="question" id="q_CSS_36">
+<p><strong>Câu 116:</strong> Đây là nội dung câu hỏi 36 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_36" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_36" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_36" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_36" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_36', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_36"></div>
+</div>
+<div class="question" id="q_CSS_37">
+<p><strong>Câu 117:</strong> Đây là nội dung câu hỏi 37 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_37" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_37" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_37" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_37" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_37', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_37"></div>
+</div>
+<div class="question" id="q_CSS_38">
+<p><strong>Câu 118:</strong> Đây là nội dung câu hỏi 38 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_38" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_38" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_38" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_38" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_38', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_38"></div>
+</div>
+<div class="question" id="q_CSS_39">
+<p><strong>Câu 119:</strong> Đây là nội dung câu hỏi 39 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_39" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_39" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_39" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_39" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_39', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_39"></div>
+</div>
+<div class="question" id="q_CSS_40">
+<p><strong>Câu 120:</strong> Đây là nội dung câu hỏi 40 của chương CSS?</p>
+<div class="answers">
+<label><input name="CSS_40" type="radio" value="A"/> Đáp án A</label>
+<label><input name="CSS_40" type="radio" value="B"/> Đáp án B</label>
+<label><input name="CSS_40" type="radio" value="C"/> Đáp án C</label>
+<label><input name="CSS_40" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('CSS_40', 'B')">Kiểm tra</button>
+<div class="result" id="result_CSS_40"></div>
+</div>
+</div><div class="chapter"><h2>Chương: Javascript</h2>
+<div class="question" id="q_JS_1">
+<p><strong>Câu 121:</strong> Đây là nội dung câu hỏi 1 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_1" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_1" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_1" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_1" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_1', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_1"></div>
+</div>
+<div class="question" id="q_JS_2">
+<p><strong>Câu 122:</strong> Đây là nội dung câu hỏi 2 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_2" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_2" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_2" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_2" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_2', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_2"></div>
+</div>
+<div class="question" id="q_JS_3">
+<p><strong>Câu 123:</strong> Đây là nội dung câu hỏi 3 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_3" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_3" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_3" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_3" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_3', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_3"></div>
+</div>
+<div class="question" id="q_JS_4">
+<p><strong>Câu 124:</strong> Đây là nội dung câu hỏi 4 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_4" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_4" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_4" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_4" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_4', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_4"></div>
+</div>
+<div class="question" id="q_JS_5">
+<p><strong>Câu 125:</strong> Đây là nội dung câu hỏi 5 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_5" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_5" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_5" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_5" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_5', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_5"></div>
+</div>
+<div class="question" id="q_JS_6">
+<p><strong>Câu 126:</strong> Đây là nội dung câu hỏi 6 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_6" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_6" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_6" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_6" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_6', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_6"></div>
+</div>
+<div class="question" id="q_JS_7">
+<p><strong>Câu 127:</strong> Đây là nội dung câu hỏi 7 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_7" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_7" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_7" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_7" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_7', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_7"></div>
+</div>
+<div class="question" id="q_JS_8">
+<p><strong>Câu 128:</strong> Đây là nội dung câu hỏi 8 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_8" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_8" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_8" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_8" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_8', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_8"></div>
+</div>
+<div class="question" id="q_JS_9">
+<p><strong>Câu 129:</strong> Đây là nội dung câu hỏi 9 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_9" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_9" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_9" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_9" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_9', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_9"></div>
+</div>
+<div class="question" id="q_JS_10">
+<p><strong>Câu 130:</strong> Đây là nội dung câu hỏi 10 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_10" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_10" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_10" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_10" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_10', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_10"></div>
+</div>
+<div class="question" id="q_JS_11">
+<p><strong>Câu 131:</strong> Đây là nội dung câu hỏi 11 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_11" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_11" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_11" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_11" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_11', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_11"></div>
+</div>
+<div class="question" id="q_JS_12">
+<p><strong>Câu 132:</strong> Đây là nội dung câu hỏi 12 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_12" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_12" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_12" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_12" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_12', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_12"></div>
+</div>
+<div class="question" id="q_JS_13">
+<p><strong>Câu 133:</strong> Đây là nội dung câu hỏi 13 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_13" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_13" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_13" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_13" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_13', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_13"></div>
+</div>
+<div class="question" id="q_JS_14">
+<p><strong>Câu 134:</strong> Đây là nội dung câu hỏi 14 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_14" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_14" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_14" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_14" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_14', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_14"></div>
+</div>
+<div class="question" id="q_JS_15">
+<p><strong>Câu 135:</strong> Đây là nội dung câu hỏi 15 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_15" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_15" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_15" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_15" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_15', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_15"></div>
+</div>
+<div class="question" id="q_JS_16">
+<p><strong>Câu 136:</strong> Đây là nội dung câu hỏi 16 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_16" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_16" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_16" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_16" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_16', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_16"></div>
+</div>
+<div class="question" id="q_JS_17">
+<p><strong>Câu 137:</strong> Đây là nội dung câu hỏi 17 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_17" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_17" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_17" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_17" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_17', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_17"></div>
+</div>
+<div class="question" id="q_JS_18">
+<p><strong>Câu 138:</strong> Đây là nội dung câu hỏi 18 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_18" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_18" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_18" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_18" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_18', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_18"></div>
+</div>
+<div class="question" id="q_JS_19">
+<p><strong>Câu 139:</strong> Đây là nội dung câu hỏi 19 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_19" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_19" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_19" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_19" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_19', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_19"></div>
+</div>
+<div class="question" id="q_JS_20">
+<p><strong>Câu 140:</strong> Đây là nội dung câu hỏi 20 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_20" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_20" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_20" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_20" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_20', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_20"></div>
+</div>
+<div class="question" id="q_JS_21">
+<p><strong>Câu 141:</strong> Đây là nội dung câu hỏi 21 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_21" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_21" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_21" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_21" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_21', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_21"></div>
+</div>
+<div class="question" id="q_JS_22">
+<p><strong>Câu 142:</strong> Đây là nội dung câu hỏi 22 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_22" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_22" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_22" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_22" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_22', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_22"></div>
+</div>
+<div class="question" id="q_JS_23">
+<p><strong>Câu 143:</strong> Đây là nội dung câu hỏi 23 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_23" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_23" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_23" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_23" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_23', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_23"></div>
+</div>
+<div class="question" id="q_JS_24">
+<p><strong>Câu 144:</strong> Đây là nội dung câu hỏi 24 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_24" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_24" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_24" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_24" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_24', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_24"></div>
+</div>
+<div class="question" id="q_JS_25">
+<p><strong>Câu 145:</strong> Đây là nội dung câu hỏi 25 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_25" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_25" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_25" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_25" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_25', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_25"></div>
+</div>
+<div class="question" id="q_JS_26">
+<p><strong>Câu 146:</strong> Đây là nội dung câu hỏi 26 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_26" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_26" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_26" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_26" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_26', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_26"></div>
+</div>
+<div class="question" id="q_JS_27">
+<p><strong>Câu 147:</strong> Đây là nội dung câu hỏi 27 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_27" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_27" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_27" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_27" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_27', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_27"></div>
+</div>
+<div class="question" id="q_JS_28">
+<p><strong>Câu 148:</strong> Đây là nội dung câu hỏi 28 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_28" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_28" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_28" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_28" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_28', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_28"></div>
+</div>
+<div class="question" id="q_JS_29">
+<p><strong>Câu 149:</strong> Đây là nội dung câu hỏi 29 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_29" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_29" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_29" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_29" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_29', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_29"></div>
+</div>
+<div class="question" id="q_JS_30">
+<p><strong>Câu 150:</strong> Đây là nội dung câu hỏi 30 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_30" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_30" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_30" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_30" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_30', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_30"></div>
+</div>
+<div class="question" id="q_JS_31">
+<p><strong>Câu 151:</strong> Đây là nội dung câu hỏi 31 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_31" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_31" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_31" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_31" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_31', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_31"></div>
+</div>
+<div class="question" id="q_JS_32">
+<p><strong>Câu 152:</strong> Đây là nội dung câu hỏi 32 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_32" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_32" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_32" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_32" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_32', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_32"></div>
+</div>
+<div class="question" id="q_JS_33">
+<p><strong>Câu 153:</strong> Đây là nội dung câu hỏi 33 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_33" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_33" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_33" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_33" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_33', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_33"></div>
+</div>
+<div class="question" id="q_JS_34">
+<p><strong>Câu 154:</strong> Đây là nội dung câu hỏi 34 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_34" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_34" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_34" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_34" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_34', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_34"></div>
+</div>
+<div class="question" id="q_JS_35">
+<p><strong>Câu 155:</strong> Đây là nội dung câu hỏi 35 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_35" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_35" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_35" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_35" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_35', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_35"></div>
+</div>
+<div class="question" id="q_JS_36">
+<p><strong>Câu 156:</strong> Đây là nội dung câu hỏi 36 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_36" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_36" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_36" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_36" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_36', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_36"></div>
+</div>
+<div class="question" id="q_JS_37">
+<p><strong>Câu 157:</strong> Đây là nội dung câu hỏi 37 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_37" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_37" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_37" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_37" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_37', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_37"></div>
+</div>
+<div class="question" id="q_JS_38">
+<p><strong>Câu 158:</strong> Đây là nội dung câu hỏi 38 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_38" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_38" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_38" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_38" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_38', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_38"></div>
+</div>
+<div class="question" id="q_JS_39">
+<p><strong>Câu 159:</strong> Đây là nội dung câu hỏi 39 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_39" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_39" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_39" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_39" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_39', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_39"></div>
+</div>
+<div class="question" id="q_JS_40">
+<p><strong>Câu 160:</strong> Đây là nội dung câu hỏi 40 của chương Javascript?</p>
+<div class="answers">
+<label><input name="JS_40" type="radio" value="A"/> Đáp án A</label>
+<label><input name="JS_40" type="radio" value="B"/> Đáp án B</label>
+<label><input name="JS_40" type="radio" value="C"/> Đáp án C</label>
+<label><input name="JS_40" type="radio" value="D"/> Đáp án D</label>
+</div>
+<button onclick="checkAnswer('JS_40', 'B')">Kiểm tra</button>
+<div class="result" id="result_JS_40"></div>
+</div>
+</div>
+<button onclick="calculateScore()">Tính điểm</button>
+<div id="score"></div>
+<div id="adminAnswers">
+<h2>Đáp án đúng (Chỉ hiển thị khi Admin mở khóa)</h2>
+<div class="answerKey">Câu TQ_1: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_2: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_3: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_4: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_5: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_6: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_7: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_8: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_9: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_10: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_11: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_12: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_13: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_14: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_15: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_16: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_17: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_18: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_19: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_20: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_21: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_22: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_23: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_24: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_25: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_26: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_27: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_28: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_29: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_30: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_31: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_32: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_33: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_34: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_35: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_36: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_37: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_38: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_39: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu TQ_40: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_1: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_2: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_3: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_4: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_5: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_6: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_7: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_8: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_9: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_10: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_11: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_12: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_13: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_14: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_15: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_16: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_17: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_18: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_19: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_20: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_21: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_22: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_23: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_24: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_25: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_26: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_27: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_28: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_29: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_30: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_31: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_32: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_33: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_34: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_35: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_36: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_37: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_38: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_39: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu HTML_40: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_1: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_2: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_3: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_4: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_5: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_6: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_7: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_8: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_9: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_10: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_11: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_12: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_13: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_14: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_15: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_16: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_17: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_18: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_19: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_20: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_21: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_22: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_23: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_24: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_25: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_26: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_27: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_28: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_29: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_30: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_31: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_32: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_33: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_34: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_35: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_36: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_37: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_38: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_39: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu CSS_40: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_1: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_2: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_3: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_4: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_5: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_6: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_7: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_8: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_9: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_10: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_11: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_12: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_13: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_14: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_15: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_16: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_17: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_18: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_19: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_20: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_21: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_22: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_23: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_24: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_25: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_26: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_27: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_28: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_29: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_30: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_31: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_32: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_33: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_34: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_35: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_36: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_37: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_38: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_39: Đáp án đúng là <strong>B</strong></div><div class="answerKey">Câu JS_40: Đáp án đúng là <strong>B</strong></div>
+</div>
+<button onclick="document.getElementById('adminAnswers').style.display='block'">Mở khóa đáp án (Admin)</button>
+<script>
+        function checkAnswer(qid, correctAnswer) {
+            const options = document.getElementsByName(qid);
+            let selected = null;
+            for (const opt of options) {
+                if (opt.checked) {
+                    selected = opt.value;
+                    break;
+                }
+            }
+            const resultDiv = document.getElementById("result_" + qid);
+            if (selected === correctAnswer) {
+                resultDiv.innerHTML = "✅ Chính xác!";
+                resultDiv.className = "result correct";
+            } else {
+                resultDiv.innerHTML = "❌ Sai rồi!";
+                resultDiv.className = "result incorrect";
+            }
+        }
+
+        function calculateScore() {
+            let score = 0;
+            let total = 0;
+
+            total++;
+            const options_TQ_1 = document.getElementsByName("TQ_1");
+            for (const opt of options_TQ_1) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_2 = document.getElementsByName("TQ_2");
+            for (const opt of options_TQ_2) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_3 = document.getElementsByName("TQ_3");
+            for (const opt of options_TQ_3) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_4 = document.getElementsByName("TQ_4");
+            for (const opt of options_TQ_4) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_5 = document.getElementsByName("TQ_5");
+            for (const opt of options_TQ_5) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_6 = document.getElementsByName("TQ_6");
+            for (const opt of options_TQ_6) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_7 = document.getElementsByName("TQ_7");
+            for (const opt of options_TQ_7) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_8 = document.getElementsByName("TQ_8");
+            for (const opt of options_TQ_8) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_9 = document.getElementsByName("TQ_9");
+            for (const opt of options_TQ_9) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_10 = document.getElementsByName("TQ_10");
+            for (const opt of options_TQ_10) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_11 = document.getElementsByName("TQ_11");
+            for (const opt of options_TQ_11) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_12 = document.getElementsByName("TQ_12");
+            for (const opt of options_TQ_12) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_13 = document.getElementsByName("TQ_13");
+            for (const opt of options_TQ_13) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_14 = document.getElementsByName("TQ_14");
+            for (const opt of options_TQ_14) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_15 = document.getElementsByName("TQ_15");
+            for (const opt of options_TQ_15) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_16 = document.getElementsByName("TQ_16");
+            for (const opt of options_TQ_16) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_17 = document.getElementsByName("TQ_17");
+            for (const opt of options_TQ_17) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_18 = document.getElementsByName("TQ_18");
+            for (const opt of options_TQ_18) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_19 = document.getElementsByName("TQ_19");
+            for (const opt of options_TQ_19) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_20 = document.getElementsByName("TQ_20");
+            for (const opt of options_TQ_20) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_21 = document.getElementsByName("TQ_21");
+            for (const opt of options_TQ_21) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_22 = document.getElementsByName("TQ_22");
+            for (const opt of options_TQ_22) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_23 = document.getElementsByName("TQ_23");
+            for (const opt of options_TQ_23) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_24 = document.getElementsByName("TQ_24");
+            for (const opt of options_TQ_24) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_25 = document.getElementsByName("TQ_25");
+            for (const opt of options_TQ_25) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_26 = document.getElementsByName("TQ_26");
+            for (const opt of options_TQ_26) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_27 = document.getElementsByName("TQ_27");
+            for (const opt of options_TQ_27) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_28 = document.getElementsByName("TQ_28");
+            for (const opt of options_TQ_28) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_29 = document.getElementsByName("TQ_29");
+            for (const opt of options_TQ_29) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_30 = document.getElementsByName("TQ_30");
+            for (const opt of options_TQ_30) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_31 = document.getElementsByName("TQ_31");
+            for (const opt of options_TQ_31) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_32 = document.getElementsByName("TQ_32");
+            for (const opt of options_TQ_32) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_33 = document.getElementsByName("TQ_33");
+            for (const opt of options_TQ_33) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_34 = document.getElementsByName("TQ_34");
+            for (const opt of options_TQ_34) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_35 = document.getElementsByName("TQ_35");
+            for (const opt of options_TQ_35) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_36 = document.getElementsByName("TQ_36");
+            for (const opt of options_TQ_36) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_37 = document.getElementsByName("TQ_37");
+            for (const opt of options_TQ_37) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_38 = document.getElementsByName("TQ_38");
+            for (const opt of options_TQ_38) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_39 = document.getElementsByName("TQ_39");
+            for (const opt of options_TQ_39) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_TQ_40 = document.getElementsByName("TQ_40");
+            for (const opt of options_TQ_40) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_1 = document.getElementsByName("HTML_1");
+            for (const opt of options_HTML_1) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_2 = document.getElementsByName("HTML_2");
+            for (const opt of options_HTML_2) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_3 = document.getElementsByName("HTML_3");
+            for (const opt of options_HTML_3) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_4 = document.getElementsByName("HTML_4");
+            for (const opt of options_HTML_4) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_5 = document.getElementsByName("HTML_5");
+            for (const opt of options_HTML_5) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_6 = document.getElementsByName("HTML_6");
+            for (const opt of options_HTML_6) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_7 = document.getElementsByName("HTML_7");
+            for (const opt of options_HTML_7) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_8 = document.getElementsByName("HTML_8");
+            for (const opt of options_HTML_8) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_9 = document.getElementsByName("HTML_9");
+            for (const opt of options_HTML_9) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_10 = document.getElementsByName("HTML_10");
+            for (const opt of options_HTML_10) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_11 = document.getElementsByName("HTML_11");
+            for (const opt of options_HTML_11) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_12 = document.getElementsByName("HTML_12");
+            for (const opt of options_HTML_12) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_13 = document.getElementsByName("HTML_13");
+            for (const opt of options_HTML_13) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_14 = document.getElementsByName("HTML_14");
+            for (const opt of options_HTML_14) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_15 = document.getElementsByName("HTML_15");
+            for (const opt of options_HTML_15) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_16 = document.getElementsByName("HTML_16");
+            for (const opt of options_HTML_16) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_17 = document.getElementsByName("HTML_17");
+            for (const opt of options_HTML_17) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_18 = document.getElementsByName("HTML_18");
+            for (const opt of options_HTML_18) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_19 = document.getElementsByName("HTML_19");
+            for (const opt of options_HTML_19) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_20 = document.getElementsByName("HTML_20");
+            for (const opt of options_HTML_20) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_21 = document.getElementsByName("HTML_21");
+            for (const opt of options_HTML_21) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_22 = document.getElementsByName("HTML_22");
+            for (const opt of options_HTML_22) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_23 = document.getElementsByName("HTML_23");
+            for (const opt of options_HTML_23) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_24 = document.getElementsByName("HTML_24");
+            for (const opt of options_HTML_24) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_25 = document.getElementsByName("HTML_25");
+            for (const opt of options_HTML_25) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_26 = document.getElementsByName("HTML_26");
+            for (const opt of options_HTML_26) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_27 = document.getElementsByName("HTML_27");
+            for (const opt of options_HTML_27) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_28 = document.getElementsByName("HTML_28");
+            for (const opt of options_HTML_28) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_29 = document.getElementsByName("HTML_29");
+            for (const opt of options_HTML_29) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_30 = document.getElementsByName("HTML_30");
+            for (const opt of options_HTML_30) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_31 = document.getElementsByName("HTML_31");
+            for (const opt of options_HTML_31) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_32 = document.getElementsByName("HTML_32");
+            for (const opt of options_HTML_32) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_33 = document.getElementsByName("HTML_33");
+            for (const opt of options_HTML_33) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_34 = document.getElementsByName("HTML_34");
+            for (const opt of options_HTML_34) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_35 = document.getElementsByName("HTML_35");
+            for (const opt of options_HTML_35) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_36 = document.getElementsByName("HTML_36");
+            for (const opt of options_HTML_36) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_37 = document.getElementsByName("HTML_37");
+            for (const opt of options_HTML_37) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_38 = document.getElementsByName("HTML_38");
+            for (const opt of options_HTML_38) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_39 = document.getElementsByName("HTML_39");
+            for (const opt of options_HTML_39) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_HTML_40 = document.getElementsByName("HTML_40");
+            for (const opt of options_HTML_40) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_1 = document.getElementsByName("CSS_1");
+            for (const opt of options_CSS_1) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_2 = document.getElementsByName("CSS_2");
+            for (const opt of options_CSS_2) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_3 = document.getElementsByName("CSS_3");
+            for (const opt of options_CSS_3) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_4 = document.getElementsByName("CSS_4");
+            for (const opt of options_CSS_4) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_5 = document.getElementsByName("CSS_5");
+            for (const opt of options_CSS_5) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_6 = document.getElementsByName("CSS_6");
+            for (const opt of options_CSS_6) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_7 = document.getElementsByName("CSS_7");
+            for (const opt of options_CSS_7) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_8 = document.getElementsByName("CSS_8");
+            for (const opt of options_CSS_8) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_9 = document.getElementsByName("CSS_9");
+            for (const opt of options_CSS_9) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_10 = document.getElementsByName("CSS_10");
+            for (const opt of options_CSS_10) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_11 = document.getElementsByName("CSS_11");
+            for (const opt of options_CSS_11) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_12 = document.getElementsByName("CSS_12");
+            for (const opt of options_CSS_12) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_13 = document.getElementsByName("CSS_13");
+            for (const opt of options_CSS_13) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_14 = document.getElementsByName("CSS_14");
+            for (const opt of options_CSS_14) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_15 = document.getElementsByName("CSS_15");
+            for (const opt of options_CSS_15) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_16 = document.getElementsByName("CSS_16");
+            for (const opt of options_CSS_16) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_17 = document.getElementsByName("CSS_17");
+            for (const opt of options_CSS_17) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_18 = document.getElementsByName("CSS_18");
+            for (const opt of options_CSS_18) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_19 = document.getElementsByName("CSS_19");
+            for (const opt of options_CSS_19) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_20 = document.getElementsByName("CSS_20");
+            for (const opt of options_CSS_20) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_21 = document.getElementsByName("CSS_21");
+            for (const opt of options_CSS_21) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_22 = document.getElementsByName("CSS_22");
+            for (const opt of options_CSS_22) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_23 = document.getElementsByName("CSS_23");
+            for (const opt of options_CSS_23) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_24 = document.getElementsByName("CSS_24");
+            for (const opt of options_CSS_24) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_25 = document.getElementsByName("CSS_25");
+            for (const opt of options_CSS_25) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_26 = document.getElementsByName("CSS_26");
+            for (const opt of options_CSS_26) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_27 = document.getElementsByName("CSS_27");
+            for (const opt of options_CSS_27) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_28 = document.getElementsByName("CSS_28");
+            for (const opt of options_CSS_28) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_29 = document.getElementsByName("CSS_29");
+            for (const opt of options_CSS_29) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_30 = document.getElementsByName("CSS_30");
+            for (const opt of options_CSS_30) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_31 = document.getElementsByName("CSS_31");
+            for (const opt of options_CSS_31) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_32 = document.getElementsByName("CSS_32");
+            for (const opt of options_CSS_32) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_33 = document.getElementsByName("CSS_33");
+            for (const opt of options_CSS_33) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_34 = document.getElementsByName("CSS_34");
+            for (const opt of options_CSS_34) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_35 = document.getElementsByName("CSS_35");
+            for (const opt of options_CSS_35) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_36 = document.getElementsByName("CSS_36");
+            for (const opt of options_CSS_36) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_37 = document.getElementsByName("CSS_37");
+            for (const opt of options_CSS_37) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_38 = document.getElementsByName("CSS_38");
+            for (const opt of options_CSS_38) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_39 = document.getElementsByName("CSS_39");
+            for (const opt of options_CSS_39) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_CSS_40 = document.getElementsByName("CSS_40");
+            for (const opt of options_CSS_40) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_1 = document.getElementsByName("JS_1");
+            for (const opt of options_JS_1) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_2 = document.getElementsByName("JS_2");
+            for (const opt of options_JS_2) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_3 = document.getElementsByName("JS_3");
+            for (const opt of options_JS_3) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_4 = document.getElementsByName("JS_4");
+            for (const opt of options_JS_4) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_5 = document.getElementsByName("JS_5");
+            for (const opt of options_JS_5) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_6 = document.getElementsByName("JS_6");
+            for (const opt of options_JS_6) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_7 = document.getElementsByName("JS_7");
+            for (const opt of options_JS_7) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_8 = document.getElementsByName("JS_8");
+            for (const opt of options_JS_8) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_9 = document.getElementsByName("JS_9");
+            for (const opt of options_JS_9) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_10 = document.getElementsByName("JS_10");
+            for (const opt of options_JS_10) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_11 = document.getElementsByName("JS_11");
+            for (const opt of options_JS_11) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_12 = document.getElementsByName("JS_12");
+            for (const opt of options_JS_12) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_13 = document.getElementsByName("JS_13");
+            for (const opt of options_JS_13) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_14 = document.getElementsByName("JS_14");
+            for (const opt of options_JS_14) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_15 = document.getElementsByName("JS_15");
+            for (const opt of options_JS_15) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_16 = document.getElementsByName("JS_16");
+            for (const opt of options_JS_16) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_17 = document.getElementsByName("JS_17");
+            for (const opt of options_JS_17) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_18 = document.getElementsByName("JS_18");
+            for (const opt of options_JS_18) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_19 = document.getElementsByName("JS_19");
+            for (const opt of options_JS_19) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_20 = document.getElementsByName("JS_20");
+            for (const opt of options_JS_20) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_21 = document.getElementsByName("JS_21");
+            for (const opt of options_JS_21) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_22 = document.getElementsByName("JS_22");
+            for (const opt of options_JS_22) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_23 = document.getElementsByName("JS_23");
+            for (const opt of options_JS_23) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_24 = document.getElementsByName("JS_24");
+            for (const opt of options_JS_24) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_25 = document.getElementsByName("JS_25");
+            for (const opt of options_JS_25) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_26 = document.getElementsByName("JS_26");
+            for (const opt of options_JS_26) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_27 = document.getElementsByName("JS_27");
+            for (const opt of options_JS_27) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_28 = document.getElementsByName("JS_28");
+            for (const opt of options_JS_28) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_29 = document.getElementsByName("JS_29");
+            for (const opt of options_JS_29) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_30 = document.getElementsByName("JS_30");
+            for (const opt of options_JS_30) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_31 = document.getElementsByName("JS_31");
+            for (const opt of options_JS_31) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_32 = document.getElementsByName("JS_32");
+            for (const opt of options_JS_32) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_33 = document.getElementsByName("JS_33");
+            for (const opt of options_JS_33) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_34 = document.getElementsByName("JS_34");
+            for (const opt of options_JS_34) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_35 = document.getElementsByName("JS_35");
+            for (const opt of options_JS_35) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_36 = document.getElementsByName("JS_36");
+            for (const opt of options_JS_36) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_37 = document.getElementsByName("JS_37");
+            for (const opt of options_JS_37) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_38 = document.getElementsByName("JS_38");
+            for (const opt of options_JS_38) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_39 = document.getElementsByName("JS_39");
+            for (const opt of options_JS_39) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            total++;
+            const options_JS_40 = document.getElementsByName("JS_40");
+            for (const opt of options_JS_40) {
+                if (opt.checked && opt.value === "B") {
+                    score++;
+                }
+            }
+    
+            document.getElementById("score").innerHTML = "✅ Bạn đúng " + score + " trên tổng " + total + " câu.";
+        }
+    </script>
+</body>
+</html>

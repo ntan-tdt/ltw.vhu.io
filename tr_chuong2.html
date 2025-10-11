@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz: Chương 2 - Lập trình Web với HTML</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #007acc;
+  }
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fdfdfd;
+  }
+  .question h3 {
+    margin-bottom: 10px;
+  }
+  .options label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005f99;
+  }
+  #result {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 18px;
+    background: #e1f5fe;
+    border: 1px solid #b3e5fc;
+    border-radius: 6px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+<h1>Quiz: Chương 2 - Lập trình Web với HTML</h1>
+<form id="quizForm">
+
+<!-- Các câu hỏi sẽ được chèn vào đây bằng JavaScript -->
+
+<button type="submit">Nộp bài và Xem điểm</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+const questions = [
+  {
+    question: "1. HTML là viết tắt của?",
+    options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "HyperText Machine Language"],
+    answer: 0
+  },
+  {
+    question: "2. Thẻ nào được dùng để tạo tiêu đề lớn nhất trong HTML?",
+    options: ["&lt;h1&gt;", "&lt;head&gt;", "&lt;title&gt;", "&lt;header&gt;"],
+    answer: 0
+  },
+  {
+    question: "3. HTML dùng để làm gì?",
+    options: ["Định dạng nội dung trang web", "Tạo cấu trúc nội dung trang web", "Thiết kế đồ họa", "Lập trình server"],
+    answer: 1
+  },
+  {
+    question: "4. Thẻ &lt;p&gt; trong HTML dùng để?",
+    options: ["Chèn hình ảnh", "Tạo đoạn văn bản", "Tạo bảng", "Tạo liên kết"],
+    answer: 1
+  },
+  {
+    question: "5. Thuộc tính nào dùng để liên kết file CSS vào trang HTML?",
+    options: ["href", "src", "link", "css"],
+    answer: 0
+  },
+  {
+    question: "6. Thẻ HTML nào không cần đóng (self-closing)?",
+    options: ["&lt;img&gt;", "&lt;div&gt;", "&lt;p&gt;", "&lt;a&gt;"],
+    answer: 0
+  },
+  {
+    question: "7. Thuộc tính nào dùng để chỉ URL của liên kết trong thẻ &lt;a&gt;?",
+    options: ["href", "src", "link", "url"],
+    answer: 0
+  },
+  {
+    question: "8. Thẻ &lt;br&gt; dùng để?",
+    options: ["Ngắt dòng", "Tạo đoạn văn", "Tạo bảng", "Chèn hình ảnh"],
+    answer: 0
+  },
+  {
+    question: "9. Thẻ nào dùng để chèn hình ảnh vào trang web?",
+    options: ["&lt;image&gt;", "&lt;img&gt;", "&lt;src&gt;", "&lt;picture&gt;"],
+    answer: 1
+  },
+  {
+    question: "10. Thuộc tính alt trong thẻ &lt;img&gt; dùng để làm gì?",
+    options: ["Chèn chú thích ảnh", "Định dạng kích thước ảnh", "Thay thế ảnh khi không hiển thị", "Chèn liên kết cho ảnh"],
+    answer: 2
+  },
+  {
+    question:"11. Phần tử dùng để định nghĩa phần chân trang của trang web là?",
+    options:["&lt;footer&gt;", "&lt;header&gt;", "&lt;section&gt;", "&lt;aside&gt;"],
+    answer: 0
+  },
+  {
+    question:"12. Thẻ &lt;ul&gt; trong HTML dùng để làm gì?",
+    options:["Tạo danh sách có thứ tự", "Tạo danh sách không thứ tự", "Tạo bảng", "Tạo đoạn văn"],
+    answer: 1
+  },
+  {
+    question:"13. Thẻ &lt;ol&gt; dùng để?",
+    options:["Tạo danh sách có thứ tự", "Tạo danh sách không thứ tự", "Chèn ảnh", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"14. Thẻ nào dùng để nhúng video vào trang web?",
+    options:["&lt;video&gt;", "&lt;movie&gt;", "&lt;media&gt;", "&lt;movieclip&gt;"],
+    answer: 0
+  },
+  {
+    question:"15. Thuộc tính nào dùng để đặt tiêu đề trang web hiển thị trên tab trình duyệt?",
+    options:["&lt;title&gt;", "&lt;head&gt;", "&lt;header&gt;", "&lt;meta&gt;"],
+    answer: 0
+  },
+  {
+    question:"16. Trong HTML, thẻ dùng để nhóm các phần tử lại với nhau là?",
+    options:["&lt;div&gt;", "&lt;span&gt;", "&lt;section&gt;", "&lt;article&gt;"],
+    answer: 0
+  },
+  {
+    question:"17. Dùng thẻ nào để tạo một ô nhập liệu văn bản?",
+    options:["&lt;input type='text'&gt;", "&lt;textarea&gt;", "&lt;form&gt;", "&lt;label&gt;"],
+    answer: 0
+  },
+  {
+    question:"18. Thẻ nào sau đây dùng để đánh dấu một đoạn mã nguồn trên trang web?",
+    options:["&lt;code&gt;", "&lt;pre&gt;", "&lt;script&gt;", "&lt;source&gt;"],
+    answer: 0
+  },
+  {
+    question:"19. Thẻ &lt;link&gt; thường được đặt ở đâu trong trang HTML?",
+    options:["Phần &lt;head&gt;", "Phần &lt;body&gt;", "Sau thẻ &lt;footer&gt;", "Trong thẻ &lt;form&gt;"],
+    answer: 0
+  },
+  {
+    question:"20. Thẻ &lt;meta&gt; dùng để làm gì?",
+    options:["Chứa thông tin metadata cho trang web", "Tạo liên kết", "Chèn hình ảnh", "Tạo bảng"],
+    answer: 0
+  },
+  {
+    question:"21. Thuộc tính nào dùng để chỉ định ngôn ngữ trong thẻ &lt;html&gt;?",
+    options:["lang", "type", "class", "id"],
+    answer: 0
+  },
+  {
+    question:"22. Cách nào để tạo nhận xét (comment) trong HTML?",
+    options:["&lt;!-- Comment --&gt;", "// Comment", "/* Comment */", "# Comment"],
+    answer: 0
+  },
+  {
+    question:"23. Thẻ &lt;form&gt; dùng để?",
+    options:["Tạo biểu mẫu nhập liệu", "Chèn liên kết", "Nhúng video", "Tạo bảng"],
+    answer: 0
+  },
+  {
+    question:"24. Thẻ nào dùng để tạo một tiêu đề cấp 3?",
+    options:["&lt;h3&gt;", "&lt;h1&gt;", "&lt;h2&gt;", "&lt;header&gt;"],
+    answer: 0
+  },
+  {
+    question:"25. Từ khóa nào không phải là một kiểu input hợp lệ trong thẻ &lt;input&gt;?",
+    options:["password", "email", "textbox", "checkbox"],
+    answer: 2
+  },
+  {
+    question:"26. Thẻ &lt;table&gt; dùng để làm gì?",
+    options:["Tạo bảng dữ liệu", "Tạo biểu mẫu", "Tạo đoạn văn", "Tạo danh sách"],
+    answer: 0
+  },
+  {
+    question:"27. Phần tử &lt;th&gt; trong bảng có chức năng gì?",
+    options:["Tạo ô tiêu đề cột hoặc hàng", "Tạo ô dữ liệu", "Chèn hình ảnh", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"28. Thuộc tính nào dùng để nối các ô trùng nhau trong bảng?",
+    options:["colspan", "rowspan", "span", "merge"],
+    answer: 0
+  },
+  {
+    question:"29. Thẻ &lt;iframe&gt; dùng để làm gì?",
+    options:["Chèn trang web hoặc tài liệu khác vào trang hiện tại", "Nhúng video", "Tạo khung nhập liệu", "Tạo danh sách"],
+    answer: 0
+  },
+  {
+    question:"30. Thẻ &lt;script&gt; dùng để làm gì?",
+    options:["Chèn mã JavaScript vào trang", "Chèn CSS", "Chèn hình ảnh", "Tạo đoạn văn"],
+    answer: 0
+  },
+  {
+    question:"31. Thuộc tính nào dùng để đặt định danh duy nhất cho thẻ HTML?",
+    options:["id", "class", "name", "value"],
+    answer: 0
+  },
+  {
+    question:"32. Thuộc tính class dùng để làm gì?",
+    options:["Đóng nhóm các phần tử để dễ dàng định dạng CSS", "Đặt tên duy nhất cho phần tử", "Chèn hình ảnh", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"33. Thẻ &lt;nav&gt; dùng để gì?",
+    options:["Định nghĩa vùng điều hướng", "Tạo bảng", "Tạo đoạn văn", "Chèn video"],
+    answer: 0
+  },
+  {
+    question:"34. Thuộc tính nào dùng để mở liên kết trong tab mới?",
+    options:["target='_blank'", "rel='new'", "href='newtab'", "open='new'"],
+    answer: 0
+  },
+  {
+    question:"35. Phát biểu nào đúng về thẻ &lt;body&gt; trong HTML?",
+    options:["Chứa toàn bộ nội dung hiển thị trên trang", "Chứa các đoạn mã script", "Chứa metadata", "Chứa tiêu đề trang"],
+    answer: 0
+  },
+  {
+    question:"36. Thẻ &lt;section&gt; dùng để làm gì?",
+    options:["Định nghĩa một phần nội dung trong trang", "Tạo đường kẻ ngang", "Chèn hình ảnh", "Tạo đoạn văn"],
+    answer: 0
+  },
+  {
+    question:"37. Phát biểu nào đúng về thẻ &lt;header&gt;?",
+    options:["Định nghĩa phần đầu trang hoặc một phần của trang", "Chứa nội dung chân trang", "Tạo bảng", "Tạo danh sách"],
+    answer: 0
+  },
+  {
+    question:"38. Việc sử dụng thẻ &lt;strong&gt; trong HTML có nghĩa gì?",
+    options:["Nhấn mạnh đoạn văn bản", "Chèn liên kết", "Tạo tiêu đề", "Chèn hình ảnh"],
+    answer: 0
+  },
+  {
+    question:"39. Thẻ &lt;em&gt; có tác dụng gì?",
+    options:["Nhấn mạnh văn bản bằng in nghiêng", "Tạo đoạn văn", "Chèn hình ảnh", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"40. Để tạo liên kết trong cùng một trang, bạn thường dùng thuộc tính nào?",
+    options:["href='#id'", "href='url'", "src='#id'", "src='url'"],
+    answer: 0
+  },
+  {
+    question:"41. Chức năng của thẻ &lt;label&gt; trong biểu mẫu là gì?",
+    options:["Liên kết nhãn với điều khiển input", "Tạo trường nhập liệu", "Tạo nút bấm", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"42. Các thẻ &lt;b&gt; và &lt;strong&gt; khác nhau ở điểm nào?",
+    options:["&lt;strong&gt; nhấn mạnh ý nghĩa, &lt;b&gt; chỉ in đậm", "&lt;b&gt; nhấn mạnh ý nghĩa, &lt;strong&gt; chỉ in đậm", "Không khác nhau", "Cả hai đều tạo in nghiêng"],
+    answer: 0
+  },
+  {
+    question:"43. Thuộc tính action trong thẻ &lt;form&gt; chỉ định?",
+    options:["Địa chỉ nhận dữ liệu khi submit", "Phương thức gửi dữ liệu", "Tên biểu mẫu", "Kiểu dữ liệu nhập"],
+    answer: 0
+  },
+  {
+    question:"44. Thuộc tính method trong thẻ &lt;form&gt; dùng để gì?",
+    options:["Chỉ định phương thức gửi dữ liệu (GET hoặc POST)", "Đặt tên biểu mẫu", "Gán id cho biểu mẫu", "Chỉ định kiểu dữ liệu nhập"],
+    answer: 0
+  },
+  {
+    question:"45. Thẻ &lt;input type='checkbox'&gt; dùng để?",
+    options:["Tạo hộp kiểm cho phép chọn nhiều", "Tạo trường nhập liệu văn bản", "Tạo nút radio", "Tạo nút gửi"],
+    answer: 0
+  },
+  {
+    question:"46. Thẻ &lt;input type='radio'&gt; dùng để?",
+    options:["Tạo nút lựa chọn đơn", "Tạo hộp kiểm", "Tạo trường nhập liệu", "Tạo nút gửi"],
+    answer: 0
+  },
+  {
+    question:"47. Thuộc tính value trong thẻ &lt;input&gt; dùng để gì?",
+    options:["Xác định giá trị của trường nhập liệu", "Đặt tên trường", "Định danh trường", "Gán kiểu dữ liệu"],
+    answer: 0
+  },
+  {
+    question:"48. Thẻ &lt;textarea&gt; dùng để?",
+    options:["Tạo vùng nhập liệu nhiều dòng", "Tạo nút bấm", "Tạo danh sách", "Tạo liên kết"],
+    answer: 0
+  },
+  {
+    question:"49. Thẻ &lt;button&gt; dùng để làm gì?",
+    options:["Tạo nút bấm có thể có nội dung phong phú", "Tạo đoạn văn", "Chèn hình ảnh", "Tạo bảng"],
+    answer: 0
+  },
+  {
+    question:"50. Thuộc tính nào sau đây không thuộc thẻ &lt;img&gt;?",
+    options:["width", "height", "href", "alt"],
+    answer: 2
+  }
+];
+
+// Hàm tạo câu hỏi và hiển thị lên form
+const form = document.getElementById('quizForm');
+
+questions.forEach((q, index) => {
+  const div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<h3>${q.question}</h3>`;
+
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+
+  q.options.forEach((option, i) => {
+    const optionId = `q${index}_option${i}`;
+    const label = document.createElement('label');
+    label.setAttribute('for', optionId);
+    label.innerHTML = `<input type="radio" name="question${index}" id="${optionId}" value="${i}" required> ${option}`;
+    optionsDiv.appendChild(label);
+  });
+
+  div.appendChild(optionsDiv);
+  form.insertBefore(div, form.querySelector('button'));
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  let score = 0;
+
+  for (let i = 0; i < questions.length; i++) {
+    const selected = form.querySelector(`input[name="question${i}"]:checked`);
+    if (selected && parseInt(selected.value) === questions[i].answer) {
+      score++;
+    }
+  }
+
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `Bạn đã trả lời đúng <strong>${score}</strong> trên tổng số <strong>${questions.length}</strong> câu hỏi.<br>Điểm của bạn: <strong>${(score / questions.length * 10).toFixed(2)}</strong> / 10`;
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+</body>
+</html>

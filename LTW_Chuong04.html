@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương 4 - Lập trình với Javascript</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1, h2 { color: #2c3e50; }
+        pre { background-color: #f4f4f4; padding: 10px; border-left: 4px solid #3498db; }
+        .example { background-color: #ecf0f1; padding: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+    <h1>Chương 4: Lập trình với Javascript</h1>
+
+    <h2>1. Giới thiệu</h2>
+    <p>Javascript là ngôn ngữ lập trình phía trình duyệt, giúp tạo ra các tương tác động trên trang web như xử lý sự kiện, thay đổi nội dung, kiểm tra dữ liệu đầu vào...</p>
+
+    <h2>2. Cú pháp cơ bản</h2>
+    <p>Javascript sử dụng cú pháp tương tự như C/C++ và Java. Một số cú pháp cơ bản:</p>
+    <pre>
+// In ra màn hình
+console.log("Xin chào Javascript");
+
+// Khai báo biến
+let x = 10;
+const PI = 3.14;
+
+// Câu điều kiện
+if (x > 5) {
+    console.log("x lớn hơn 5");
+}
+    </pre>
+
+    <h2>3. Biến và kiểu dữ liệu</h2>
+    <p>Các kiểu dữ liệu phổ biến: Number, String, Boolean, Array, Object.</p>
+    <pre>
+let name = "Văn Hiến";
+let age = 20;
+let isStudent = true;
+let scores = [8, 9, 10];
+let student = { name: "An", age: 21 };
+    </pre>
+
+    <h2>4. Hàm</h2>
+    <p>Hàm là khối mã thực hiện một nhiệm vụ cụ thể.</p>
+    <pre>
+function greet(name) {
+    return "Xin chào " + name;
+}
+console.log(greet("Lan"));
+    </pre>
+
+    <h2>5. Xử lý sự kiện</h2>
+    <p>Javascript có thể xử lý các sự kiện như click, nhập liệu, di chuột...</p>
+    <div class="example">
+        <button onclick="alert('Bạn vừa nhấn nút!')">Nhấn vào đây</button>
+    </div>
+
+    <h2>6. DOM - Document Object Model</h2>
+    <p>DOM cho phép Javascript truy cập và thay đổi nội dung HTML.</p>
+    <div class="example">
+        <p id="demo">Nội dung ban đầu</p>
+        <button onclick="document.getElementById('demo').innerHTML = 'Nội dung đã thay đổi'">Thay đổi nội dung</button>
+    </div>
+
+    <h2>7. Thực hành</h2>
+    <h3>Bài 1: Tính tổng 2 số</h3>
+    <div class="example">
+        <input type="number" id="a" placeholder="Số a">
+        <input type="number" id="b" placeholder="Số b">
+        <button onclick="sum()">Tính tổng</button>
+        <p id="result1"></p>
+        <script>
+            function sum() {
+                let a = parseFloat(document.getElementById('a').value);
+                let b = parseFloat(document.getElementById('b').value);
+                document.getElementById('result1').innerText = "Tổng = " + (a + b);
+            }
+        </script>
+    </div>
+
+    <h3>Bài 2: Kiểm tra số chẵn/lẻ</h3>
+    <div class="example">
+        <input type="number" id="num" placeholder="Nhập số">
+        <button onclick="checkEven()">Kiểm tra</button>
+        <p id="result2"></p>
+        <script>
+            function checkEven() {
+                let n = parseInt(document.getElementById('num').value);
+                let result = (n % 2 === 0) ? "Số chẵn" : "Số lẻ";
+                document.getElementById('result2').innerText = result;
+            }
+        </script>
+    </div>
+
+    <h3>Bài 3: Đổi màu nền</h3>
+    <div class="example">
+        <button onclick="document.body.style.backgroundColor = '#dff9fb'">Đổi màu nền</button>
+    </div>
+
+    <h3>Bài 4: Hiển thị thời gian hiện tại</h3>
+    <div class="example">
+        <button onclick="showTime()">Xem thời gian</button>
+        <p id="time"></p>
+        <script>
+            function showTime() {
+                let now = new Date();
+                document.getElementById('time').innerText = now.toLocaleString();
+            }
+        </script>
+    </div>
+
+    <h3>Bài 5: Đếm số ký tự trong chuỗi</h3>
+    <div class="example">
+        <input type="text" id="text" placeholder="Nhập chuỗi">
+        <button onclick="countChars()">Đếm ký tự</button>
+        <p id="result5"></p>
+        <script>
+            function countChars() {
+                let str = document.getElementById('text').value;
+                document.getElementById('result5').innerText = "Số ký tự: " + str.length;
+            }
+        </script>
+    </div>
+
+</body>
+</html>

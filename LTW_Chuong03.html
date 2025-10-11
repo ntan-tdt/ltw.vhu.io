@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương 3 - Làm việc với CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+    <h1>Chương 3: Làm việc với CSS</h1>
+
+    <h2>I. Lý thuyết</h2>
+    <p><strong>CSS (Cascading Style Sheets)</strong> là ngôn ngữ dùng để định dạng và trình bày nội dung HTML. CSS giúp kiểm soát màu sắc, bố cục, font chữ, khoảng cách và nhiều yếu tố giao diện khác.</p>
+
+    <h3>1. Cú pháp CSS</h3>
+    <pre>
+selector {
+    property: value;
+}
+    </pre>
+    <p>Ví dụ:</p>
+    <pre>
+p {
+    color: blue;
+    font-size: 16px;
+}
+    </pre>
+
+    <h3>2. Cách áp dụng CSS vào HTML</h3>
+    <ul>
+        <li><strong>Inline:</strong> Dùng thuộc tính <code>style</code> trong thẻ HTML</li>
+        <li><strong>Internal:</strong> Viết trong thẻ <code>&lt;style&gt;</code> trong phần <code>&lt;head&gt;</code></li>
+        <li><strong>External:</strong> Liên kết đến file .css bên ngoài bằng <code>&lt;link&gt;</code></li>
+    </ul>
+
+    <h3>3. Một số thuộc tính CSS phổ biến</h3>
+    <ul>
+        <li><strong>Màu sắc:</strong> <code>color</code>, <code>background-color</code></li>
+        <li><strong>Font chữ:</strong> <code>font-family</code>, <code>font-size</code>, <code>font-weight</code></li>
+        <li><strong>Bố cục:</strong> <code>margin</code>, <code>padding</code>, <code>width</code>, <code>height</code></li>
+        <li><strong>Viền:</strong> <code>border</code></li>
+        <li><strong>Canh lề:</strong> <code>text-align</code>, <code>vertical-align</code></li>
+    </ul>
+
+    <h2>II. Thực hành</h2>
+
+    <h3>Bài 1: Đổi màu chữ và nền</h3>
+    <div class="example">
+        <pre>
+&lt;p style="color: white; background-color: green;"&gt;
+    Xin chào CSS!
+&lt;/p&gt;
+        </pre>
+    </div>
+
+    <h3>Bài 2: Tạo khung viền và căn giữa</h3>
+    <div class="example">
+        <pre>
+&lt;div style="border: 2px solid blue; text-align: center;"&gt;
+    Nội dung căn giữa và có viền
+&lt;/div&gt;
+        </pre>
+    </div>
+
+    <h3>Bài 3: Sử dụng file CSS bên ngoài</h3>
+    <div class="example">
+        <pre>
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;p class="highlight"&gt;Đoạn văn nổi bật&lt;/p&gt;
+        </pre>
+        <p><strong>style.css:</strong></p>
+        <pre>
+.highlight {
+    color: red;
+    font-weight: bold;
+}
+        </pre>
+    </div>
+
+    <h3>Bài 4: Tạo bố cục 2 cột bằng float</h3>
+    <div class="example">
+        <pre>
+&lt;div style="width: 50%; float: left;"&gt;Cột trái&lt;/div&gt;
+&lt;div style="width: 50%; float: right;"&gt;Cột phải&lt;/div&gt;
+        </pre>
+    </div>
+
+    <h3>Bài 5: Hiệu ứng hover</h3>
+    <div class="example">
+        <pre>
+&lt;style&gt;
+button:hover {
+    background-color: orange;
+    color: white;
+}
+&lt;/style&gt;
+
+&lt;button&gt;Di chuột vào tôi&lt;/button&gt;
+        </pre>
+    </div>
+
+    <p><em>Tài liệu học phần Thiết kế Web - Chương 3: CSS</em></p>
+</body>
+</html>

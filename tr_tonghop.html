@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz Tổng hợp cuối kỳ: Thiết kế và Lập trình Web</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px auto; max-width: 900px; background-color: #f9f9f9; color: #333; }
+  h1 { text-align: center; color: #007acc; }
+  form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  .question { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 6px; background: #fdfdfd; }
+  .question h3 { margin-bottom: 10px; }
+  .options label { display: block; margin-bottom: 6px; cursor: pointer; }
+  button { display: block; margin: 20px auto; background-color: #007acc; color: white; border: none; padding: 14px 30px; font-size: 16px; border-radius: 6px; cursor: pointer; }
+  button:hover { background-color: #005f99; }
+  #result { margin-top: 30px; padding: 20px; font-size: 18px; background: #e1f5fe; border: 1px solid #b3e5fc; border-radius: 6px; display: none; }
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
+</div>
+
+<h1>Quiz Tổng hợp cuối kỳ: Thiết kế và Lập trình Web</h1>
+<form id="quizForm">
+<button type="submit">Nộp bài và Xem điểm</button>
+</form>
+<div id="result"></div>
+<script>
+const questions = [
+// Chương 1: Tổng quan về Thiết kế Web (1-13)
+  { question: "1. Thiết kế web nhằm mục đích gì?", options: ["Tạo website đẹp và thuận tiện sử dụng", "Quản lý dữ liệu máy chủ", "Lập trình ứng dụng di động", "Phát triển phần mềm hệ thống"], answer: 0 },
+  { question: "2. Thành phần quan trọng nào sau đây của thiết kế web?", options: ["UI và UX", "SEO và SEM", "Backend API", "Phần mềm antivirus"], answer: 0 },
+  { question: "3. Responsive web design là gì?", options: ["Tự động thích ứng với các loại màn hình", "Tạo hiệu ứng chuyển động", "Tăng tốc độ tải", "Chỉ hoạt động trên máy tính bàn"], answer: 0 },
+  { question: "4. Ngôn ngữ phổ biến nào dùng tạo giao diện web?", options: ["HTML, CSS, Javascript", "PHP, MySQL, Python", "C++, Java, C#", "SQL, Perl, Bash"], answer: 0 },
+  { question: "5. UX là viết tắt của từ gì trong thiết kế web?", options: ["User Experience", "Unity Extension", "User Export", "Unknown External"], answer: 0 },
+  { question: "6. Công cụ nào hỗ trợ thiết kế giao diện đồ họa web?", options: ["Adobe Photoshop", "SQL Server", "Visual Studio", "Notepad"], answer: 0 },
+  { question: "7. Backend trong thiết kế web là gì?", options: ["Xử lý dữ liệu và điều khiển logic phía máy chủ", "Giao diện người dùng", "Thiết kế hình ảnh", "Tăng tốc trình duyệt"], answer: 0 },
+  { question: "8. Website tĩnh là gì?", options: ["Nội dung không thay đổi, chỉ được cập nhật thủ công", "Tự động thay đổi nội dung", "Có database lớn", "Chỉ dùng một loại ngôn ngữ"], answer: 0 },
+  { question: "9. Công nghệ nào giúp web hiển thị tốt trên điện thoại?", options: ["Responsive CSS", "SQL mobile", "Flash Player", "Server-side Rendering"], answer: 0 },
+  { question: "10. Mục tiêu của UI là gì?", options: ["Đảm bảo giao diện đẹp, dễ dùng", "Lập trình động cơ phía server", "Tối ưu hóa SEO", "Mã hóa dữ liệu"], answer: 0 },
+  { question: "11. SEO là gì?", options: ["Tối ưu hóa công cụ tìm kiếm", "Tạo giao diện đẹp", "Quản lý database", "Lập trình mobile app"], answer: 0 },
+  { question: "12. Quy trình phát triển web thường bắt đầu bằng bước nào?", options: ["Xác định yêu cầu và mục tiêu", "Viết code backend ngay", "Triển khai hosting", "Thiết kế logo"], answer: 0 },
+  { question: "13. UX tốt giúp gì cho website?", options: ["Tăng trải nghiệm người dùng, tăng khả năng giữ chân khách", "Tăng dung lượng ảnh", "Tạo nhiều hiệu ứng chuyển động", "Làm web load chậm"], answer: 0 },
+// Chương 2: Lập trình với HTML (14-25)
+  { question: "14. HTML là viết tắt của gì?", options: ["HyperText Markup Language", "HighText Management Language", "Home Tool Markup Language", "Hyperlink Machine Language"], answer: 0 },
+  { question: "15. Thẻ nào dùng tạo một đoạn văn?", options: ["&lt;p&gt;", "&lt;h1&gt;", "&lt;br&gt;", "&lt;li&gt;"], answer: 0 },
+  { question: "16. Để chèn ảnh, dùng thẻ nào?", options: ["&lt;img&gt;", "&lt;image&gt;", "&lt;picture&gt;", "&lt;a&gt;"], answer: 0 },
+  { question: "17. Thuộc tính alt dùng ở đâu?", options: ["&lt;img&gt;", "&lt;p&gt;", "&lt;a&gt;", "&lt;hr&gt;"], answer: 0 },
+  { question: "18. Giao thức mặc định khi liên kết trong thẻ &lt;a&gt; là gì?", options: ["http://", "ftp://", "smtp://", "file://"], answer: 0 },
+  { question: "19. Thẻ nào dùng tạo danh sách unordered?", options: ["&lt;ul&gt;", "&lt;ol&gt;", "&lt;li&gt;", "&lt;table&gt;"], answer: 0 },
+  { question: "20. Thẻ &lt;table&gt; dùng để?", options: ["Tạo bảng dữ liệu", "Chèn ảnh", "Tạo tiêu đề", "Tạo danh sách"], answer: 0 },
+  { question: "21. Thẻ &lt;form&gt; dùng để?", options: ["Tạo biểu mẫu nhập liệu", "Chèn video", "Tạo bảng", "Tạo liên kết"], answer: 0 },
+  { question: "22. Thuộc tính nào chỉ định tập tin CSS ngoại?", options: ["href", "src", "link", "css"], answer: 0 },
+  { question: "23. Thẻ &lt;br&gt; trong HTML có ý nghĩa gì?", options: ["Ngắt dòng", "Kết thúc trang", "Tạo bảng", "Tạo danh sách"], answer: 0 },
+  { question: "24. Cách tạo comment trong HTML?", options: ["&lt;!-- comment --&gt;", "//comment", "/* comment */", "**comment**"], answer: 0 },
+  { question: "25. Cách chèn video nhúng vào HTML?", options: ["&lt;video&gt;&lt;/video&gt;", "&lt;movie&gt;&lt;/movie&gt;", "&lt;media&gt;&lt;/media&gt;", "&lt;embed-video&gt;&lt;/embed-video&gt;"], answer: 0 },
+// Chương 3: CSS (26-38)
+  { question: "26. CSS là viết tắt của?", options: ["Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets", "Computer Style Sheets"], answer: 0 },
+  { question: "27. Thuộc tính nào để đổi màu nền phần tử?", options: ["background-color", "color", "font-color", "border-color"], answer: 0 },
+  { question: "28. Để căn giữa chữ trong phần tử?", options: ["text-align: center;", "align: center;", "center-align;", "text-center;"], answer: 0 },
+  { question: "29. Đơn vị px trong CSS là gì?", options: ["Pixel", "Point", "Percent", "Paragraph"], answer: 0 },
+  { question: "30. Cú pháp nhúng CSS nội bộ trong HTML nào đúng?", options: ["&lt;style&gt;...&lt;/style&gt;", "&lt;css&gt;...&lt;/css&gt;", "&lt;format&gt;...&lt;/format&gt;", "&lt;stylesheet&gt;...&lt;/stylesheet&gt;"], answer: 0 },
+  { question: "31. Đâu là cách comment hợp lệ trong CSS?", options: ["/* comment */", "// comment", "&lt;!-- comment --&gt;", "**comment**"], answer: 0 },
+  { question: "32. Thuộc tính nào để làm đậm chữ?", options: ["font-weight: bold;", "font-style: bold;", "text-bold: true;", "font-bold: yes;"], answer: 0 },
+  { question: "33. Cách chọn phần tử có id='main' trong CSS?", options: ["#main", ".main", "main#", "id-main"], answer: 0 },
+  { question: "34. Cách chọn tất cả thẻ p trong CSS?", options: ["p", ".p", "#p", "*p"], answer: 0 },
+  { question: "35. Thuộc tính 'border' để làm gì?", options: ["Tạo viền cho phần tử", "Tạo bóng", "Tạo nền", "Tạo margin"], answer: 0 },
+  { question: "36. Giá trị nào không phải là kiểu display?", options: ["hidden", "block", "inline", "none"], answer: 0 },
+  { question: "37. Thuộc tính 'margin' quản lý gì?", options: ["Khoảng cách ngoài phần tử", "Độ rộng chữ", "Màu chữ", "Chữ nghiêng"], answer: 0 },
+  { question: "38. 'float' trong CSS để làm gì?", options: ["Đưa phần tử sang trái/phải", "Tô màu nền", "Chữ in nghiêng", "Tăng font size"], answer: 0 },
+// Chương 4: Javascript (39-50)
+  { question: "39. Javascript là gì?", options: ["Ngôn ngữ lập trình phía client duyệt web", "Ngôn ngữ chạy hệ điều hành", "Trình thiết kế đồ họa", "Hệ quản trị cơ sở dữ liệu"], answer: 0 },
+  { question: "40. Khai báo biến với ES6+ dùng từ khóa nào?", options: ["let, const", "var, static", "define, set", "int, string"], answer: 0 },
+  { question: "41. Để in thông tin ra console?", options: ["console.log()", "print()", "alert()", "show()"], answer: 0 },
+  { question: "42. Phương thức nhập từ bàn phím (browser)?", options: ["prompt()", "scanf()", "get()", "input()"], answer: 0 },
+  { question: "43. Toán tử so sánh giá trị và kiểu là gì?", options: ["===", "==", "!=", "<=>"], answer: 0 },
+  { question: "44. document.getElementById('demo') trả về gì?", options: ["Phần tử HTML có id demo", "Toàn bộ trang web", "Tất cả phần tử tên demo", "Không trả về gì"], answer: 0 },
+  { question: "45. Để thêm phần tử cuối mảng 'arr'?", options: ["arr.push(x)", "arr.add(x)", "arr.insert(x)", "arr.merge(x)"], answer: 0 },
+  { question: "46. Hàm Math.floor(4.9) trả về?", options: ["4", "5", "NaN", "4.9"], answer: 0 },
+  { question: "47. Phương thức nào duyệt qua từng phần tử mảng?", options: ["forEach()", "forAll()", "walk()", "everyOne()"], answer: 0 },
+  { question: "48. alert(typeof null) ra gì?", options: ["object", "null", "undefined", "string"], answer: 0 },
+  { question: "49. Để kiểm tra kiểu dữ liệu dùng từ khóa nào?", options: ["typeof", "isType", "checkType", "datatype"], answer: 0 },
+  { question: "50. JS chạy trực tiếp ở đâu trong trình duyệt?", options: ["Phía client", "Phía server", "Proxy server", "CSDL"], answer: 0 }
+];
+const form = document.getElementById('quizForm');
+questions.forEach((q, index) => {
+  const div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<h3>${q.question}</h3>`;
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+  q.options.forEach((option, i) => {
+    const id = `q${index}_option${i}`;
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.innerHTML = `<input type="radio" id="${id}" name="question${index}" value="${i}" required> ${option}`;
+    optionsDiv.appendChild(label);
+  });
+  div.appendChild(optionsDiv);
+  form.insertBefore(div, form.querySelector('button'));
+});
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let score = 0;
+  questions.forEach((q, index) => {
+    const selected = form.querySelector(`input[name="question${index}"]:checked`);
+    if (selected && parseInt(selected.value) === q.answer) score++;
+  });
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.innerHTML = `Bạn đã trả lời đúng <strong>${score}</strong> trên tổng số <strong>${questions.length}</strong> câu hỏi. Điểm của bạn: <strong>${((score/questions.length)*10).toFixed(2)}</strong> / 10`;
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+</body>
+</html>

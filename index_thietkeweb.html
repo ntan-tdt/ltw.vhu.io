@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thiết kế Web - VHU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    header {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px 0;
+    color: #004080;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  }
+  header img {
+    height: 80px;
+    vertical-align: middle;
+  }
+  header h1 {
+    display: inline-block;
+    margin-left: 15px;
+    font-weight: 700;
+    vertical-align: middle;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+  }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section-title {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .card:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      transform: scale(1.02);
+      transition: 0.3s;
+    }
+    /* Đảm bảo các nút ở cuối card và không bị trôi */
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+    .card-body a {
+        margin-top: auto; /* Đẩy các nút xuống cuối */
+    }
+  </style>
+</head>
+<body>
+
+//  <header class="hero">
+  <header>
+    <img src="logo_VHU.png" alt="Logo VHU" />
+    <h1>Học phần Thiết kế Web</h1>
+    <p class="lead">Khám phá thế giới lập trình giao diện web hiện đại với HTML, CSS, và Javascript</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2 class="section-title">📘 Tổng quan về Thiết kế và Lập trình Web</h2>
+      <p>Thiết kế Web là quá trình xây dựng và phát triển giao diện người dùng cho các trang web. Học phần này giúp sinh viên nắm vững kiến thức nền tảng về HTML, CSS, Javascript và kỹ năng thực hành để tạo ra các website tương tác, thẩm mỹ và chuẩn kỹ thuật.</p>
+      <ul>
+        <li>Hiểu về cấu trúc và nguyên lý hoạt động của website</li>
+        <li>Thực hành xây dựng giao diện bằng HTML và CSS</li>
+        <li>Thêm tương tác với Javascript</li>
+        <li>Áp dụng kiến thức vào các bài tập thực tế</li>
+      </ul>
+    </section>
+
+    <section class="my-5">
+      <h2 class="section-title">🎓 Các Chương học</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 1: Tổng quan về Lập trình Web</h5>
+              <p class="card-text">Nắm vững kiến thức nền tảng: Cấu trúc web, HTML cơ bản, cách hoạt động của trình duyệt.</p>
+              <a href="LTW_Chuong01.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong1.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 2: Lập trình Web với HTML</h5>
+              <p class="card-text">Nền tảng HTML: Thẻ, thuộc tính, cấu trúc tài liệu, form và bảng biểu.</p>
+              <a href="LTW_Chuong02.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong2.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 3: Làm việc với CSS</h5>
+              <p class="card-text">Thiết kế giao diện đẹp mắt với CSS: màu sắc, bố cục, hiệu ứng.</p>
+              <a href="LTW_Chuong03.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong3.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Chương 4: Lập trình với Javascript</h5>
+              <p class="card-text">Thêm tương tác cho website: xử lý sự kiện, DOM, hàm và biến.</p>
+              <a href="LTW_Chuong04.html" class="btn btn-primary">Xem nội dung</a>
+              <a href="tr_chuong4.html" class="btn btn-warning mt-2">Trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">📝 Trắc nghiệm Tổng hợp</h5>
+              <p class="card-text">Ôn tập và kiểm tra kiến thức cuối kỳ với bộ câu hỏi tổng hợp.</p>
+              <a href="tr_tonghop.html" class="btn btn-success">Làm bài trắc nghiệm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">🛠️ Phần Thực hành</h5>
+              <p class="card-text">Bài tập thực hành theo từng chương với các cấp độ từ dễ đến khó.</p>
+              <a href="th_tonghop.html" class="btn btn-danger">Xem Bài tập</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="text-center mt-5 p-3 bg-light">
+    <p>&copy; 2025 Học phần Thiết kế Web - VHU. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
