@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Thực Hành Lập Trình Web (30 Tiết)</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Sử dụng font Inter cho thẩm mỹ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #1f2937;
+        }
+        /* Style cho code block */
+        .solution-code {
+            background-color: #1e293b; /* slate-800 */
+            color: #f8fafc; /* slate-50 */
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        /* Custom scrollbar for better look */
+        #exercise-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        #exercise-list::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* slate-300 */
+            border-radius: 3px;
+        }
+        #exercise-list::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4f46e5',
+                        'primary-dark': '#4338ca',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+
+    <!-- Modal cho việc xác thực Admin -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50 p-4 font-sans">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 transform transition-all duration-300">
+            <div class="flex justify-between items-center mb-4 border-b pb-3">
+                <h3 class="text-xl font-semibold text-gray-900 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2 text-indigo-500"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 
+                    Xác nhận mật khẩu quản trị
+                </h3>
+                <button id="modal-close-btn-x" type="button" class="text-gray-400 hover:text-gray-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            
+            <form id="admin-password-form">
+                <div class="mb-4">
+                    <label for="admin-password-input" class="block text-sm font-medium text-gray-700 mb-2">
+                        Mật khẩu
+                    </label>
+                    <input
+                        id="admin-password-input"
+                        type="password"
+                        placeholder="Nhập mật khẩu (admin123)..."
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-lg transition"
+                    />
+                </div>
+
+                <p id="password-error" class="text-sm text-red-500 mb-4 font-medium hidden">
+                    <!-- Thông báo lỗi sẽ hiển thị ở đây -->
+                </p>
+
+                <div class="flex justify-end space-x-3">
+                    <button id="modal-cancel-btn" type="button" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition">
+                        Hủy
+                    </button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                        Xác nhận
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Kết thúc Modal -->
+
+    <div class="container mx-auto p-4 sm:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-indigo-700">
+                Phần Thực Hành Lập Trình Web (30 Tiết)
+            </h1>
+            <p class="text-gray-500 mt-2">Tổng hợp 50 bài tập từ cơ bản đến nâng cao (HTML, CSS, JS).</p>
+        </header>
+
+        <!-- Nút Điều khiển Admin -->
+        <div class="flex justify-center mb-6">
+            <button id="admin-toggle-btn" class="flex items-center space-x-2 px-6 py-3 font-semibold rounded-full transition-all duration-300 shadow-md active:scale-95 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                <svg id="admin-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span id="admin-status">Chế độ Admin: Đã tắt</span>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Cột 1: Danh sách bài tập -->
+            <div class="lg:col-span-1 bg-white rounded-xl shadow-lg p-4">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 text-indigo-600">Danh Sách Bài Tập</h2>
+                
+                <!-- Thanh chọn độ khó (4 cấp độ) -->
+                <div class="flex justify-between space-x-2 mb-4">
+                    <button data-category="Dễ" class="difficulty-button flex-1 py-2 rounded-lg text-xs md:text-sm font-medium transition duration-150 bg-indigo-600 text-white shadow-md hover:bg-indigo-700">Dễ (5)</button>
+                    <button data-category="Trung Bình" class="difficulty-button flex-1 py-2 rounded-lg text-xs md:text-sm font-medium transition duration-150 bg-gray-200 text-gray-700 hover:bg-indigo-50">T.Bình (10)</button>
+                    <button data-category="Trung Bình Khó" class="difficulty-button flex-1 py-2 rounded-lg text-xs md:text-sm font-medium transition duration-150 bg-gray-200 text-gray-700 hover:bg-indigo-50">T.Bình Khó (10)</button>
+                    <button data-category="Khó" class="difficulty-button flex-1 py-2 rounded-lg text-xs md:text-sm font-medium transition duration-150 bg-gray-200 text-gray-700 hover:bg-indigo-50">Khó (25)</button>
+                </div>
+
+                <!-- Danh sách bài tập cuộn -->
+                <div id="exercise-list" class="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                    <!-- Danh sách bài tập được render bằng JavaScript -->
+                </div>
+            </div>
+
+            <!-- Cột 2: Chi tiết bài tập và Giải pháp -->
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6 border-b">
+                    <h2 id="detail-title" class="text-2xl font-bold text-gray-900 mb-2">
+                        Chọn một bài tập để xem chi tiết và giải pháp
+                    </h2>
+                    <p id="detail-description" class="text-gray-600 leading-relaxed">
+                        Tổng cộng 50 bài tập được phân loại theo 4 cấp độ. Bấm vào một bài tập ở danh sách bên cạnh để xem yêu cầu và mã giải pháp gợi ý (cần bật chế độ Admin).
+                    </p>
+                </div>
+
+                <!-- Mã giải pháp gợi ý -->
+                <div id="solution-section" class="p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-indigo-600 border-b pb-2">Mã Giải Pháp Gợi Ý</h3>
+                    
+                    <!-- Thông báo Admin -->
+                    <div id="auth-message" class="p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded-lg mb-4 hidden">
+                        <p class="font-medium">Vui lòng bật Chế độ Admin (Mật khẩu: `admin123`) để xem mã giải pháp.</p>
+                    </div>
+
+                    <!-- Code block -->
+                    <pre id="solution-container" class="solution-code text-sm">
+                        /* Mã nguồn chi tiết cho bài tập sẽ được hiển thị ở đây. */
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Dữ liệu Bài Tập (50 bài) ---
+        const exercises = [
+            // DỄ (5 Bài)
+            { id: 'D1', name: 'Thay đổi văn bản', desc: 'Sử dụng JavaScript để thay đổi nội dung của một phần tử &lt;p&gt; từ "Hello" thành "World" bằng document.getElementById().', category: 'Dễ', solution: 'document.getElementById("my-p").textContent = "World";' },
+            { id: 'D2', name: 'Ẩn/Hiện phần tử', desc: 'Viết hàm JavaScript để ẩn một phần tử &lt;div&gt; khi nút được bấm, và hiện lại khi bấm lần nữa (sử dụng thuộc tính style.display).', category: 'Dễ', solution: 'function toggleVisibility() {\n    const el = document.getElementById("my-div");\n    el.style.display = el.style.display === "none" ? "block" : "none";\n}' },
+            { id: 'D3', name: 'Đếm số lần nhấp chuột', desc: 'Tạo một nút bấm và một phần tử hiển thị số. Sử dụng JS để tăng số đếm mỗi khi nút được nhấp.', category: 'Dễ', solution: 'let count = 0;\nfunction increment() {\n    count++;\n    document.getElementById("counter").textContent = count;\n}' },
+            { id: 'D4', name: 'Thay đổi màu nền ngẫu nhiên', desc: 'Viết hàm JS để thay đổi màu nền của body thành màu ngẫu nhiên khi người dùng nhấp vào một nút.', category: 'Dễ', solution: 'function changeColor() {\n    const color = "#" + Math.floor(Math.random()*16777215).toString(16);\n    document.body.style.backgroundColor = color;\n}' },
+            { id: 'D5', name: 'Thêm lớp CSS', desc: 'Thêm một class CSS (ví dụ: "active" với border màu đỏ) vào một phần tử &lt;div&gt; khi nút được bấm, sử dụng classList.add().', category: 'Dễ', solution: 'function addActiveClass() {\n    document.getElementById("my-div").classList.add("active");\n}' },
+            
+            // TRUNG BÌNH (10 Bài)
+            { id: 'T1', name: 'Thêm phần tử động', desc: 'Tạo một nút. Mỗi lần bấm, thêm một mục danh sách &lt;li&gt; mới vào &lt;ul&gt; đã có bằng cách sử dụng document.createElement().', category: 'Trung Bình', solution: 'let count = 1;\nfunction addItem() {\n    const ul = document.getElementById("my-list");\n    const li = document.createElement("li");\n    li.textContent = "Mục mới " + count++;\n    ul.appendChild(li);\n}' },
+            { id: 'T2', name: 'Hiển thị giá trị input', desc: 'Khi người dùng gõ vào &lt;input type="text"&gt;, hiển thị nội dung đó theo thời gian thực trong một phần tử &lt;span&gt; (sử dụng sự kiện "input").', category: 'Trung Bình', solution: 'document.getElementById("input-field").addEventListener("input", function(e) {\n    document.getElementById("output").textContent = e.target.value;\n});' },
+            { id: 'T3', name: 'Lọc danh sách', desc: 'Viết một hàm JS để lọc các mục trong một danh sách &lt;ul&gt; dựa trên văn bản người dùng nhập vào một ô tìm kiếm.', category: 'Trung Bình', solution: 'function filterList() {\n    const filter = document.getElementById("search").value.toUpperCase();\n    const list = document.getElementById("my-list").getElementsByTagName("li");\n    for (let i = 0; i < list.length; i++) {\n        const text = list[i].textContent || list[i].innerText;\n        list[i].style.display = text.toUpperCase().indexOf(filter) > -1 ? "" : "none";\n    }\n}' },
+            { id: 'T4', name: 'Chuyển đổi Dark Mode', desc: 'Sử dụng classList.toggle() để thêm/xóa class "dark" trên phần tử &lt;body&gt; để chuyển đổi giữa giao diện sáng và tối.', category: 'Trung Bình', solution: 'function toggleDarkMode() {\n    document.body.classList.toggle("dark-mode");\n}' },
+            { id: 'T5', name: 'Đồng hồ đếm ngược', desc: 'Viết hàm đếm ngược thời gian từ 10 giây về 0, hiển thị trên màn hình. Sử dụng setInterval() và clearInterval().', category: 'Trung Bình', solution: 'let seconds = 10;\nlet timer = setInterval(() => {\n    document.getElementById("timer").textContent = seconds;\n    if (seconds <= 0) {\n        clearInterval(timer);\n        document.getElementById("timer").textContent = "HẾT GIỜ!";\n    }\n    seconds--;\n}, 1000);' },
+            { id: 'T6', name: 'Kiểm tra số chẵn/lẻ', desc: 'Cho phép người dùng nhập một số. Hiển thị thông báo "Số chẵn" hoặc "Số lẻ" khi nút được bấm.', category: 'Trung Bình', solution: 'function checkEvenOdd() {\n    const num = parseInt(document.getElementById("number-input").value);\n    const result = (num % 2 === 0) ? "Số chẵn" : "Số lẻ";\n    document.getElementById("result").textContent = result;\n}' },
+            { id: 'T7', name: 'Tính tổng mảng', desc: 'Khai báo một mảng số ([1, 5, 10, 2]). Hiển thị tổng của các phần tử trong mảng.', category: 'Trung Bình', solution: 'const numbers = [1, 5, 10, 2];\nconst sum = numbers.reduce((acc, current) => acc + current, 0);\ndocument.getElementById("sum-output").textContent = sum;' },
+            { id: 'T8', name: 'Tạo bảng cửu chương', desc: 'Hiển thị bảng cửu chương của một số (ví dụ: số 7) trong &lt;div&gt; bằng cách sử dụng vòng lặp.', category: 'Trung Bình', solution: 'function generateMultiplicationTable(n) {\n    let output = "";\n    for (let i = 1; i <= 10; i++) {\n        output += `${n} x ${i} = ${n * i}\\n`;\n    }\n    document.getElementById("table-output").textContent = output;\n}' },
+            { id: 'T9', name: 'Đổi đơn vị (C sang F)', desc: 'Tạo hàm chuyển đổi nhiệt độ từ độ C sang độ F: $F = C \times 1.8 + 32$.', category: 'Trung Bình', solution: 'function celsiusToFahrenheit(c) {\n    const f = c * 1.8 + 32;\n    return f.toFixed(2);\n}' },
+            { id: 'T10', name: 'Valid email cơ bản', desc: 'Kiểm tra xem chuỗi nhập vào có chứa ký tự "@" và "." hay không (Kiểm tra cơ bản, không cần regex phức tạp).', category: 'Trung Bình', solution: 'function basicEmailValidation(email) {\n    return email.includes("@") && email.includes(".");\n}' },
+
+            // TRUNG BÌNH KHÓ (10 Bài)
+            { id: 'TK1', name: 'Form Đăng Ký Đơn Giản', desc: 'Xây dựng một form với 3 trường (Tên, Email, Mật khẩu). Hiển thị thông tin người dùng đã nhập ra console khi nhấn nút Submit.', category: 'Trung Bình Khó', solution: 'document.getElementById("reg-form").addEventListener("submit", function(e) {\n    e.preventDefault();\n    const name = document.getElementById("name").value;\n    const email = document.getElementById("email").value;\n    console.log(`User: ${name}, Email: ${email}`);\n});' },
+            { id: 'TK2', name: 'Kiểm tra Checkbox', desc: 'Tạo một checkbox "Tôi đồng ý với điều khoản". Nút Submit chỉ được kích hoạt (enabled) khi checkbox này được chọn.', category: 'Trung Bình Khó', solution: 'document.getElementById("terms").addEventListener("change", function(e) {\n    document.getElementById("submit-btn").disabled = !e.target.checked;\n});' },
+            { id: 'TK3', name: 'Tính phí vận chuyển', desc: 'Viết hàm tính tổng đơn hàng. Nếu tổng đơn hàng lớn hơn $50, phí vận chuyển là 0; nếu không là $5. Hiển thị tổng thanh toán cuối cùng.', category: 'Trung Bình Khó', solution: 'function calculateTotal(subtotal) {\n    const shipping = subtotal > 50 ? 0 : 5;\n    const total = subtotal + shipping;\n    return { total, shipping };\n}' },
+            { id: 'TK4', name: 'Tạo Tab View (CSS/JS)', desc: 'Tạo 3 nút tab. Khi bấm vào mỗi nút, chỉ hiển thị nội dung tương ứng của tab đó và ẩn các nội dung còn lại.', category: 'Trung Bình Khó', solution: 'function openTab(tabName) {\n    document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");\n    document.getElementById(tabName).style.display = "block";\n}' },
+            { id: 'TK5', name: 'Accordion đơn giản', desc: 'Tạo một phần tử accordion (tiêu đề và nội dung ẩn). Khi bấm vào tiêu đề, nội dung sẽ trượt xuống/lên (sử dụng classList.toggle() và max-height/transition trong CSS).', category: 'Trung Bình Khó', solution: 'function toggleAccordion(id) {\n    const content = document.getElementById(id);\n    content.classList.toggle("active");\n    content.style.maxHeight = content.classList.contains("active") ? content.scrollHeight + "px" : "0";\n}' },
+            { id: 'TK6', name: 'Vòng lặp For/While', desc: 'Sử dụng vòng lặp để tìm và hiển thị tất cả các số nguyên tố từ 1 đến 100.', category: 'Trung Bình Khó', solution: 'function isPrime(num) {\n    if (num <= 1) return false;\n    for (let i = 2; i <= Math.sqrt(num); i++) {\n        if (num % i === 0) return false;\n    }\n    return true;\n}\nconst primes = [];\nfor (let i = 1; i <= 100; i++) {\n    if (isPrime(i)) primes.push(i);\n}\ndocument.getElementById("prime-output").textContent = primes.join(", ");' },
+            { id: 'TK7', name: 'Tạo chuỗi ngẫu nhiên', desc: 'Viết hàm tạo chuỗi mật khẩu ngẫu nhiên dài 8 ký tự, bao gồm chữ cái thường và số.', category: 'Trung Bình Khó', solution: 'function generateRandomString() {\n    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";\n    let result = "";\n    for (let i = 0; i < 8; i++) {\n        result += chars.charAt(Math.floor(Math.random() * chars.length));\n    }\n    return result;\n}' },
+            { id: 'TK8', name: 'Chuyển đổi màu Hex sang RGB', desc: 'Viết hàm nhận mã màu Hex (ví dụ: #FF0000) và trả về giá trị RGB tương ứng (rgb(255, 0, 0)).', category: 'Trung Bình Khó', solution: 'function hexToRgb(hex) {\n    const shorthandRegex = /^#?([a-f\\d])([a-f\\d])([a-f\\d])$/i;\n    hex = hex.replace(shorthandRegex, function(m, r, g, b) {\n        return r + r + g + g + b + b;\n    });\n    const result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);\n    return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})` : null;\n}' },
+            { id: 'TK9', name: 'Hiển thị thời gian thực', desc: 'Sử dụng setInterval() để cập nhật và hiển thị đồng hồ thời gian thực (Giờ:Phút:Giây) trên màn hình.', category: 'Trung Bình Khó', solution: 'function updateClock() {\n    const now = new Date();\n    const time = now.toLocaleTimeString();\n    document.getElementById("clock").textContent = time;\n}\nsetInterval(updateClock, 1000);' },
+            { id: 'TK10', name: 'Dùng map() và filter()', desc: 'Cho một mảng object (tên và tuổi). Dùng `filter` để chọn người trên 18 tuổi, sau đó dùng `map` để lấy ra tên của họ.', category: 'Trung Bình Khó', solution: 'const people = [{ name: "An", age: 20 }, { name: "Binh", age: 15 }, { name: "Chau", age: 25 }];\nconst adults = people.filter(p => p.age >= 18).map(p => p.name);\ndocument.getElementById("adults").textContent = adults.join(", ");' },
+
+            // KHÓ (25 Bài)
+            { id: 'K1', name: 'Slider Ảnh Cơ Bản', desc: 'Tạo một slider ảnh đơn giản. Hiển thị ảnh hiện tại và hai nút bấm ("Trước", "Tiếp") để chuyển đổi qua lại giữa các ảnh trong một mảng URL.', category: 'Khó', solution: 'let images = ["url1.jpg", "url2.jpg", "url3.jpg"];\nlet currentIndex = 0;\nfunction showImage(index) {\n    currentIndex = (index + images.length) % images.length;\n    document.getElementById("slider-img").src = images[currentIndex];\n}\n// Thêm listener cho nút Next/Prev gọi hàm showImage' },
+            { id: 'K2', name: 'Todo List (Lưu vào LocalStorage)', desc: 'Tạo một Todo List. Cho phép thêm, xóa, và đánh dấu hoàn thành công việc. Dữ liệu phải được lưu trữ trong localStorage để không bị mất khi tải lại trang.', category: 'Khó', solution: 'function saveTodos(todos) {\n    localStorage.setItem("todos", JSON.stringify(todos));\n}\nfunction loadTodos() {\n    return JSON.parse(localStorage.getItem("todos")) || [];\n}\n// Cần hàm render và hàm xử lý sự kiện để thêm/xóa/cập nhật' },
+            { id: 'K3', name: 'Kiểm tra mật khẩu khớp', desc: 'Xây dựng một biểu mẫu đăng ký. Kiểm tra bằng JS xem hai trường mật khẩu (password và confirm password) có khớp nhau hay không trước khi cho phép submit.', category: 'Khó', solution: 'document.getElementById("reg-form").addEventListener("submit", function(e) {\n    const p1 = document.getElementById("pass1").value;\n    const p2 = document.getElementById("pass2").value;\n    if (p1 !== p2) {\n        e.preventDefault();\n        document.getElementById("error-msg").textContent = "Mật khẩu không khớp!";\n    } else {\n        document.getElementById("error-msg").textContent = "";\n    }\n});' },
+            { id: 'K4', name: 'Phân Trang Danh Sách', desc: 'Hiển thị danh sách 50 mục. Chỉ hiển thị 10 mục mỗi trang và tạo các nút phân trang (1, 2, 3...). Khi bấm vào nút, cập nhật danh sách hiển thị tương ứng.', category: 'Khó', solution: 'const data = Array.from({length: 50}, (_, i) => `Mục ${i + 1}`);\nconst itemsPerPage = 10;\nfunction displayPage(page) {\n    const start = (page - 1) * itemsPerPage;\n    const end = start + itemsPerPage;\n    const pageItems = data.slice(start, end);\n    // Cần logic để render pageItems ra DOM\n}\n// Cần hàm renderPagination để tạo các nút' },
+            { id: 'K5', name: 'Kéo Thả (Drag and Drop)', desc: 'Cho phép người dùng kéo một phần tử &lt;div&gt; bất kỳ và thả nó ở một vị trí mới trên màn hình (sử dụng các sự kiện mousemove, mousedown, mouseup).', category: 'Khó', solution: 'let isDragging = false;\nlet dragElement = null;\nwindow.onmousedown = function(e) {\n    if (e.target.id === "draggable") {\n        isDragging = true;\n        dragElement = e.target;\n    }\n};\nwindow.onmousemove = function(e) {\n    if (isDragging && dragElement) {\n        dragElement.style.left = e.clientX - 50 + "px";\n        dragElement.style.top = e.clientY - 50 + "px";\n    }\n};\nwindow.onmouseup = function() {\n    isDragging = false;\n    dragElement = null;\n};' },
+            { id: 'K6', name: 'Xử Lý Sự Kiện Bàn Phím', desc: 'Viết một hàm JS lắng nghe sự kiện keydown. Khi người dùng bấm phím mũi tên LÊN, dịch chuyển một khối &lt;div&gt; lên trên; phím MŨI TÊN XUỐNG, dịch chuyển khối xuống dưới.', category: 'Khó', solution: 'let y = 0;\nwindow.addEventListener("keydown", function(e) {\n    const box = document.getElementById("moving-box");\n    if (e.key === "ArrowUp") {\n        y -= 10;\n    } else if (e.key === "ArrowDown") {\n        y += 10;\n    }\n    box.style.transform = "translateY(" + y + "px)";\n});' },
+            { id: 'K7', name: 'Hiệu Ứng Parallax Scrolling', desc: 'Sử dụng JavaScript để thay đổi tốc độ cuộn của ảnh nền so với tốc độ cuộn của nội dung, tạo ra hiệu ứng thị sai (parallax effect).', category: 'Khó', solution: 'window.addEventListener("scroll", function() {\n    const scrolled = window.scrollY;\n    const parallax = document.getElementById("parallax-bg");\n    // Tốc độ 0.5 lần cuộn\n    parallax.style.transform = "translateY(" + scrolled * 0.5 + "px)";\n});' },
+            { id: 'K8', name: 'Tính Chỉ Số BMI và Phân Loại', desc: 'Tạo input cân nặng (kg) và chiều cao (m). Viết hàm tính BMI và hiển thị phân loại (Thiếu cân, Bình thường, Thừa cân).', category: 'Khó', solution: 'function calculateBMI() {\n    const weight = parseFloat(document.getElementById("weight").value);\n    const height = parseFloat(document.getElementById("height").value);\n    // ... (logic tính BMI và phân loại)\n}' },
+            { id: 'K9', name: 'Đồng hồ bấm giờ (Stopwatch)', desc: 'Tạo một đồng hồ bấm giờ với các nút Bắt đầu, Dừng, Đặt lại. Hiển thị thời gian trôi qua chính xác từng mili giây.', category: 'Khó', solution: 'let startTime, elapsedTime = 0, timerInterval;\nfunction startStopwatch() {\n    startTime = Date.now() - elapsedTime;\n    timerInterval = setInterval(() => {\n        elapsedTime = Date.now() - startTime;\n        // Cần hàm format và hiển thị elapsedTime\n    }, 10);\n}' },
+            { id: 'K10', name: 'Tạo bảng xếp hạng động', desc: 'Hiển thị dữ liệu người chơi trong bảng. Cho phép sắp xếp bảng theo cột Điểm (score) khi click vào tiêu đề cột.', category: 'Khó', solution: 'const players = [{ name: "A", score: 100 }, { name: "B", score: 80 }];\nfunction sortPlayers(key) {\n    players.sort((a, b) => a[key] - b[key]);\n    // Cần hàm render lại bảng\n}' },
+            { id: 'K11', name: 'Validator Form phức tạp', desc: 'Validate form với các quy tắc: Tên không trống, Email hợp lệ (regex đơn giản), Mật khẩu tối thiểu 8 ký tự. Hiển thị tất cả lỗi cùng lúc.', category: 'Khó', solution: 'function validateForm() {\n    let errors = [];\n    // ... (logic kiểm tra từng trường)\n    if (errors.length > 0) {\n        // Hiển thị errors\n        return false;\n    }\n    return true;\n}' },
+            { id: 'K12', name: 'Dùng Fetch API', desc: 'Sử dụng `fetch()` để tải dữ liệu giả từ một API công cộng (ví dụ: `https://jsonplaceholder.typicode.com/posts/1`) và hiển thị tiêu đề.', category: 'Khó', solution: 'fetch(\'https://jsonplaceholder.typicode.com/posts/1\')\n    .then(response => response.json())\n    .then(data => {\n        document.getElementById("post-title").textContent = data.title;\n    })\n    .catch(error => console.error(\'Lỗi tải API:\', error));' },
+            { id: 'K13', name: 'Bộ đếm tương tác (Like)', desc: 'Tạo một nút "Thích" và bộ đếm. Sử dụng localStorage để lưu trạng thái "Đã thích" của người dùng (chỉ được thích 1 lần).', category: 'Khó', solution: 'let isLiked = localStorage.getItem(\'isLiked\') === \'true\';\nfunction toggleLike() {\n    if (!isLiked) {\n        isLiked = true;\n        localStorage.setItem(\'isLiked\', \'true\');\n        // Tăng số đếm, cập nhật UI\n    }\n}' },
+            { id: 'K14', name: 'Hiệu ứng cuộn mượt (Smooth Scroll)', desc: 'Sử dụng JavaScript để cuộn trang đến một phần tử ID cụ thể một cách mượt mà khi nhấp vào một liên kết.', category: 'Khó', solution: 'document.getElementById("jump-button").addEventListener("click", function() {\n    document.getElementById("target-section").scrollIntoView({\n        behavior: "smooth"\n    });\n});' },
+            { id: 'K15', name: 'Tạo Grid Layout động', desc: 'Tạo một nút cho phép chuyển đổi bố cục của một container giữa 2 cột, 3 cột và 4 cột (sử dụng CSS variables hoặc classList).', category: 'Khó', solution: 'let currentCols = 2;\nfunction toggleColumns() {\n    currentCols = (currentCols % 4) + 1;\n    document.getElementById("grid-container").style.gridTemplateColumns = `repeat(${currentCols}, 1fr)`;\n}' },
+            { id: 'K16', name: 'Vẽ trên Canvas (Đường thẳng)', desc: 'Tạo một phần tử &lt;canvas&gt;. Sử dụng JS để vẽ các đường thẳng cơ bản (ví dụ: hình tam giác) lên đó.', category: 'Khó', solution: 'const canvas = document.getElementById(\'myCanvas\');\nconst ctx = canvas.getContext(\'2d\');\nctx.beginPath();\nctx.moveTo(50, 50);\nctx.lineTo(150, 50);\nctx.lineTo(100, 150);\nctx.closePath();\nctx.stroke();' },
+            { id: 'K17', name: 'Game Đoán Số', desc: 'Máy tính chọn một số ngẫu nhiên từ 1-100. Người dùng đoán. JS sẽ trả lời "Lớn hơn" hoặc "Nhỏ hơn" cho đến khi đoán đúng. Đếm số lần đoán.', category: 'Khó', solution: 'const target = Math.floor(Math.random() * 100) + 1;\nlet guessCount = 0;\nfunction checkGuess(guess) {\n    guessCount++;\n    if (guess === target) {\n        // Thắng\n    } else if (guess < target) {\n        // Lớn hơn\n    } else {\n        // Nhỏ hơn\n    }\n}' },
+            { id: 'K18', name: 'Modal tùy chỉnh', desc: 'Tạo một cửa sổ modal đẹp mắt. Sử dụng JS để mở/đóng modal và đảm bảo người dùng có thể đóng bằng cách nhấn phím ESC.', category: 'Khó', solution: 'function openModal() { document.getElementById(\'my-modal\').classList.remove(\'hidden\'); }\nwindow.addEventListener(\'keydown\', (e) => {\n    if (e.key === \'Escape\') closeModal();\n});' },
+            { id: 'K19', name: 'Hiển thị thông báo Toast', desc: 'Viết hàm tạo và hiển thị thông báo "Toast" nhỏ gọn ở góc màn hình. Thông báo tự động biến mất sau 3 giây.', category: 'Khó', solution: 'function showToast(message) {\n    const toast = document.createElement(\'div\');\n    toast.textContent = message;\n    // Thêm style và append vào body\n    setTimeout(() => toast.remove(), 3000);\n}' },
+            { id: 'K20', name: 'Xử lý sự kiện mouseout/mouseover', desc: 'Tạo hiệu ứng "zoom" khi di chuột vào một ảnh (mouseover) và trở lại kích thước bình thường khi di chuột ra (mouseout).', category: 'Khó', solution: 'const img = document.getElementById(\'my-image\');\nimg.addEventListener(\'mouseover\', () => { img.style.transform = \'scale(1.1)\'; });\nimg.addEventListener(\'mouseout\', () => { img.style.transform = \'scale(1.0)\'; });' },
+            { id: 'K21', name: 'Tạo hiệu ứng gõ chữ', desc: 'Hiển thị một chuỗi văn bản ký tự từng ký tự, tạo ra hiệu ứng giống như đang được gõ trên máy đánh chữ.', category: 'Khó', solution: 'const text = "Đây là hiệu ứng gõ chữ";\nlet i = 0;\nconst typingInterval = setInterval(() => {\n    document.getElementById(\'typing-area\').textContent += text.charAt(i);\n    i++;\n    if (i > text.length) clearInterval(typingInterval);\n}, 100);' },
+            { id: 'K22', name: 'Bảng tính lương cơ bản', desc: 'Tạo form nhập Lương Cơ Bản, Số Ngày Công. Tính Lương Thực Nhận (Lương cơ bản / 26 ngày * Số ngày công).', category: 'Khó', solution: 'function calculateSalary(base, days) {\n    if (days > 26) return "Lỗi: Số ngày công vượt quá giới hạn!";\n    const salary = (base / 26) * days;\n    document.getElementById(\'result-salary\').textContent = salary.toFixed(0);\n}' },
+            { id: 'K23', name: 'Tính khoảng cách hai ngày', desc: 'Tạo hai input type="date". Viết hàm tính số ngày chênh lệch giữa hai ngày đã chọn.', category: 'Khó', solution: 'function dateDiff() {\n    const date1 = new Date(document.getElementById(\'date1\').value);\n    const date2 = new Date(document.getElementById(\'date2\').value);\n    const diffTime = Math.abs(date2 - date1);\n    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));\n    document.getElementById(\'days-output\').textContent = diffDays + " ngày";\n}' },
+            { id: 'K24', name: 'Tạo Menu di động (Burger Menu)', desc: 'Thiết kế một menu hamburger cho thiết bị di động. Khi bấm vào nút, menu sẽ trượt ra/vào màn hình.', category: 'Khó', solution: 'function toggleMobileMenu() {\n    document.getElementById(\'mobile-menu\').classList.toggle(\'open\');\n    document.getElementById(\'burger-icon\').classList.toggle(\'change\');\n}' },
+            { id: 'K25', name: 'Hiển thị dữ liệu từ JSON', desc: 'Khai báo một chuỗi JSON. Dùng `JSON.parse()` để chuyển đổi thành object JS và hiển thị các thuộc tính ra màn hình.', category: 'Khó', solution: 'const jsonString = \'{"product": "Laptop", "price": 1200}\';\nconst data = JSON.parse(jsonString);\ndocument.getElementById(\'product-name\').textContent = data.product;\ndocument.getElementById(\'product-price\').textContent = data.price + "$";' }
+        ];
+
+        // --- Cấu hình Mật khẩu Admin ---
+        const ADMIN_PASSWORD = "admin123";
+
+        // Quản lý trạng thái (Global State)
+        let globalState = {
+            isAdmin: false,
+            isModalOpen: false,
+            passwordError: ''
+        };
+        let selectedExerciseId = null;
+
+        // --- DOM Elements ---
+        const exerciseList = document.getElementById('exercise-list');
+        const detailTitle = document.getElementById('detail-title');
+        const detailDescription = document.getElementById('detail-description');
+        const solutionContainer = document.getElementById('solution-container');
+        const solutionSection = document.getElementById('solution-section');
+        const authMessage = document.getElementById('auth-message');
+        const adminToggleButton = document.getElementById('admin-toggle-btn');
+        const adminStatusSpan = document.getElementById('admin-status');
+        const adminIcon = document.getElementById('admin-icon');
+        const adminModal = document.getElementById('admin-modal');
+        const passwordErrorP = document.getElementById('password-error');
+        const passwordInput = document.getElementById('admin-password-input');
+
+        // --- Helper Functions ---
+
+        function updateAdminState(isAdmin) {
+            globalState.isAdmin = isAdmin;
+
+            // 1. Cập nhật nút Admin
+            adminStatusSpan.textContent = `Chế độ Admin: ${isAdmin ? 'Đã bật' : 'Đã tắt'}`;
+            adminIcon.innerHTML = isAdmin 
+                ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M7 11V7a5 5 0 0 1 9.9-1"/><path d="M15 21H7"/><path d="M12 17v-4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+
+            if (isAdmin) {
+                adminToggleButton.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                adminToggleButton.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            } else {
+                adminToggleButton.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                adminToggleButton.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            }
+
+            // 2. Cập nhật phần Giải pháp nếu đang xem chi tiết
+            if (selectedExerciseId) {
+                renderExerciseDetail(selectedExerciseId);
+            } else {
+                // Đảm bảo không hiển thị lời giải nếu chưa chọn bài tập
+                solutionContainer.textContent = `/* Mã nguồn chi tiết cho bài tập sẽ được hiển thị ở đây. */`;
+                solutionSection.classList.remove('hidden');
+                authMessage.classList.add('hidden');
+            }
+        }
+        
+        // --- Modal Control Functions ---
+
+        window.showModal = function() {
+            globalState.isModalOpen = true;
+            globalState.passwordError = '';
+            adminModal.classList.remove('hidden');
+            passwordErrorP.classList.add('hidden');
+            
+            if (passwordInput) {
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        window.closeModal = function() {
+            globalState.isModalOpen = false;
+            adminModal.classList.add('hidden');
+            globalState.passwordError = '';
+            passwordErrorP.classList.add('hidden');
+            if (passwordInput) passwordInput.value = '';
+        }
+
+        window.checkPassword = function(e) {
+            e.preventDefault();
+            const enteredPassword = passwordInput.value;
+            
+            if (enteredPassword === ADMIN_PASSWORD) {
+                // Mật khẩu đúng
+                updateAdminState(true);
+                window.closeModal();
+            } else {
+                // Mật khẩu sai
+                globalState.passwordError = 'Mật khẩu không đúng! Vui lòng thử lại.';
+                passwordErrorP.textContent = globalState.passwordError;
+                passwordErrorP.classList.remove('hidden');
+                
+                // Tắt chế độ admin nếu đang cố gắng mở
+                updateAdminState(false);
+
+                // Đóng modal sau 1.5 giây và xóa lỗi
+                setTimeout(() => {
+                    window.closeModal();
+                }, 1500); 
+            }
+        }
+
+
+        // --- Core Application Logic ---
+
+        function renderExerciseDetail(id) {
+            const exercise = exercises.find(e => e.id === id);
+            selectedExerciseId = id;
+
+            if (exercise) {
+                // Cập nhật chi tiết đề bài
+                detailTitle.textContent = `Bài tập ${exercise.id}: ${exercise.name}`;
+                detailDescription.innerHTML = exercise.desc;
+
+                // Xử lý hiển thị giải pháp
+                if (globalState.isAdmin) {
+                    // Chế độ Admin: Hiển thị code
+                    solutionContainer.textContent = exercise.solution;
+                    solutionSection.classList.remove('hidden');
+                    authMessage.classList.add('hidden');
+                } else {
+                    // Chế độ Sinh viên: Ẩn code, hiển thị thông báo
+                    solutionContainer.textContent = `/* Vui lòng bật Chế độ Admin để xem mã giải pháp. */`;
+                    authMessage.classList.remove('hidden');
+                    solutionSection.classList.remove('hidden');
+                }
+            }
+        }
+
+        function renderExerciseList(category) {
+            if (!exerciseList) return;
+
+            // Xóa trạng thái active cũ của danh sách
+            Array.from(exerciseList.children).forEach(child => child.classList.remove('bg-indigo-100', 'border-indigo-400'));
+            
+            // Xóa danh sách cũ
+            exerciseList.innerHTML = '';
+            
+            // Lọc và render danh sách mới
+            const filteredExercises = exercises.filter(e => e.category === category);
+            
+            filteredExercises.forEach(exercise => {
+                const button = document.createElement('button');
+                button.className = 'w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-indigo-50 transition duration-150 shadow-sm border border-gray-200 exercise-item';
+                button.innerHTML = `<span class="font-semibold text-indigo-700">${exercise.id}:</span> ${exercise.name}`;
+                button.onclick = () => {
+                    // Cập nhật trạng thái active cho nút được chọn
+                    Array.from(exerciseList.children).forEach(child => child.classList.remove('bg-indigo-100', 'border-indigo-400', 'font-bold'));
+                    button.classList.add('bg-indigo-100', 'border-indigo-400', 'font-bold');
+                    renderExerciseDetail(exercise.id);
+                };
+                exerciseList.appendChild(button);
+            });
+        }
+
+        // --- Event Listeners ---
+
+        // 1. Logic nút Admin Toggle
+        adminToggleButton.onclick = function() {
+            if (globalState.isAdmin) {
+                // Đang bật -> Tắt ngay lập tức (Logout)
+                updateAdminState(false);
+            } else {
+                // Đang tắt -> Mở modal để xác thực
+                window.showModal();
+            }
+        };
+
+        // 2. Logic Modal 
+        if (document.getElementById('admin-password-form')) {
+            document.getElementById('admin-password-form').onsubmit = window.checkPassword;
+        }
+        if (document.getElementById('modal-close-btn-x')) {
+            document.getElementById('modal-close-btn-x').onclick = window.closeModal;
+        }
+        if (document.getElementById('modal-cancel-btn')) {
+            document.getElementById('modal-cancel-btn').onclick = window.closeModal;
+        }
+
+        // 3. Logic chuyển đổi độ khó
+        const difficultyButtons = document.querySelectorAll('.difficulty-button');
+        
+        difficultyButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const category = e.target.getAttribute('data-category');
+
+                // Xóa trạng thái active cũ
+                difficultyButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-indigo-50');
+                });
+
+                // Đặt trạng thái active mới
+                e.target.classList.add('active', 'bg-indigo-600', 'text-white');
+                e.target.classList.remove('text-gray-700', 'hover:bg-indigo-50');
+
+                renderExerciseList(category);
+                
+                // Reset detail panel
+                selectedExerciseId = null;
+                detailTitle.textContent = "Chọn một bài tập để xem chi tiết và giải pháp";
+                detailDescription.innerHTML = 'Tổng cộng 50 bài tập được phân loại theo 4 cấp độ. Bấm vào một bài tập ở danh sách bên cạnh để xem yêu cầu và mã giải pháp gợi ý (cần bật chế độ Admin).';
+                solutionContainer.textContent = `/* Mã nguồn chi tiết cho bài tập sẽ được hiển thị ở đây. */`;
+                solutionSection.classList.add('hidden');
+                authMessage.classList.add('hidden');
+            });
+        });
+
+        // 4. Khởi tạo ứng dụng
+        window.onload = function() {
+            // Tải danh sách bài tập Mức Dễ (mặc định)
+            renderExerciseList('Dễ');
+            
+            // Thiết lập nút "Dễ" là active ban đầu
+            const easyButton = document.querySelector('.difficulty-button[data-category="Dễ"]');
+            if (easyButton) {
+                easyButton.classList.add('active', 'bg-indigo-600', 'text-white');
+                easyButton.classList.remove('text-gray-700', 'hover:bg-indigo-50');
+            }
+
+            // Thiết lập trạng thái Admin ban đầu (Đảm bảo là Tắt)
+            updateAdminState(false);
+        };
+    </script>
+</body>
+</html>
