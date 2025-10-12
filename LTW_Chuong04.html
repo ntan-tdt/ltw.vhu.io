@@ -1,134 +1,350 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Chương 4 - Lập trình với Javascript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        h1, h2 { color: #2c3e50; }
-        pre { background-color: #f4f4f4; padding: 10px; border-left: 4px solid #3498db; }
-        .example { background-color: #ecf0f1; padding: 10px; margin-bottom: 20px; }
+        body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; background:#f9f9f9; }
+        h1, h2, h3 { color: #2c3e50; }
+        pre, .example { background: #f8f9fa; padding: 13px; border-left: 4px solid #3498db; font-family: monospace; margin-bottom: 18px; overflow-x: auto; }
+        .section { margin-bottom: 40px; }
+        .navbar { margin-bottom: 0; }
+        .anchor-offset { scroll-margin-top: 80px; }
+        .mini { font-size: 0.96em; color: #555; }
+        .example { background-color: #ecf0f1; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Chương 4 - Javascript</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Chuyển đổi menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#khainiem">Khái niệm cơ bản</a></li>
+                <li class="nav-item"><a class="nav-link" href="#cotlinh">Lập trình Cốt lõi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#ham">Hàm (Functions)</a></li>
+                <li class="nav-item"><a class="nav-link" href="#dom">Làm việc với DOM</a></li>
+                <li class="nav-item"><a class="nav-link" href="#forms">Làm việc với Forms</a></li>
+                <li class="nav-item"><a class="nav-link" href="#baitap">Bài tập Thực hành</a></li>
+            </ul>
+            <a href="index_thietkeweb.html" class="btn btn-secondary">Quay về trang chủ</a>
+        </div>
+    </div>
+</nav>
 
-<div style="text-align: center; margin-bottom: 20px;">
-  <a href="index_thietkeweb.html" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay về trang chủ</a>
-</div>
+<div class="container mt-4">
 
-    <h1>Chương 4: Lập trình với Javascript</h1>
+    <h1 class="mb-4">Chương 4: Lập trình với Javascript</h1>
 
-    <h2>1. Giới thiệu</h2>
-    <p>Javascript là ngôn ngữ lập trình phía trình duyệt, giúp tạo ra các tương tác động trên trang web như xử lý sự kiện, thay đổi nội dung, kiểm tra dữ liệu đầu vào...</p>
+    <!-- 1. Khái niệm cơ bản -->
+    <div class="section anchor-offset" id="khainiem">
+        <h2>1. Các khái niệm cơ bản</h2>
+        <p><b>JavaScript (JS)</b> là ngôn ngữ lập trình kịch bản chủ yếu chạy phía trình duyệt, giúp làm cho trang web động, tương tác và hấp dẫn hơn. Đây là lớp thứ ba (hành vi - behavior) trong bộ ba HTML (nội dung) - CSS (trình bày) - JS (hành vi).</p>
+        <ul>
+            <li><b>Chạy phía client:</b> JS chủ yếu chạy trên trình duyệt người dùng.</li>
+            <li><b>Thông dịch:</b> Không cần biên dịch, code thực thi trực tiếp.</li>
+            <li><b>Kiểu động:</b> Không cần khai báo kiểu dữ liệu khi khai báo biến.</li>
+        </ul>
+        <h3>Cách nhúng JavaScript vào HTML</h3>
+        <ul>
+            <li><b>Nội tuyến (Inline):</b> Thuộc tính sự kiện trong thẻ HTML.<br>
+                <span class="mini">Ví dụ: <code>&lt;button onclick="alert('Hello!')"&gt;Click&lt;/button&gt;</code></span>
+            </li>
+            <li><b>Nội bộ (Internal):</b> Đặt mã JS trong thẻ <code>&lt;script&gt;</code> (thường ở cuối &lt;body&gt;).</li>
+            <li><b>Bên ngoài (External):</b> Liên kết file .js bên ngoài bằng <code>&lt;script src="app.js"&gt;&lt;/script&gt;</code> (nên dùng cho dự án thực tế).</li>
+        </ul>
+        <div class="example">
+            <div class="mini"><b>Ví dụ nhúng JS nội bộ:</b></div>
+<pre>
+&lt;script&gt;
+    alert('Chào mừng đến với Javascript!');
+&lt;/script&gt;
+</pre>
+        </div>
+    </div>
 
-    <h2>2. Cú pháp cơ bản</h2>
-    <p>Javascript sử dụng cú pháp tương tự như C/C++ và Java. Một số cú pháp cơ bản:</p>
-    <pre>
-// In ra màn hình
-console.log("Xin chào Javascript");
-
-// Khai báo biến
-let x = 10;
+    <!-- 2. Các khái niệm lập trình cốt lõi -->
+    <div class="section anchor-offset" id="cotlinh">
+        <h2>2. Các Khái niệm Lập trình Cốt lõi</h2>
+        <h3>Biến, Hằng số và Kiểu dữ liệu</h3>
+        <ul>
+            <li><b>let</b>: Khai báo biến (có thể gán lại giá trị, phạm vi khối).</li>
+            <li><b>const</b>: Khai báo hằng số (không gán lại giá trị).</li>
+            <li><b>var</b>: Khai báo biến kiểu cũ (ít dùng).</li>
+        </ul>
+        <div class="example">
+<pre>
 const PI = 3.14;
-
-// Câu điều kiện
+let ten = "Lan";
+let tuoi = 20;
+let isStudent = true;
+let arr = [1, 2, 3];
+let obj = { name: "An", age: 21 };
+</pre>
+        </div>
+        <h3>Toán tử và Biểu thức</h3>
+        <ul>
+            <li>Số học: <b>+, -, *, /, %, **</b> (lũy thừa)</li>
+            <li>So sánh: <b>==</b>, <b>===</b>, <b>!=</b>, <b>&gt;</b>, <b>&lt;</b>, <b>&gt;=</b>, <b>&lt;=</b></li>
+            <li>Logic: <b>&&</b> (và), <b>||</b> (hoặc), <b>!</b> (phủ định)</li>
+        </ul>
+        <div class="example">
+<pre>
+let x = 10;
 if (x > 5) {
     console.log("x lớn hơn 5");
 }
-    </pre>
+</pre>
+        </div>
+        <h3>Cấu trúc điều khiển</h3>
+        <ul>
+            <li><b>Điều kiện:</b> if, else if, else, switch-case</li>
+            <li><b>Vòng lặp:</b> for, while, do...while</li>
+        </ul>
+        <div class="example">
+<pre>
+for (let i = 0; i < 3; i++) {
+    console.log("Lặp thứ: " + (i+1));
+}
+</pre>
+        </div>
+    </div>
 
-    <h2>3. Biến và kiểu dữ liệu</h2>
-    <p>Các kiểu dữ liệu phổ biến: Number, String, Boolean, Array, Object.</p>
-    <pre>
-let name = "Văn Hiến";
-let age = 20;
-let isStudent = true;
-let scores = [8, 9, 10];
-let student = { name: "An", age: 21 };
-    </pre>
-
-    <h2>4. Hàm</h2>
-    <p>Hàm là khối mã thực hiện một nhiệm vụ cụ thể.</p>
-    <pre>
+    <!-- 3. Hàm -->
+    <div class="section anchor-offset" id="ham">
+        <h2>3. Hàm (Functions)</h2>
+        <p>Hàm là khối mã thực hiện một nhiệm vụ cụ thể, giúp tổ chức, tái sử dụng code.</p>
+        <ul>
+            <li><b>Function Declaration:</b> <code>function tenHam(thamSo) { ... }</code></li>
+            <li><b>Function Expression:</b> <code>const tenHam = function(thamSo) { ... };</code></li>
+            <li><b>Arrow Function:</b> <code>const tenHam = (thamSo) =&gt; { ... };</code> (cú pháp hiện đại)</li>
+        </ul>
+        <div class="example">
+<pre>
+// Hàm khai báo
 function greet(name) {
     return "Xin chào " + name;
 }
 console.log(greet("Lan"));
-    </pre>
 
-    <h2>5. Xử lý sự kiện</h2>
-    <p>Javascript có thể xử lý các sự kiện như click, nhập liệu, di chuột...</p>
-    <div class="example">
-        <button onclick="alert('Bạn vừa nhấn nút!')">Nhấn vào đây</button>
+// Arrow function
+const tong = (a, b) => a + b;
+console.log(tong(5, 7));
+</pre>
+        </div>
+        <h3>Xử lý sự kiện (Event Handling)</h3>
+        <ul>
+            <li>Gắn trực tiếp trên HTML (không khuyến khích): <code>&lt;button onclick="myFunc()"&gt;</code></li>
+            <li>Gắn qua thuộc tính JS: <code>element.onclick = myFunc;</code></li>
+            <li><b>Nên dùng:</b> <code>element.addEventListener('click', myFunc);</code></li>
+        </ul>
+        <div class="example">
+<pre>
+&lt;button id="btn"&gt;Bấm vào đây&lt;/button&gt;
+&lt;p id="msg"&gt;&lt;/p&gt;
+&lt;script&gt;
+document.getElementById('btn').addEventListener('click', function() {
+    document.getElementById('msg').innerText = "Bạn vừa bấm nút!";
+});
+&lt;/script&gt;
+</pre>
+        </div>
     </div>
 
-    <h2>6. DOM - Document Object Model</h2>
-    <p>DOM cho phép Javascript truy cập và thay đổi nội dung HTML.</p>
-    <div class="example">
-        <p id="demo">Nội dung ban đầu</p>
-        <button onclick="document.getElementById('demo').innerHTML = 'Nội dung đã thay đổi'">Thay đổi nội dung</button>
+    <!-- 4. Làm việc với DOM -->
+    <div class="section anchor-offset" id="dom">
+        <h2>4. Làm việc với DOM</h2>
+        <p><b>DOM (Document Object Model)</b> là mô hình dữ liệu dạng cây của tài liệu HTML, cho phép Javascript truy cập, thay đổi và thao tác nội dung, thuộc tính, kiểu dáng của trang web.</p>
+        <ul>
+            <li><b>Lấy phần tử:</b> <code>document.getElementById('id')</code>, <code>document.querySelector('.class')</code></li>
+            <li><b>Thay đổi nội dung:</b> <code>element.innerHTML / textContent</code></li>
+            <li><b>Thay đổi thuộc tính:</b> <code>element.setAttribute('attr', 'value')</code></li>
+            <li><b>Thay đổi CSS:</b> <code>element.style.property</code></li>
+            <li><b>Thêm/Xóa phần tử:</b> <code>parent.appendChild(child)</code>, <code>parent.removeChild(child)</code></li>
+        </ul>
+        <div class="example">
+            <div class="mini">Ví dụ: Thay đổi nội dung và thêm phần tử mới</div>
+<pre>
+&lt;div id="box"&gt;
+  &lt;h3&gt;Danh sách&lt;/h3&gt;
+  &lt;ul id="list"&gt;&lt;li&gt;Mục 1&lt;/li&gt;&lt;/ul&gt;
+  &lt;button id="add"&gt;Thêm mục mới&lt;/button&gt;
+&lt;/div&gt;
+&lt;script&gt;
+const list = document.getElementById('list');
+document.getElementById('add').onclick = function() {
+    const li = document.createElement('li');
+    li.textContent = "Mục mới " + (list.children.length + 1);
+    list.appendChild(li);
+}
+&lt;/script&gt;
+</pre>
+        </div>
     </div>
 
-    <h2>7. Thực hành</h2>
-    <h3>Bài 1: Tính tổng 2 số</h3>
-    <div class="example">
-        <input type="number" id="a" placeholder="Số a">
-        <input type="number" id="b" placeholder="Số b">
-        <button onclick="sum()">Tính tổng</button>
-        <p id="result1"></p>
-        <script>
-            function sum() {
-                let a = parseFloat(document.getElementById('a').value);
-                let b = parseFloat(document.getElementById('b').value);
-                document.getElementById('result1').innerText = "Tổng = " + (a + b);
-            }
-        </script>
+    <!-- 5. Làm việc với Forms -->
+    <div class="section anchor-offset" id="forms">
+        <h2>5. Làm việc với Forms</h2>
+        <p>Javascript thường dùng để kiểm tra dữ liệu người dùng nhập trên form trước khi gửi lên server.</p>
+        <ul>
+            <li><b>Sự kiện:</b> <code>submit</code>, <code>input</code>, <code>change</code></li>
+            <li><b>Ngăn submit reload trang:</b> <code>event.preventDefault()</code></li>
+            <li><b>Truy cập giá trị:</b> <code>input.value</code></li>
+        </ul>
+        <div class="example">
+<pre>
+&lt;form id="myForm"&gt;
+    Tên: &lt;input type="text" id="username"&gt;&lt;br&gt;
+    Mật khẩu: &lt;input type="password" id="password"&gt;&lt;br&gt;
+    &lt;button type="submit"&gt;Đăng nhập&lt;/button&gt;
+&lt;/form&gt;
+&lt;p id="formMsg"&gt;&lt;/p&gt;
+&lt;script&gt;
+document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let user = document.getElementById('username').value;
+    let pass = document.getElementById('password').value;
+    let msg = "";
+    if (user.trim() === "") {
+        msg = "Tên người dùng không được rỗng!";
+    } else if (pass.length < 6) {
+        msg = "Mật khẩu phải ít nhất 6 ký tự!";
+    } else {
+        msg = "Đăng nhập thành công!";
+    }
+    document.getElementById('formMsg').innerText = msg;
+});
+&lt;/script&gt;
+</pre>
+        </div>
     </div>
 
-    <h3>Bài 2: Kiểm tra số chẵn/lẻ</h3>
-    <div class="example">
-        <input type="number" id="num" placeholder="Nhập số">
-        <button onclick="checkEven()">Kiểm tra</button>
-        <p id="result2"></p>
-        <script>
-            function checkEven() {
-                let n = parseInt(document.getElementById('num').value);
-                let result = (n % 2 === 0) ? "Số chẵn" : "Số lẻ";
-                document.getElementById('result2').innerText = result;
-            }
-        </script>
+    <!-- 6. Bài tập Thực hành -->
+    <div class="section anchor-offset" id="baitap">
+        <h2>6. Bài tập Thực hành</h2>
+        <ol>
+            <li>
+                <b>Bộ đếm Tăng/Giảm (Counter App)</b>
+                <div class="example">
+                    <button onclick="count(-1)">-</button>
+                    <span id="counter" style="margin:0 15px;">0</span>
+                    <button onclick="count(1)">+</button>
+                    <script>
+                        let cnt = 0;
+                        function count(val) {
+                            cnt += val;
+                            document.getElementById('counter').innerText = cnt;
+                        }
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Đổi Màu Nền Ngẫu nhiên</b>
+                <div class="example">
+                    <button onclick="randomColor()">Đổi màu nền</button>
+                    <script>
+                        function randomColor() {
+                            const color = "#" + Math.floor(Math.random()*16777215).toString(16);
+                            document.body.style.backgroundColor = color;
+                        }
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Xác thực Form Đơn giản</b>
+                <div class="example">
+                    <form id="simpleForm">
+                        Tên: <input type="text" id="fname"><br>
+                        Mật khẩu: <input type="password" id="fpass"><br>
+                        <button type="submit">Gửi</button>
+                    </form>
+                    <p id="msg"></p>
+                    <script>
+                        document.getElementById('simpleForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            let n = document.getElementById('fname').value;
+                            let p = document.getElementById('fpass').value;
+                            if (n.trim() === "") {
+                                document.getElementById('msg').innerText = "Tên không được rỗng!";
+                            } else if (p.length < 6) {
+                                document.getElementById('msg').innerText = "Mật khẩu phải ít nhất 6 ký tự!";
+                            } else {
+                                document.getElementById('msg').innerText = "Gửi thành công!";
+                            }
+                        });
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Tính tổng 2 số</b>
+                <div class="example">
+                    <input type="number" id="a" placeholder="Số a">
+                    <input type="number" id="b" placeholder="Số b">
+                    <button onclick="sum()">Tính tổng</button>
+                    <p id="result1"></p>
+                    <script>
+                        function sum() {
+                            let a = parseFloat(document.getElementById('a').value);
+                            let b = parseFloat(document.getElementById('b').value);
+                            document.getElementById('result1').innerText = "Tổng = " + (a + b);
+                        }
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Kiểm tra số chẵn/lẻ</b>
+                <div class="example">
+                    <input type="number" id="num" placeholder="Nhập số">
+                    <button onclick="checkEven()">Kiểm tra</button>
+                    <p id="result2"></p>
+                    <script>
+                        function checkEven() {
+                            let n = parseInt(document.getElementById('num').value);
+                            let result = (n % 2 === 0) ? "Số chẵn" : "Số lẻ";
+                            document.getElementById('result2').innerText = result;
+                        }
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Đếm số ký tự trong chuỗi</b>
+                <div class="example">
+                    <input type="text" id="text" placeholder="Nhập chuỗi">
+                    <button onclick="countChars()">Đếm ký tự</button>
+                    <p id="result5"></p>
+                    <script>
+                        function countChars() {
+                            let str = document.getElementById('text').value;
+                            document.getElementById('result5').innerText = "Số ký tự: " + str.length;
+                        }
+                    </script>
+                </div>
+            </li>
+            <li>
+                <b>Hiển thị thời gian hiện tại</b>
+                <div class="example">
+                    <button onclick="showTime()">Xem thời gian</button>
+                    <p id="time"></p>
+                    <script>
+                        function showTime() {
+                            let now = new Date();
+                            document.getElementById('time').innerText = now.toLocaleString();
+                        }
+                    </script>
+                </div>
+            </li>
+        </ol>
     </div>
 
-    <h3>Bài 3: Đổi màu nền</h3>
-    <div class="example">
-        <button onclick="document.body.style.backgroundColor = '#dff9fb'">Đổi màu nền</button>
-    </div>
-
-    <h3>Bài 4: Hiển thị thời gian hiện tại</h3>
-    <div class="example">
-        <button onclick="showTime()">Xem thời gian</button>
-        <p id="time"></p>
-        <script>
-            function showTime() {
-                let now = new Date();
-                document.getElementById('time').innerText = now.toLocaleString();
-            }
-        </script>
-    </div>
-
-    <h3>Bài 5: Đếm số ký tự trong chuỗi</h3>
-    <div class="example">
-        <input type="text" id="text" placeholder="Nhập chuỗi">
-        <button onclick="countChars()">Đếm ký tự</button>
-        <p id="result5"></p>
-        <script>
-            function countChars() {
-                let str = document.getElementById('text').value;
-                document.getElementById('result5').innerText = "Số ký tự: " + str.length;
-            }
-        </script>
-    </div>
-
+    <footer class="text-center mt-5">
+        <p>&copy; 2025 - Học phần Thiết kế Web & Javascript - Trường Đại học Văn Hiến</p>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
