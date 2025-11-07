@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương 4 - Thực Hành JavaScript Tương Tác</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .menu { margin-bottom: 20px; }
+        .menu button { padding: 10px 15px; margin-right: 10px; cursor: pointer; border: 1px solid #ccc; background-color: #f0f0f0; }
+        .menu button.active { background-color: #007bff; color: white; border-color: #007bff; }
+        .bai-tap-content { border: 1px solid #ddd; padding: 20px; margin-top: 15px; }
+        .ket-qua { margin-top: 15px; padding: 10px; border: 1px dashed #007bff; background-color: #e6f3ff; }
+        .chu-do { color: red; font-weight: bold; border: 1px solid red; padding: 5px; display: inline-block; }
+        .input-group { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Chương 4: Lập Trình với JavaScript - Thực Hành Tương Tác</h1>
+    
+    <div class="menu">
+        <button onclick="hienThiBaiTap(1)" id="btn_bai1">Bài 1: Tính Tổng</button>
+        <button onclick="hienThiBaiTap(2)" id="btn_bai2">Bài 2: Chẵn/Lẻ</button>
+        <button onclick="hienThiBaiTap(3)" id="btn_bai3">Bài 3: Vòng Lặp</button>
+        <button onclick="hienThiBaiTap(4)" id="btn_bai4">Bài 4: Tổng Mảng</button>
+        <button onclick="hienThiBaiTap(5)" id="btn_bai5">Bài 5: Object</button>
+        <button onclick="hienThiBaiTap(6)" id="btn_bai6">Bài 6: Arrow Func</button>
+        <button onclick="hienThiBaiTap(7)" id="btn_bai7">Bài 7: DOM Text</button>
+        <button onclick="hienThiBaiTap(8)" id="btn_bai8">Bài 8: DOM Class</button>
+        <button onclick="hienThiBaiTap(9)" id="btn_bai9">Bài 9: DOM Event</button>
+        <button onclick="hienThiBaiTap(10)" id="btn_bai10">Bài 10: DOM Xóa</button>
+    </div>
+
+    <div id="bai-tap-container" class="bai-tap-content">
+        <p>Chọn một bài tập từ menu để bắt đầu thực hành.</p>
+    </div>
+
+    <hr>
+    <h3>Khu vực đối tượng DOM để thao tác</h3>
+    <h2 id="phu-de">Tiêu đề phụ cần thay đổi (Bài 7)</h2>
+    <p id="bai8_doanvan">Đoạn văn này sẽ được thêm class (Bài 8).</p>
+    <button id="nut-hover">Di chuột vào đây (Bài 9)</button>
+    <ul id="danh-sach">
+        <li>Mục 1 (Bài 10 sẽ xóa)</li>
+        <li>Mục 2</li>
+    </ul>
+
+    <script src="app_JS_tuongtac.js"></script>
+    <script>
+        // Tự động kích hoạt bài 1 khi tải trang
+        document.addEventListener('DOMContentLoaded', () => hienThiBaiTap(1));
+    </script>
+</body>
+</html>
