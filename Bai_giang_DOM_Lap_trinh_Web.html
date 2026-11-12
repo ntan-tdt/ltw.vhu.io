@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lập trình với DOM trong Lập trình Web</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+    }
+    .header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+    .header .subtitle { font-size: 1.15rem; opacity: 0.95; }
+    .header .meta { margin-top: 1rem; font-size: 0.95rem; opacity: 0.85; }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--secondary);
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .nav a:hover, .nav a.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 70px;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      color: var(--secondary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin: 1.8rem 0 0.9rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      color: #334155;
+      margin: 1.2rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    ul, ol { margin: 0.8rem 0 1.2rem 1.6rem; }
+    li { margin-bottom: 0.4rem; }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.2rem 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .highlight {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      margin: 1.2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .warning {
+      background: #fffbeb;
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .success-box {
+      background: #ecfdf5;
+      border-left: 4px solid var(--success);
+      padding: 1rem 1.25rem;
+      margin: 1.2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Code */
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1.1rem 1.3rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0.8rem 0 1.2rem;
+      position: relative;
+    }
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+    .inline-code {
+      background: #e2e8f0;
+      color: #be185d;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+
+    /* Demo boxes */
+    .demo-box {
+      border: 2px dashed #94a3b8;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+      background: #f1f5f9;
+    }
+    .demo-box h4 { margin-top: 0; color: #475569; }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.55rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      margin: 0.25rem;
+    }
+    .btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-success { background: var(--success); }
+    .btn-success:hover { background: #059669; }
+    .btn-danger { background: var(--danger); }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+
+    /* Exercises */
+    .exercise {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .exercise-header {
+      background: #f1f5f9;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .exercise-header:hover { background: #e2e8f0; }
+    .exercise-header h4 { margin: 0; color: var(--secondary); }
+    .exercise-body {
+      padding: 1.25rem;
+      display: none;
+    }
+    .exercise-body.open { display: block; }
+    .badge {
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .badge.easy { background: var(--success); }
+    .badge.medium { background: var(--accent); }
+    .badge.hard { background: var(--danger); }
+
+    /* Solution area */
+    .solution-area {
+      margin-top: 1.5rem;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 1.25rem;
+    }
+    .solution-content {
+      display: none;
+      margin-top: 1rem;
+    }
+    .solution-content.show { display: block; }
+
+    .password-box {
+      background: #fef3c7;
+      border: 1px solid #fbbf24;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .password-box input {
+      padding: 0.5rem 0.9rem;
+      border: 1px solid #d97706;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 200px;
+      margin-right: 0.5rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.7rem 1rem;
+      text-align: left;
+    }
+    th {
+      background: #1e40af;
+      color: white;
+    }
+    tr:nth-child(even) { background: #f8fafc; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--secondary);
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* Utility */
+    .flex { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mb-0 { margin-bottom: 0; }
+
+    @media (max-width: 640px) {
+      .header h1 { font-size: 1.6rem; }
+      .nav a { font-size: 0.8rem; padding: 0.35rem 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>Lập trình với DOM</h1>
+    <div class="subtitle">Document Object Model trong Lập trình Web</div>
+    <div class="meta">Bài giảng dành cho sinh viên • Lý thuyết + Ví dụ thực tế + 10 Bài tập</div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#gioi-thieu">Giới thiệu</a>
+    <a href="#chon-phan-tu">Chọn phần tử</a>
+    <a href="#thay-doi">Thay đổi nội dung</a>
+    <a href="#tao-xoa">Tạo & Xóa</a>
+    <a href="#su-kien">Sự kiện</a>
+    <a href="#best-practice">Best Practices</a>
+    <a href="#bai-tap">Bài tập (10)</a>
+    <a href="#loi-giai">Lời giải GV</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ========== GIỚI THIỆU ========== -->
+    <section id="gioi-thieu">
+      <h2>1. DOM là gì?</h2>
+
+      <div class="card">
+        <p><strong>DOM (Document Object Model)</strong> là mô hình đối tượng tài liệu – một cách biểu diễn cấu trúc HTML/XML dưới dạng <strong>cây đối tượng (tree)</strong> mà JavaScript có thể đọc và thay đổi.</p>
+        <p>Khi trình duyệt tải một trang web, nó sẽ phân tích HTML và tạo ra một cây DOM. Mỗi thẻ HTML trở thành một <strong>node</strong> (nút) trong cây này.</p>
+      </div>
+
+      <div class="highlight">
+        <strong>Hình dung đơn giản:</strong><br>
+        HTML = bản thiết kế nhà<br>
+        DOM = ngôi nhà thật sự đã xây xong, bạn có thể đi vào sửa cửa, sơn tường, thêm phòng…
+      </div>
+
+      <h3>Cấu trúc cây DOM cơ bản</h3>
+      <pre><code>document
+ └── html
+      ├── head
+      │    ├── title
+      │    └── meta
+      └── body
+           ├── h1
+           ├── p
+           └── div
+                ├── span
+                └── button</code></pre>
+
+      <h3>Tại sao cần DOM?</h3>
+      <ul>
+        <li>Thay đổi nội dung trang mà không cần tải lại (SPA, form validation…)</li>
+        <li>Tạo giao diện động: thêm/xóa phần tử, ẩn/hiện, animation</li>
+        <li>Xử lý sự kiện người dùng (click, input, submit…)</li>
+        <li>Là nền tảng của mọi framework frontend (React, Vue, Angular đều dựa trên DOM)</li>
+      </ul>
+    </section>
+
+    <!-- ========== CHỌN PHẦN TỬ ========== -->
+    <section id="chon-phan-tu">
+      <h2>2. Chọn phần tử trong DOM</h2>
+
+      <p>Trước khi thao tác, bạn phải <strong>chọn được phần tử</strong>. Có 2 nhóm phương thức chính:</p>
+
+      <h3>2.1. Các phương thức cổ điển (getElement*)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Phương thức</th>
+            <th>Trả về</th>
+            <th>Live?</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>getElementById(id)</code></td>
+            <td>Element | null</td>
+            <td>—</td>
+            <td>Nhanh nhất (O(1)), ID phải unique</td>
+          </tr>
+          <tr>
+            <td><code>getElementsByClassName(class)</code></td>
+            <td>HTMLCollection</td>
+            <td>Live</td>
+            <td>Cập nhật theo DOM realtime</td>
+          </tr>
+          <tr>
+            <td><code>getElementsByTagName(tag)</code></td>
+            <td>HTMLCollection</td>
+            <td>Live</td>
+            <td>Theo tên thẻ</td>
+          </tr>
+          <tr>
+            <td><code>getElementsByName(name)</code></td>
+            <td>NodeList</td>
+            <td>Live</td>
+            <td>Chủ yếu dùng với form</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2.2. Phương thức hiện đại (querySelector*)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Phương thức</th>
+            <th>Trả về</th>
+            <th>Live?</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>querySelector(css)</code></td>
+            <td>Element | null</td>
+            <td>—</td>
+            <td>Lấy phần tử đầu tiên khớp CSS selector</td>
+          </tr>
+          <tr>
+            <td><code>querySelectorAll(css)</code></td>
+            <td>NodeList (static)</td>
+            <td>Không</td>
+            <td>Lấy tất cả, có thể dùng forEach</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Khuyến nghị hiện nay:</strong> Ưu tiên dùng <code>querySelector</code> / <code>querySelectorAll</code> vì linh hoạt với CSS selector. Chỉ dùng <code>getElementById</code> khi chắc chắn cần tốc độ tối đa với ID.
+      </div>
+
+      <h3>Ví dụ thực tế</h3>
+      <div class="demo-box">
+        <h4>Demo chọn phần tử</h4>
+        <div id="demo-select">
+          <p class="demo-p" id="p1">Đoạn văn bản số 1</p>
+          <p class="demo-p">Đoạn văn bản số 2</p>
+          <p class="demo-p special">Đoạn văn bản đặc biệt</p>
+        </div>
+        <div class="flex mt-1">
+          <button class="btn" onclick="demoSelectById()">Chọn theo ID</button>
+          <button class="btn" onclick="demoSelectByClass()">Chọn theo Class</button>
+          <button class="btn" onclick="demoSelectQuery()">querySelector</button>
+          <button class="btn btn-outline" onclick="resetSelectDemo()">Reset</button>
+        </div>
+        <p id="select-result" class="mt-1" style="font-weight:600; color:#1e40af;"></p>
+      </div>
+
+      <pre><code>// 1. Theo ID (nhanh nhất)
+const p1 = document.getElementById('p1');
+
+// 2. Theo class → HTMLCollection (live)
+const paragraphs = document.getElementsByClassName('demo-p');
+
+// 3. querySelector – linh hoạt nhất
+const special = document.querySelector('.demo-p.special');
+const firstP  = document.querySelector('#demo-select p');
+
+// 4. querySelectorAll → NodeList tĩnh
+const allP = document.querySelectorAll('.demo-p');
+allP.forEach(p => console.log(p.textContent));</code></pre>
+    </section>
+
+    <!-- ========== THAY ĐỔI NỘI DUNG ========== -->
+    <section id="thay-doi">
+      <h2>3. Thay đổi nội dung, thuộc tính & style</h2>
+
+      <h3>3.1. Thay đổi nội dung</h3>
+      <ul>
+        <li><code>element.textContent</code> – an toàn, chỉ text thuần</li>
+        <li><code>element.innerHTML</code> – cho phép HTML (cẩn thận XSS)</li>
+        <li><code>element.innerText</code> – gần giống textContent, tôn trọng CSS ẩn</li>
+      </ul>
+
+      <div class="demo-box">
+        <h4>Demo thay đổi nội dung</h4>
+        <p id="content-demo">Nội dung ban đầu của đoạn văn này.</p>
+        <div class="flex">
+          <button class="btn" onclick="changeTextContent()">textContent</button>
+          <button class="btn" onclick="changeInnerHTML()">innerHTML</button>
+          <button class="btn btn-outline" onclick="resetContent()">Reset</button>
+        </div>
+      </div>
+
+      <pre><code>const el = document.getElementById('content-demo');
+
+// An toàn – chỉ text
+el.textContent = 'Nội dung mới an toàn';
+
+// Cho phép HTML
+el.innerHTML = '&lt;strong&gt;In đậm&lt;/strong&gt; và &lt;em&gt;nghiêng&lt;/em&gt;';</code></pre>
+
+      <h3>3.2. Thay đổi thuộc tính (Attribute)</h3>
+      <pre><code>const img = document.querySelector('img');
+
+// Cách 1: thuộc tính trực tiếp
+img.src = 'new-image.jpg';
+img.alt = 'Mô tả mới';
+
+// Cách 2: setAttribute / getAttribute
+img.setAttribute('src', 'new-image.jpg');
+img.getAttribute('src');
+
+// Data attributes
+img.dataset.userId = '123';          // data-user-id="123"
+console.log(img.dataset.userId);    // "123"</code></pre>
+
+      <h3>3.3. Thay đổi style & class</h3>
+      <div class="demo-box">
+        <h4>Demo style & class</h4>
+        <div id="style-demo" style="padding:1rem; border-radius:8px; background:#e0e7ff; transition:all 0.3s;">
+          Hộp này sẽ thay đổi style khi bạn bấm nút.
+        </div>
+        <div class="flex mt-1">
+          <button class="btn" onclick="changeStyle()">Đổi màu &amp; size</button>
+          <button class="btn" onclick="toggleClass()">Toggle class 'highlight'</button>
+          <button class="btn btn-outline" onclick="resetStyle()">Reset</button>
+        </div>
+      </div>
+
+      <pre><code>const box = document.getElementById('style-demo');
+
+// Thay đổi style trực tiếp
+box.style.backgroundColor = '#fef3c7';
+box.style.fontSize = '1.2rem';
+box.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+
+// Làm việc với class (khuyến nghị)
+box.classList.add('highlight');
+box.classList.remove('highlight');
+box.classList.toggle('highlight');
+box.classList.contains('highlight'); // true/false</code></pre>
+    </section>
+
+    <!-- ========== TẠO & XÓA ========== -->
+    <section id="tao-xoa">
+      <h2>4. Tạo, thêm và xóa phần tử</h2>
+
+      <h3>4.1. Tạo phần tử mới</h3>
+      <pre><code>// 1. Tạo element
+const newDiv = document.createElement('div');
+newDiv.className = 'card';
+newDiv.id = 'item-1';
+newDiv.textContent = 'Phần tử mới được tạo';
+
+// 2. Tạo text node (ít dùng)
+const text = document.createTextNode('Chỉ text thuần');
+
+// 3. Clone phần tử có sẵn
+const clone = existingElement.cloneNode(true); // true = deep clone</code></pre>
+
+      <h3>4.2. Thêm vào DOM</h3>
+      <pre><code>const parent = document.getElementById('list');
+
+// Cách hiện đại (khuyến nghị)
+parent.append(newDiv);               // thêm vào cuối
+parent.prepend(newDiv);              // thêm vào đầu
+parent.before(newDiv);               // thêm trước parent
+parent.after(newDiv);                // thêm sau parent
+
+// Cách cổ điển
+parent.appendChild(newDiv);
+parent.insertBefore(newDiv, referenceNode);
+
+// insertAdjacentHTML – chèn HTML string
+parent.insertAdjacentHTML('beforeend', '&lt;li&gt;Mục mới&lt;/li&gt;');</code></pre>
+
+      <h3>4.3. Xóa phần tử</h3>
+      <pre><code>// Cách hiện đại
+element.remove();
+
+// Cách cổ điển
+parent.removeChild(element);
+
+// Xóa toàn bộ con
+parent.innerHTML = '';               // nhanh nhưng nguy hiểm với event
+while (parent.firstChild) {
+  parent.removeChild(parent.firstChild);
+}</code></pre>
+
+      <div class="demo-box">
+        <h4>Demo tạo & xóa phần tử</h4>
+        <ul id="demo-list" style="list-style: none; padding: 0;">
+          <li style="padding:0.5rem; background:#e0e7ff; margin:0.3rem 0; border-radius:6px;">Mục 1 (có sẵn)</li>
+          <li style="padding:0.5rem; background:#e0e7ff; margin:0.3rem 0; border-radius:6px;">Mục 2 (có sẵn)</li>
+        </ul>
+        <div class="flex">
+          <button class="btn btn-success" onclick="addItem()">+ Thêm mục</button>
+          <button class="btn btn-danger" onclick="removeLastItem()">− Xóa mục cuối</button>
+          <button class="btn btn-outline" onclick="clearList()">Xóa hết</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SỰ KIỆN ========== -->
+    <section id="su-kien">
+      <h2>5. Xử lý sự kiện (Event Handling)</h2>
+
+      <p>DOM cho phép lắng nghe và phản ứng với hành động của người dùng.</p>
+
+      <h3>5.1. addEventListener (khuyến nghị)</h3>
+      <pre><code>const btn = document.getElementById('myBtn');
+
+// Cách tốt nhất
+btn.addEventListener('click', function(event) {
+  console.log('Đã click!', event);
+});
+
+// Arrow function
+btn.addEventListener('click', (e) => {
+  e.preventDefault();          // ngăn hành vi mặc định
+  e.stopPropagation();         // ngăn nổi bọt
+});
+
+// Xóa listener
+btn.removeEventListener('click', handlerFunction);</code></pre>
+
+      <h3>5.2. Các sự kiện phổ biến</h3>
+      <table>
+        <thead>
+          <tr><th>Sự kiện</th><th>Khi nào xảy ra</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>click</td><td>Click chuột</td></tr>
+          <tr><td>dblclick</td><td>Double click</td></tr>
+          <tr><td>input</td><td>Giá trị input thay đổi (realtime)</td></tr>
+          <tr><td>change</td><td>Giá trị thay đổi và mất focus</td></tr>
+          <tr><td>submit</td><td>Form được gửi</td></tr>
+          <tr><td>keydown / keyup</td><td>Nhấn / nhả phím</td></tr>
+          <tr><td>mouseover / mouseout</td><td>Di chuột vào / ra</td></tr>
+          <tr><td>DOMContentLoaded</td><td>HTML đã parse xong (chưa đợi ảnh)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>5.3. Event Delegation (rất quan trọng)</h3>
+      <div class="highlight">
+        Thay vì gắn listener cho từng phần tử con, gắn <strong>một listener duy nhất</strong> cho phần tử cha. Rất hữu ích khi danh sách thay đổi động.
+      </div>
+
+      <pre><code>// Thay vì gắn cho từng &lt;li&gt;
+document.getElementById('todo-list').addEventListener('click', function(e) {
+  if (e.target.matches('li')) {
+    e.target.classList.toggle('done');
+  }
+  if (e.target.matches('.delete-btn')) {
+    e.target.closest('li').remove();
+  }
+});</code></pre>
+
+      <div class="demo-box">
+        <h4>Demo Event</h4>
+        <input type="text" id="event-input" placeholder="Gõ gì đó..." style="padding:0.5rem; width:220px; border-radius:6px; border:1px solid #94a3b8;">
+        <p id="event-output" style="margin-top:0.8rem; font-weight:600;"></p>
+        <button class="btn" id="event-btn">Click tôi</button>
+        <span id="click-count" style="margin-left:1rem;"></span>
+      </div>
+    </section>
+
+    <!-- ========== BEST PRACTICES ========== -->
+    <section id="best-practice">
+      <h2>6. Best Practices khi làm việc với DOM</h2>
+
+      <div class="card">
+        <ol>
+          <li><strong>Chờ DOM sẵn sàng</strong>
+            <pre><code>document.addEventListener('DOMContentLoaded', () => {
+  // code thao tác DOM an toàn ở đây
+});</code></pre>
+          </li>
+          <li><strong>Cache phần tử</strong> – đừng query lại nhiều lần
+            <pre><code>// Tốt
+const btn = document.getElementById('submit');
+btn.addEventListener(...);
+btn.disabled = true;
+
+// Xấu
+document.getElementById('submit').addEventListener(...);
+document.getElementById('submit').disabled = true;</code></pre>
+          </li>
+          <li><strong>Ưu tiên classList</strong> thay vì style trực tiếp khi có thể</li>
+          <li><strong>Dùng textContent</strong> thay vì innerHTML nếu chỉ cần text (tránh XSS)</li>
+          <li><strong>Event Delegation</strong> cho danh sách động</li>
+          <li><strong>Tránh reflow/repaint không cần thiết</strong> – batch thay đổi DOM</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========== BÀI TẬP ========== -->
+    <section id="bai-tap">
+      <h2>7. Bài tập thực hành (10 bài)</h2>
+      <p>Làm lần lượt từ dễ → khó. Mỗi bài có mô tả rõ ràng. Sau khi làm xong, giáo viên có thể mở phần lời giải bằng mật khẩu.</p>
+
+      <!-- Bài 1 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 1: Thay đổi nội dung tiêu đề</h4>
+          <span class="badge easy">Dễ</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Tạo một trang có tiêu đề <code>&lt;h1 id="title"&gt;Xin chào&lt;/h1&gt;</code> và một nút. Khi bấm nút, tiêu đề đổi thành <strong>"Chào mừng đến với DOM!"</strong> và màu chữ thành xanh dương.</p>
+          <p><strong>Gợi ý:</strong> Dùng <code>getElementById</code>, <code>textContent</code>, <code>style.color</code>.</p>
+        </div>
+      </div>
+
+      <!-- Bài 2 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 2: Ẩn / Hiện phần tử</h4>
+          <span class="badge easy">Dễ</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có một đoạn văn và nút "Ẩn/Hiện". Mỗi lần bấm nút thì đoạn văn ẩn hoặc hiện xen kẽ.</p>
+          <p><strong>Gợi ý:</strong> Dùng <code>style.display = 'none'</code> hoặc <code>classList.toggle('hidden')</code>.</p>
+        </div>
+      </div>
+
+      <!-- Bài 3 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 3: Đếm số lần click</h4>
+          <span class="badge easy">Dễ</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có nút và một đoạn hiển thị số. Mỗi lần bấm nút, số tăng lên 1. Có thêm nút "Reset" để đưa về 0.</p>
+        </div>
+      </div>
+
+      <!-- Bài 4 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 4: Thay đổi màu nền theo input</h4>
+          <span class="badge medium">Trung bình</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có ô input type="color" và một div. Khi người dùng chọn màu, nền của div thay đổi theo màu đó ngay lập tức.</p>
+          <p><strong>Gợi ý:</strong> Lắng nghe sự kiện <code>input</code>.</p>
+        </div>
+      </div>
+
+      <!-- Bài 5 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 5: Thêm mục vào danh sách</h4>
+          <span class="badge medium">Trung bình</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có ô input + nút "Thêm". Khi bấm Thêm (hoặc Enter), lấy giá trị input tạo thành <code>&lt;li&gt;</code> mới và append vào <code>&lt;ul&gt;</code>. Sau khi thêm thì xóa nội dung input.</p>
+          <p>Nếu input rỗng thì hiện alert cảnh báo.</p>
+        </div>
+      </div>
+
+      <!-- Bài 6 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 6: Xóa từng mục trong danh sách</h4>
+          <span class="badge medium">Trung bình</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Mở rộng Bài 5. Mỗi <code>&lt;li&gt;</code> có thêm nút "Xóa". Khi bấm nút Xóa thì xóa đúng mục đó.</p>
+          <p><strong>Gợi ý:</strong> Dùng Event Delegation hoặc gắn listener khi tạo phần tử.</p>
+        </div>
+      </div>
+
+      <!-- Bài 7 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 7: Bộ đếm ký tự realtime</h4>
+          <span class="badge medium">Trung bình</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có <code>&lt;textarea&gt;</code> và đoạn hiển thị "Số ký tự: 0". Mỗi khi người dùng gõ, số ký tự cập nhật ngay. Giới hạn tối đa 100 ký tự – nếu vượt thì hiện cảnh báo màu đỏ.</p>
+        </div>
+      </div>
+
+      <!-- Bài 8 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 8: Tab chuyển nội dung</h4>
+          <span class="badge hard">Khó</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Tạo giao diện 3 tab: "Giới thiệu", "Sản phẩm", "Liên hệ". Khi click vào tab nào thì hiện nội dung tương ứng và ẩn nội dung tab khác. Tab đang active có style khác biệt.</p>
+        </div>
+      </div>
+
+      <!-- Bài 9 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 9: Modal (hộp thoại) đơn giản</h4>
+          <span class="badge hard">Khó</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Có nút "Mở Modal". Khi bấm thì hiện một lớp phủ (overlay) + hộp thoại ở giữa màn hình. Trong modal có nút "Đóng" và cũng có thể đóng bằng cách click vào vùng overlay bên ngoài.</p>
+        </div>
+      </div>
+
+      <!-- Bài 10 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise(this)">
+          <h4>Bài 10: Todo List hoàn chỉnh</h4>
+          <span class="badge hard">Khó</span>
+        </div>
+        <div class="exercise-body">
+          <p><strong>Yêu cầu:</strong> Xây dựng một Todo List có các chức năng:</p>
+          <ul>
+            <li>Thêm công việc mới</li>
+            <li>Đánh dấu hoàn thành (gạch ngang + đổi màu)</li>
+            <li>Xóa công việc</li>
+            <li>Đếm số công việc còn lại</li>
+            <li>(Nâng cao) Lưu vào <code>localStorage</code> để khi tải lại trang vẫn còn dữ liệu</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LỜI GIẢI (khóa mật khẩu) ========== -->
+    <section id="loi-giai">
+      <h2>8. Lời giải chi tiết (Dành cho Giáo viên)</h2>
+
+      <div class="password-box" id="password-area">
+        <p style="margin-bottom:0.8rem;"><strong>Nhập mật khẩu để xem lời giải</strong></p>
+        <input type="password" id="gv-password" placeholder="Mật khẩu GV" onkeydown="if(event.key==='Enter') checkPassword()">
+        <button class="btn" onclick="checkPassword()">Mở khóa</button>
+        <p id="pass-msg" style="margin-top:0.6rem; color:#b45309; font-size:0.9rem;"></p>
+        <p style="margin-top:0.5rem; font-size:0.85rem; color:#92400e;">Gợi ý: mật khẩu mặc định là <code>dom2026</code></p>
+      </div>
+
+      <div id="solutions" style="display:none;">
+
+        <!-- Lời giải 1 -->
+        <div class="card">
+          <h3>Lời giải Bài 1</h3>
+          <pre><code>&lt;h1 id="title"&gt;Xin chào&lt;/h1&gt;
+&lt;button id="btn"&gt;Đổi tiêu đề&lt;/button&gt;
+
+&lt;script&gt;
+document.getElementById('btn').addEventListener('click', function() {
+  const title = document.getElementById('title');
+  title.textContent = 'Chào mừng đến với DOM!';
+  title.style.color = '#2563eb';
+});
+&lt;/script&gt;</code></pre>
+          <p><strong>Giải thích:</strong> Lấy phần tử bằng ID → gán lại textContent → thay đổi style.color. Rất cơ bản nhưng là nền tảng của mọi thao tác DOM.</p>
+        </div>
+
+        <!-- Lời giải 2 -->
+        <div class="card">
+          <h3>Lời giải Bài 2</h3>
+          <pre><code>&lt;p id="para"&gt;Đây là đoạn văn sẽ bị ẩn/hiện.&lt;/p&gt;
+&lt;button id="toggleBtn"&gt;Ẩn / Hiện&lt;/button&gt;
+
+&lt;script&gt;
+const para = document.getElementById('para');
+const btn  = document.getElementById('toggleBtn');
+
+btn.addEventListener('click', () => {
+  // Cách 1: style.display
+  if (para.style.display === 'none') {
+    para.style.display = 'block';
+  } else {
+    para.style.display = 'none';
+  }
+
+  // Cách 2 (tốt hơn): classList.toggle
+  // para.classList.toggle('hidden');
+});
+&lt;/script&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+.hidden { display: none; }
+&lt;/style&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 3 -->
+        <div class="card">
+          <h3>Lời giải Bài 3</h3>
+          <pre><code>&lt;button id="countBtn"&gt;Click me&lt;/button&gt;
+&lt;button id="resetBtn"&gt;Reset&lt;/button&gt;
+&lt;p&gt;Số lần click: &lt;span id="counter"&gt;0&lt;/span&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let count = 0;
+const counterEl = document.getElementById('counter');
+
+document.getElementById('countBtn').addEventListener('click', () => {
+  count++;
+  counterEl.textContent = count;
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  count = 0;
+  counterEl.textContent = 0;
+});
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 4 -->
+        <div class="card">
+          <h3>Lời giải Bài 4</h3>
+          <pre><code>&lt;input type="color" id="colorPicker" value="#3b82f6"&gt;
+&lt;div id="box" style="width:200px;height:100px;margin-top:1rem;border-radius:8px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+const picker = document.getElementById('colorPicker');
+const box    = document.getElementById('box');
+
+// Cập nhật ngay khi load
+box.style.backgroundColor = picker.value;
+
+picker.addEventListener('input', (e) => {
+  box.style.backgroundColor = e.target.value;
+});
+&lt;/script&gt;</code></pre>
+          <p><strong>Giải thích:</strong> Sự kiện <code>input</code> kích hoạt liên tục khi giá trị thay đổi, rất phù hợp với color picker.</p>
+        </div>
+
+        <!-- Lời giải 5 -->
+        <div class="card">
+          <h3>Lời giải Bài 5</h3>
+          <pre><code>&lt;input type="text" id="itemInput" placeholder="Nhập mục..."&gt;
+&lt;button id="addBtn"&gt;Thêm&lt;/button&gt;
+&lt;ul id="list"&gt;&lt;/ul&gt;
+
+&lt;script&gt;
+const input = document.getElementById('itemInput');
+const list  = document.getElementById('list');
+const addBtn = document.getElementById('addBtn');
+
+function addItem() {
+  const text = input.value.trim();
+  if (!text) {
+    alert('Vui lòng nhập nội dung!');
+    return;
+  }
+  const li = document.createElement('li');
+  li.textContent = text;
+  list.appendChild(li);
+  input.value = '';
+  input.focus();
+}
+
+addBtn.addEventListener('click', addItem);
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') addItem();
+});
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 6 -->
+        <div class="card">
+          <h3>Lời giải Bài 6</h3>
+          <pre><code>// Tiếp tục từ Bài 5, sửa hàm addItem:
+
+function addItem() {
+  const text = input.value.trim();
+  if (!text) {
+    alert('Vui lòng nhập nội dung!');
+    return;
+  }
+
+  const li = document.createElement('li');
+  li.innerHTML = `
+    &lt;span&gt;${text}&lt;/span&gt;
+    &lt;button class="delete-btn"&gt;Xóa&lt;/button&gt;
+  `;
+  list.appendChild(li);
+  input.value = '';
+  input.focus();
+}
+
+// Event Delegation – chỉ cần 1 listener
+list.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-btn')) {
+    e.target.closest('li').remove();
+  }
+});</code></pre>
+          <p><strong>Giải thích:</strong> Dùng Event Delegation giúp code gọn và hoạt động đúng với các phần tử được tạo động sau này.</p>
+        </div>
+
+        <!-- Lời giải 7 -->
+        <div class="card">
+          <h3>Lời giải Bài 7</h3>
+          <pre><code>&lt;textarea id="message" maxlength="120" rows="4" cols="40"&gt;&lt;/textarea&gt;
+&lt;p id="charCount"&gt;Số ký tự: 0 / 100&lt;/p&gt;
+
+&lt;script&gt;
+const textarea = document.getElementById('message');
+const countEl  = document.getElementById('charCount');
+const MAX = 100;
+
+textarea.addEventListener('input', () => {
+  const len = textarea.value.length;
+  countEl.textContent = `Số ký tự: ${len} / ${MAX}`;
+
+  if (len > MAX) {
+    countEl.style.color = '#ef4444';
+    countEl.textContent += ' — Vượt quá giới hạn!';
+  } else {
+    countEl.style.color = '#1e293b';
+  }
+});
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 8 -->
+        <div class="card">
+          <h3>Lời giải Bài 8 – Tab</h3>
+          <pre><code>&lt;div class="tabs"&gt;
+  &lt;button class="tab-btn active" data-tab="intro"&gt;Giới thiệu&lt;/button&gt;
+  &lt;button class="tab-btn" data-tab="product"&gt;Sản phẩm&lt;/button&gt;
+  &lt;button class="tab-btn" data-tab="contact"&gt;Liên hệ&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id="intro" class="tab-content active"&gt;Nội dung giới thiệu...&lt;/div&gt;
+&lt;div id="product" class="tab-content"&gt;Nội dung sản phẩm...&lt;/div&gt;
+&lt;div id="contact" class="tab-content"&gt;Nội dung liên hệ...&lt;/div&gt;
+
+&lt;script&gt;
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Xóa active cũ
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+    // Thêm active mới
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-btn.active { background: #2563eb; color: white; }
+&lt;/style&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 9 -->
+        <div class="card">
+          <h3>Lời giải Bài 9 – Modal</h3>
+          <pre><code>&lt;button id="openModal"&gt;Mở Modal&lt;/button&gt;
+
+&lt;div id="overlay" class="overlay hidden"&gt;
+  &lt;div class="modal"&gt;
+    &lt;h2&gt;Đây là Modal&lt;/h2&gt;
+    &lt;p&gt;Nội dung hộp thoại...&lt;/p&gt;
+    &lt;button id="closeModal"&gt;Đóng&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const overlay = document.getElementById('overlay');
+const openBtn = document.getElementById('openModal');
+const closeBtn = document.getElementById('closeModal');
+
+openBtn.addEventListener('click', () => overlay.classList.remove('hidden'));
+closeBtn.addEventListener('click', () => overlay.classList.add('hidden'));
+
+// Đóng khi click vào overlay (không phải modal)
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) {
+    overlay.classList.add('hidden');
+  }
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal {
+  background: white; padding: 2rem; border-radius: 12px;
+  max-width: 400px; width: 90%;
+}
+.hidden { display: none !important; }
+&lt;/style&gt;</code></pre>
+        </div>
+
+        <!-- Lời giải 10 -->
+        <div class="card">
+          <h3>Lời giải Bài 10 – Todo List hoàn chỉnh</h3>
+          <pre><code>&lt;input id="todoInput" placeholder="Công việc mới..."&gt;
+&lt;button id="addTodo"&gt;Thêm&lt;/button&gt;
+&lt;p&gt;Còn lại: &lt;span id="remaining"&gt;0&lt;/span&gt; công việc&lt;/p&gt;
+&lt;ul id="todoList"&gt;&lt;/ul&gt;
+
+&lt;script&gt;
+const input     = document.getElementById('todoInput');
+const list      = document.getElementById('todoList');
+const remaining = document.getElementById('remaining');
+
+let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+
+function save() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+  render();
+}
+
+function render() {
+  list.innerHTML = '';
+  let left = 0;
+
+  todos.forEach((todo, index) => {
+    if (!todo.done) left++;
+    const li = document.createElement('li');
+    li.innerHTML = `
+      &lt;span class="${todo.done ? 'done' : ''}"&gt;${todo.text}&lt;/span&gt;
+      &lt;button data-action="toggle" data-index="${index}"&gt;✓&lt;/button&gt;
+      &lt;button data-action="delete" data-index="${index}"&gt;Xóa&lt;/button&gt;
+    `;
+    list.appendChild(li);
+  });
+
+  remaining.textContent = left;
+}
+
+document.getElementById('addTodo').addEventListener('click', () => {
+  const text = input.value.trim();
+  if (!text) return;
+  todos.push({ text, done: false });
+  input.value = '';
+  save();
+});
+
+list.addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  const index = Number(btn.dataset.index);
+
+  if (btn.dataset.action === 'toggle') {
+    todos[index].done = !todos[index].done;
+  } else if (btn.dataset.action === 'delete') {
+    todos.splice(index, 1);
+  }
+  save();
+});
+
+render(); // khởi tạo
+&lt;/script&gt;
+
+&lt;style&gt;
+.done { text-decoration: line-through; color: #94a3b8; }
+&lt;/style&gt;</code></pre>
+          <p><strong>Giải thích chi tiết:</strong></p>
+          <ul>
+            <li>Dữ liệu được lưu trong mảng <code>todos</code> và đồng bộ với <code>localStorage</code>.</li>
+            <li>Hàm <code>render()</code> chịu trách nhiệm vẽ lại toàn bộ danh sách từ dữ liệu.</li>
+            <li>Event Delegation giúp xử lý nút ✓ và Xóa dù chúng được tạo động.</li>
+            <li>Đây là mô hình gần với cách các framework hiện đại hoạt động (data → view).</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <strong>Ghi chú cho Giáo viên:</strong> Có thể yêu cầu sinh viên làm thêm phiên bản không dùng localStorage (Bài 10 cơ bản), hoặc yêu cầu thêm chức năng lọc (All / Active / Completed) để tăng độ khó.
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    TanNQ@vhu.edu.vn - Bài giảng Lập trình với DOM • Lập trình Web<br>
+    © 2026 • Tài liệu nội bộ
+  </footer>
+
+  <script>
+    // ========== DEMO FUNCTIONS ==========
+    function demoSelectById() {
+      const el = document.getElementById('p1');
+      el.style.background = '#fef08a';
+      document.getElementById('select-result').textContent = 'Đã chọn #p1 bằng getElementById';
+    }
+    function demoSelectByClass() {
+      const els = document.getElementsByClassName('demo-p');
+      for (let el of els) el.style.background = '#bbf7d0';
+      document.getElementById('select-result').textContent = `Đã chọn ${els.length} phần tử bằng getElementsByClassName`;
+    }
+    function demoSelectQuery() {
+      const el = document.querySelector('.demo-p.special');
+      el.style.background = '#fbcfe8';
+      document.getElementById('select-result').textContent = 'Đã chọn .special bằng querySelector';
+    }
+    function resetSelectDemo() {
+      document.querySelectorAll('.demo-p').forEach(p => p.style.background = '');
+      document.getElementById('select-result').textContent = '';
+    }
+
+    function changeTextContent() {
+      document.getElementById('content-demo').textContent = 'Đã đổi bằng textContent (an toàn)';
+    }
+    function changeInnerHTML() {
+      document.getElementById('content-demo').innerHTML = 'Đã đổi bằng <strong>innerHTML</strong> – có thể chứa <em>HTML</em>';
+    }
+    function resetContent() {
+      document.getElementById('content-demo').textContent = 'Nội dung ban đầu của đoạn văn này.';
+    }
+
+    function changeStyle() {
+      const box = document.getElementById('style-demo');
+      box.style.backgroundColor = '#fef3c7';
+      box.style.fontSize = '1.25rem';
+      box.style.boxShadow = '0 8px 20px rgba(0,0,0,0.12)';
+      box.style.transform = 'scale(1.02)';
+    }
+    function toggleClass() {
+      document.getElementById('style-demo').classList.toggle('highlight-demo');
+    }
+    function resetStyle() {
+      const box = document.getElementById('style-demo');
+      box.style = 'padding:1rem; border-radius:8px; background:#e0e7ff; transition:all 0.3s;';
+      box.classList.remove('highlight-demo');
+    }
+
+    // Thêm CSS cho highlight-demo
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      .highlight-demo {
+        background: #fce7f3 !important;
+        border: 2px solid #ec4899 !important;
+        font-weight: 600;
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    let itemCount = 2;
+    function addItem() {
+      itemCount++;
+      const li = document.createElement('li');
+      li.style.cssText = 'padding:0.5rem; background:#bbf7d0; margin:0.3rem 0; border-radius:6px;';
+      li.textContent = `Mục ${itemCount} (mới thêm)`;
+      document.getElementById('demo-list').appendChild(li);
+    }
+    function removeLastItem() {
+      const list = document.getElementById('demo-list');
+      if (list.children.length > 0) {
+        list.lastElementChild.remove();
+        itemCount = Math.max(0, itemCount - 1);
+      }
+    }
+    function clearList() {
+      document.getElementById('demo-list').innerHTML = '';
+      itemCount = 0;
+    }
+
+    // Event demo
+    let clickCount = 0;
+    document.getElementById('event-btn').addEventListener('click', () => {
+      clickCount++;
+      document.getElementById('click-count').textContent = `Đã click ${clickCount} lần`;
+    });
+    document.getElementById('event-input').addEventListener('input', (e) => {
+      document.getElementById('event-output').textContent = 'Bạn đang gõ: ' + e.target.value;
+    });
+
+    // ========== EXERCISE TOGGLE ==========
+    function toggleExercise(header) {
+      const body = header.nextElementSibling;
+      body.classList.toggle('open');
+    }
+
+    // ========== PASSWORD ==========
+    function checkPassword() {
+      const pass = document.getElementById('gv-password').value.trim();
+      const msg  = document.getElementById('pass-msg');
+
+      if (pass === 'dom2026') {
+        document.getElementById('solutions').style.display = 'block';
+        document.getElementById('password-area').style.display = 'none';
+        msg.textContent = '';
+        // Scroll to solutions
+        document.getElementById('solutions').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        msg.textContent = 'Mật khẩu không đúng. Vui lòng thử lại!';
+        document.getElementById('gv-password').value = '';
+        document.getElementById('gv-password').focus();
+      }
+    }
+
+    // Smooth scroll for nav
+    document.querySelectorAll('.nav a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
